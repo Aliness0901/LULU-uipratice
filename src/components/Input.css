@@ -1,0 +1,18 @@
+
+.input_container {
+    overflow: hidden;
+    width: 386px;
+    height: 35px;
+    margin-bottom: 30px;
+    border-bottom: solid grey 1px;
+}
+
+.input {
+    display: block;
+    width: 386px;
+    height: 41px;
+    border: none;
+    font-size: 17px;
+    /* border-bottom: 1px solid gray; */
+    background: none
+}

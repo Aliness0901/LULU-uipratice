@@ -1,0 +1,70 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    background-image: url(../assets/images/background.jpg);
+    /* background: no-repeat; */
+    background-position: center center;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    justify-content: center;
+}
+
+.login{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* justify的center是按照父盒子的x或者y来排 */
+    /* justify-content: center;         */
+    align-items: center;
+    /* 想让盒子居中对齐的话，就用父盒子的对角线和子盒子的对角线在一条线上就行 */
+    /* --------------------以上是基础设置--------------------- */
+    width: 500px;
+    height: 600px;
+    overflow: hidden;
+    background-color:  rgba(255, 255, 255, 0.85);
+    margin-top: 132px ;
+    border-radius: 30px;
+}
+
+.login_header {
+    margin-top: 46px;
+    font-size: 50px;
+    font-family:  bigFish;
+    color:  #ED5736;
+}
+
+.Login_Sign_container {
+    position: relative;
+    height: 468px;
+    width: 500px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: red; */
+}
+
+.Login_Sign_button {
+    display: inline-block;
+    width: 386px;
+    height: 50px;
+    margin-top: 71px;
+    background-color: #ED5736; 
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+}
+
+.Login_Sign_footer {
+    position: absolute;
+    bottom: 0px;
+    display: block;
+    width: 500px;
+    height: 118px;
+    background-color:rgba(177, 173, 173,0.8);
+    text-align: center;
+    line-height: 118px;
+}
