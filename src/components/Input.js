@@ -17,9 +17,10 @@ class Input extends Component {
         })
     }
     render() {
+        console.log(this.props.errortext);
         return (
             <div className='big_input_container'>
-                <div className='input_container'>
+                <div className='input_container' style={{borderBottomColor:this.props.buttomcolor}}>
                     <input
                         onClick={this.handleClick}
                         onBlur={this.handleBlur}
