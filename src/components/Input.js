@@ -3,8 +3,9 @@ import '../components/Input.css'
 
 class Input extends Component {
     state = {
-        placeholder: this.props.placeholder
-    }
+        placeholder: this.props.placeholder,
+        // checked:this.props.checked           在这里赋值是不会受到父组件变动而更改的，state本身就是子组件的属性
+    }                   //一旦被赋值完，就是一次性赋值，渲染的时候不会再去渲染这个赋值的过程
     handleClick = () => {
         this.setState({
             placeholder: ''      //这里的是state里面的，相当于会变的
@@ -17,14 +18,18 @@ class Input extends Component {
     }
     render() {
         return (
-            <div className='input_container'>
+            <div className='big_input_container'>
+                <div className='input_container'>
                     <input
                         onClick={this.handleClick}
                         onBlur={this.handleBlur}
                         placeholder={this.state.placeholder}
                         className='input'
+                        {...this.props}
                     />
                 </div>
+        <div style={{display:this.props.checked}} >{this.props.errortext}</div>
+            </div>
         );
     }
 }
