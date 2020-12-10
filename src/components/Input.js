@@ -3,33 +3,33 @@ import '../components/Input.css'
 
 class Input extends Component {
     state = {
-        placeholder: this.props.placeholder,
+        pH: this.props.ph,
         // checked:this.props.checked           在这里赋值是不会受到父组件变动而更改的，state本身就是子组件的属性
     }                   //一旦被赋值完，就是一次性赋值，渲染的时候不会再去渲染这个赋值的过程
     handleClick = () => {
         this.setState({
-            placeholder: ''      //这里的是state里面的，相当于会变的
+            pH: ''      //这里的是state里面的，相当于会变的
         })
     }
     handleBlur = () => {
         this.setState({
-            placeholder: this.props.placeholder              //这里的placeholder是props中的，相当于不会变的那个
+            pH: this.props.ph              //这里的placeholder是props中的，相当于不会变的那个
         })
     }
     render() {
-        console.log(this.props.errortext);
+// 关于此组件，可以接受4个属性，一个是是否显示'block'，一个是底框的颜色buttomcolor，一个是placeholder定义名叫ph，还有一个错误信息errortext
         return (
             <div className='big_input_container'>
                 <div className='input_container' style={{borderBottomColor:this.props.buttomcolor}}>
                     <input
                         onClick={this.handleClick}
                         onBlur={this.handleBlur}
-                        placeholder={this.state.placeholder}
+                        placeholder={this.state.pH}
                         className='input'
                         {...this.props}
                     />
                 </div>
-        <div style={{display:this.props.checked}} >{this.props.errortext}</div>
+                <div className='login_error_box' style={{display:this.props.checked}} >{this.props.errortext}</div>
             </div>
         );
     }

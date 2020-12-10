@@ -1,3 +1,9 @@
+.big_input_container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
 
 .input_container {
     overflow: hidden;
@@ -5,6 +11,7 @@
     height: 35px;
     margin-bottom: 30px;
     border-bottom: solid grey 1px;
+    /* background-color: red; */
 }
 
 .input {
@@ -13,6 +20,13 @@
     height: 41px;
     border: none;
     font-size: 17px;
-    /* border-bottom: 1px solid gray; */
-    background: none
+    background-color: transparent ;
+    /* background: yellow */
+}
+
+.login_error_box {
+    margin-top: -28px;
+    height: 21px;
+    color: red;
+    /* background-color: blue; */
 }
