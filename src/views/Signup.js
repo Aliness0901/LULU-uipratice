@@ -36,7 +36,7 @@ CheckEmail=(e)=>{
 }
 CheckPassword=(e)=>{
     const emailCheck=/\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}/
-    if (e.target.value.match(emailCheck)) {
+    if (e.target.value.match(emailCheck)) {         //这里的正则表达式还没有写
       this.setState({
           password_checked:'none',
       })
