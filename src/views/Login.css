@@ -22,3 +22,9 @@
     text-align: center;
     line-height: 118px;
 }
+
+.error_info_container{
+    width: 100vw;
+    height: 100vh;
+    background-color: red;
+}

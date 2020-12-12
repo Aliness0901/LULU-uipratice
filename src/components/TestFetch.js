@@ -44,8 +44,8 @@ export default function TestFetch() {
       }),
     })
     .then(function(response) {
-      if (response.status >= 200 && response.status < 300) {
-        return response.json();
+      if (response.status >= 200 && response.status < 300) {      //这里用这个的意思就是如果用户想要查看的时候，不存在，就会返回
+        return response.json(); //等待所有后续的报文，第二个事情就是等待所有js的对象
       }
     })
     .then(function(data) {

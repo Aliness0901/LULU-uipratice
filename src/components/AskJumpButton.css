@@ -1,0 +1,14 @@
+.ask_cover{
+    position: absolute;         /*如果想要把整个页面都覆盖住，那么我们就需要用absolute，如果它没有父类有relative的话，就是absolute的document*/
+    display: none;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(201, 201, 201, 0.8);
+}
+
+.ask_button {
+    /* 如果想要让button保持在左下角的话，就用fixed，鬼知道这个页面有多长 */
+    position: fixed;
+    right: 0;
+    bottom: 0;
+}
