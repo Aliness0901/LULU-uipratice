@@ -34,6 +34,7 @@ class Login extends Component {
     }
 
     Login_fail = () => {
+        this.props.loginErrorFunc();            //利用父组件给子组件的方程，来改变父组件的state，从而让父组件的错误提示显示出来
         this.setState({
             checked: false
         })
@@ -54,13 +55,13 @@ class Login extends Component {
     render() {
         return (
 
-                <div className='Login_Sign_container'>
-                    <Input type='text' ref={Input => this.emailbox = Input} className='email_container input' ph='Email' onChange={this.Login_email_Control} />
-                    <Input type='text' ref={Input => this.passwordbox = Input} className='pssw_container input' ph='Password' onChange={this.Login_password_Control} />
-                    <button onClick={this.Login_check} className='Login_Sign_button'>Login</button>
-                    <footer className='Login_Sign_footer'>Don't have an account?<NavLink to='/signup'>SignUp</NavLink></footer>
-                </div>
-            
+            <div className='Login_Sign_container'>
+                <Input type='text' ref={Input => this.emailbox = Input} className='email_container input' ph='Email' onChange={this.Login_email_Control} />
+                <Input type='text' ref={Input => this.passwordbox = Input} className='pssw_container input' ph='Password' onChange={this.Login_password_Control} />
+                <button onClick={this.Login_check} className='Login_Sign_button'>Login</button>
+                <footer className='Login_Sign_footer'>Don't have an account?<NavLink to='/signup'>SignUp</NavLink></footer>
+            </div>
+
         );
     }
 }
