@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import{NavLink} from 'react-router-dom'
 
 import Input from'../components/Input'
+import {user_token} from '../views/Login'
 
 class Signup extends Component {
 
@@ -49,13 +50,15 @@ CheckPassword=(e)=>{
     }else {
         this.setState({
             password_checked:'block',
-            password_text_error:'error email',
+            password_text_error:'密码需要大于6位且小于12位',
             password_botoom_color:'red'
         })
     }
 }
 
     render() {
+        console.log(user_token);
+        //作为测试，这里的user_token只能显示key，id是undefined
         return (
             <div className='Login_Sign_container'>
                     <Input className='email_container input' type='text' ph='Email' onChange={this.CheckEmail} checked={this.state.email_checked} errortext={this.state.email_text_error} buttomcolor={this.state.email_botoom_color}/>

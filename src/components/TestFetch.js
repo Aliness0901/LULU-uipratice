@@ -23,6 +23,7 @@ export default function TestFetch() {
       return response.json();
     })
     .then(function(data) {
+      // 这里再用一次stringify就是为了保证把js的对象转变为字符串，因为有的时候并不会一口气传完整
       console.log("login successfully: " + JSON.stringify(data));
       user_id = data.user_token.user_id;
       key = data.user_token.key;
