@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom'
 
 import Input from '../components/Input'
-// import { user_token } from '../views/Login'
+import { user_token } from '../views/Login'
 import CreatUser from '../components/CreatUser'
 
 class Signup extends Component {
@@ -79,7 +79,7 @@ class Signup extends Component {
 
 
     render() {
-        // console.log(user_token);
+        console.log(user_token);
         //作为测试，这里的user_token只能显示key，id是undefined
         return (
             <div className='Login_Sign_container'>
