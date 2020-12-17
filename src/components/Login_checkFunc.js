@@ -42,7 +42,7 @@ export let Login_Check = (url, email, password, success, fail) => {
             // console.log(JSON.stringify(data));          //这里可以logdata出来看data现在是什么属性，如果没有成功拿到，那就是undefined
             user_token.user_id = data.user_token.user_idl;      //如果成功的话，这里会返回user_id
             user_token.key = data.user_token.key                //以及返回key
-            window.open('http://localhost:3000/mainpage', '_blank')
+            // window.open('http://localhost:3000/mainpage', '_blank')      //无法用这种方式来打开新网页，不符合react用法，不是onepageapp了
             console.log(data.user_token.id);
             console.log(data.user_token.key );
             console.log('用户信息' + user_token.user_id);

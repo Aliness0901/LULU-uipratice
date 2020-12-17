@@ -1,0 +1,10 @@
+.Like_container{
+    width: 109px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color:#F4BDB0;
+    color: #ED5736;
+    cursor: pointer;
+}

@@ -7,6 +7,7 @@ import Signup from '../views/Signup'
 
 import './LgandSu.css'
 
+
 class LgandSu extends Component {
     state = {
         login_error_box: 'none',

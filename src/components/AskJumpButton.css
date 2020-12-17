@@ -1,6 +1,8 @@
 .ask_cover{
     position: absolute;         /*如果想要把整个页面都覆盖住，那么我们就需要用absolute，如果它没有父类有relative的话，就是absolute的document*/
-    display: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 100vh;
     width: 100vw;
     background-color: rgba(201, 201, 201, 0.8);
@@ -9,6 +11,40 @@
 .ask_button {
     /* 如果想要让button保持在左下角的话，就用fixed，鬼知道这个页面有多长 */
     position: fixed;
-    right: 0;
-    bottom: 0;
+    right: 20px;
+    bottom: 20px;
+    width: 50px;
+    height: 50px;
+    border:  #ED5736;
+    background-color: #ED5736;
+    border-radius: 50%;
+    color: white;
+    line-height: 50px;
+    font-size: 60px;
+}
+
+.ask_small_container{
+    position: relative;
+    padding-top: 36px ;
+    padding-left: 100px;
+    padding-right: 100px;
+    width: 900px;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.askjump_ask{
+    position: absolute;
+    right: 105px;
+    bottom: 25px;
+    width: 386px;
+    height: 50px;
+    background-color: #ED5736;
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+    border:  #ED5736;
+    border-radius: 5px;
+    font-size: 20px;
 }

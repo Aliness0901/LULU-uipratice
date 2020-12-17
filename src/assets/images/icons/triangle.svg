@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="12px" viewBox="0 0 14 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Shape</title>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="button/agree" transform="translate(-7.000000, -9.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <path d="M7,9.68247884 C7,9.30554766 7.30557493,9 7.68247884,9 L19.6256404,9 C20.0025716,9 20.308092,9.30557493 20.308092,9.68247884 L14.1658915,20.772501 C14.1658915,20.772501 13.654046,21.2843738 13.1421732,20.772501 C12.630355,20.2606555 7,9.68247884 7,9.68247884 Z" id="Shape" transform="translate(13.654046, 15.000000) rotate(180.000000) translate(-13.654046, -15.000000) "></path>
+        </g>
+    </g>
+</svg>

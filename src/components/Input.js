@@ -20,7 +20,7 @@ class Input extends Component {
 // 关于此组件，可以接受4个属性，一个是是否显示'block'，一个是底框的颜色buttomcolor，一个是placeholder定义名叫ph，还有一个错误信息errortext
         return (
             <div className='big_input_container'>
-                <div className='input_container' style={{borderBottomColor:this.props.buttomcolor}}>
+                <div className='input_container' style={{borderBottomColor:this.props.buttomcolor, width:this.props.botline}}>
                     <input
                         onClick={this.handleClick}
                         onBlur={this.handleBlur}
@@ -39,3 +39,5 @@ export default Input;
 
 //也就是说这里placeholder看起来是一个，但是其实是有两个，一个是state里可变的，一个是不可变的
 //写两个是因为需要满足我们的一个需求，就是在鼠标点击之后就消失，而不是像传统的placeholder一样，输入了之后才消失
+
+//此组件可以传入自定义的placeholder以外，还可以传入自定义的横线长度

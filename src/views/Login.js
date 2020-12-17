@@ -25,8 +25,8 @@ export let user_token={
 
 class Login extends Component {
     state = {
-        email: '',
-        passowrd: '',
+        email: 'i@bigfish.com',
+        passowrd: 'Ab123456',
         checked: null
     }
 
@@ -76,7 +76,7 @@ class Login extends Component {
             <div className='Login_Sign_container'>
                 <Input type='text' value={this.state.email} ref={Input => this.emailbox = Input} className='email_container input' ph='Email' onChange={this.Login_email_Control} />
                 <Input type='text' value={this.state.passowrd} ref={Input => this.passwordbox = Input} className='pssw_container input' ph='Password' onChange={this.Login_password_Control} />
-                <button onClick={this.Login_check} className='Login_Sign_button'>Login</button>
+                <button onClick={this.Login_check} className='Login_Sign_button'><NavLink className='Login_button' to='mainpage'>Login</NavLink></button>
                 <footer className='Login_Sign_footer'>Don't have an account?<NavLink to='/signup'>SignUp</NavLink></footer>
             </div>
 
@@ -85,3 +85,9 @@ class Login extends Component {
 }
 
 export default Login;
+
+
+//*****************遗留问题********************* */
+//这里还缺少一个路由守卫来判断是否需要跳转，在方程中加跳转已经无法实现了，不能传用户的数据过去
+//同时这里有一个bug，就是如果点击跳转了之后，由于服务器需要时间去获取用户信息，在mainpage中就不能很快的拿到数据
+//最好用异步去研究一下

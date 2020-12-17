@@ -8,7 +8,7 @@ a {
     text-decoration: none;
 }
 
-input:focus, textarea:focus {
+input:focus, textarea:focus,button:focus {          /*去掉input，textarea，按钮点击之后的框*/
     outline: none;
 }
 
@@ -17,3 +17,4 @@ input:focus, textarea:focus {
 font-family: bigFish;
 src: url(./assets/fonts/Russo_One/RussoOne-Regular.ttf)
 }
+
