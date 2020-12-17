@@ -10,5 +10,6 @@ export default function GetQustion() {
         })
         .then(function (data) {
             console.log(data);
+            return data
         });
 }

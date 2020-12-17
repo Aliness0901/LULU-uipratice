@@ -2,6 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    /* width: 386px;
+    height: 58px; */
     margin-bottom: 10px;
 }
 
