@@ -9,8 +9,8 @@ class Like_tri_button extends PureComponent {
         super(props)
 
         this.state = {
-            Likenum:0,                   //这里的数字应该是从后台拿来的
-            checkable:true 
+            Likenum:this.props.like,                   //这里的数字是从后台拿来的
+            checkable:this.props.liked                  //questions会返回一个liked，初始默认值是false
         }
     }
 

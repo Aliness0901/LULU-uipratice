@@ -20,10 +20,26 @@
 .Qustion_container{
     margin-top: 20px;
     width: 900px;
-    height: 924px;
+    padding: 25px 25px 25px 25px ;
     background-color: #ffff;
 }
 .small_Qustion_container{
     width: 842px;
     height: 229px;
+}
+.Qustion_detail{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 229px;
+    text-align: justify;
+    line-height: 30px;
+    text-overflow: ellipsis;
+    background-color: red;
+}
+
+.Qustion_title{
+    width: 842px;
+    overflow: hidden;
+    white-space: nowrap;            
+    text-overflow: ellipsis;
 }
