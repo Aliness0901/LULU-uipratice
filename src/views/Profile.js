@@ -22,9 +22,9 @@ class Profile extends PureComponent {
                 {/* 把图片用作navlink，装饰背景 */}
                     <NavLink to='/profile' className='userpic' />
                 </header>
-                <body className='afterheader_body'>
-                    
-                </body>
+                <div className='afterheader_body'>
+
+                </div>
             </div>
         )
     }
