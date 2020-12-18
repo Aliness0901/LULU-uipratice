@@ -18,12 +18,17 @@ class MainPage extends PureComponent {
         }
     }
 
+    SuccessGet=()=>{
+    
+    }
+
+    componentDidMount=()=>{
+        GetQustion();
+    }
+
     render() {
-        console.log('mainpage'+user_token);                //这里有一个bug，如果页面加载完成了，但是数据没有获取到
-        console.log(user_token);
-        let Question =GetQustion();
-        console.log(Question);
-        //这里不清楚是不是跨域的问题，这里接收不到user_token
+        console.log(user_token);                    //这里依旧有一个问题，就是只要页面刷新了，user_token就又空了
+        //这个刷新不是只react本身的刷新，而是用户点击浏览器的刷新，会丢失这个全局变量的内容
         return (
             <div>
                 <AskJumpButton/>

@@ -43,9 +43,9 @@ export let Login_Check = (url, email, password, success, fail) => {
             user_token.user_id = data.user_token.user_idl;      //如果成功的话，这里会返回user_id
             user_token.key = data.user_token.key                //以及返回key
             // window.open('http://localhost:3000/mainpage', '_blank')      //无法用这种方式来打开新网页，不符合react用法，不是onepageapp了
-            console.log(data.user_token.id);
-            console.log(data.user_token.key );
-            console.log('用户信息' + user_token.user_id);
+            // console.log(data.user_token.id);
+            // console.log(data.user_token.key );
+            // console.log('用户信息' + user_token.user_id);
             //这里写的稍微有点不一样，因为不是在同一个作用域中，所以用return来接收这两个返回值
         })
         .catch(function (error) {        //如果不写这个catch的话，就会整个页面都弹错
