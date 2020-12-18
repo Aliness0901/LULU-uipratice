@@ -1,9 +1,7 @@
 .afterheader_body{
     display: flex;
-    width: 100vw;
-    height: 100vh;
+    width: 99vw;
     justify-content: center;
-    /* align-items: center; 如果加上这句，就会不管其他的窗口，始终在中间*/  
     background-color: rgb(243, 243, 243);
     box-shadow: inset 0px 3px 5px 1px rgba(85, 84, 84, 0.2);
 }

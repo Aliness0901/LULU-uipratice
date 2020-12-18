@@ -20,24 +20,24 @@
 .Qustion_container{
     margin-top: 20px;
     width: 900px;
-    padding: 25px 25px 25px 25px ;
+    padding: 0px 25px 25px 25px ;
     background-color: #ffff;
 }
+
 .small_Qustion_container{
     width: 842px;
-    height: 229px;
+    border-bottom: 1px solid rgb(228, 228, 228);
 }
 .Qustion_detail{
     margin-top: 10px;
-    margin-bottom: 10px;
-    height: 229px;
+    margin-bottom: 60px;
     text-align: justify;
     line-height: 30px;
     text-overflow: ellipsis;
-    background-color: red;
 }
 
 .Qustion_title{
+    margin-top: 25px;
     width: 842px;
     overflow: hidden;
     white-space: nowrap;            
