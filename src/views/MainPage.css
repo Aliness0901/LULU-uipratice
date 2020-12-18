@@ -17,3 +17,13 @@
     background-image: url(../assets/images/avatar_default.jpg);
     background-size: cover;     /*如果想让背景图片等比缩小，并且居中的话，就用bg-size*/
 }
+.Qustion_container{
+    margin-top: 20px;
+    width: 900px;
+    height: 924px;
+    background-color: #ffff;
+}
+.small_Qustion_container{
+    width: 842px;
+    height: 229px;
+}
