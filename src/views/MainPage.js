@@ -9,25 +9,36 @@ import GetQustion from '../components/GetQustions'
 import './MainPage.css'
 
 
+export let questionsdata={
+    data:[]             //这个data是一定要的，全局变量是questionsdata中data的部分，而questionsdata本身不是全局变量
+}           //如果你不写data这个属性的话，js就会随便给你开一个变量，有了这个data才能去使用，也就是说questionsdata相当于一个文件夹名字而已
+
+
+
+
 class MainPage extends PureComponent {
     constructor(props) {
         super(props)
 
         this.state = {
-            
+            questionsdataRev:false
         }
     }
 
     SuccessGet=()=>{
-    
+        console.log(questionsdata.data);
+        this.setState({
+            questionsdataRev:true                       //尝试利用state来判断接收到数据后刷新页面
+        })
     }
 
     componentDidMount=()=>{
-        GetQustion();
+        GetQustion(this.SuccessGet);
     }
 
     render() {
         console.log(user_token);                    //这里依旧有一个问题，就是只要页面刷新了，user_token就又空了
+        console.log(questionsdata.data);
         //这个刷新不是只react本身的刷新，而是用户点击浏览器的刷新，会丢失这个全局变量的内容
         return (
             <div>
@@ -38,6 +49,11 @@ class MainPage extends PureComponent {
                     <NavLink to='/profile' className='userpic'/>           
                 </header>
                 <div className='afterheader_body'>
+                    {
+                        questionsdata.data.map(function (e) {
+                            return <div key={e.id}>{e.title}</div>
+                        })
+                    }
                 </div>
                 <LikeTriButton/>
             </div>
