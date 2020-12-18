@@ -19,7 +19,8 @@ class MainPage extends PureComponent {
     }
 
     render() {
-        console.log(user_token);                //这里有一个bug，如果页面加载完成了，但是数据没有获取到
+        console.log('mainpage'+user_token);                //这里有一个bug，如果页面加载完成了，但是数据没有获取到
+        console.log(user_token);
         let Question =GetQustion();
         console.log(Question);
         //这里不清楚是不是跨域的问题，这里接收不到user_token
