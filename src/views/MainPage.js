@@ -39,7 +39,7 @@ class MainPage extends PureComponent {
         // console.log(user_token);                    //这里依旧有一个问题，就是只要页面刷新了，user_token就又空了
         //这个刷新不是只react本身的刷新，而是用户点击浏览器的刷新，会丢失这个全局变量的内容
         return (
-            <div>
+            <div className='mainpage_core'>
                 <AskJumpButton />
                 <header className='mainHeader'>
                     BIG FISH

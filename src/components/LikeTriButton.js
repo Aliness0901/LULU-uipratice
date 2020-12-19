@@ -9,17 +9,18 @@ class Like_tri_button extends PureComponent {
         super(props)
 
         this.state = {
-            Likenum:this.props.like,                   //这里的数字是从后台拿来的
-            checkable:this.props.liked                  //questions会返回一个liked，初始默认值是false
+            Likenum:this.props.like,                          //这里的数字是从后台拿来的
+            checked:this.props.liked                   //questions会返回一个liked，初始默认值是false
         }
     }
 
     handleClick=(e)=>{
-       if (this.state.checkable) {
+       if (!this.state.checked) {                   //由于这里收到的数据是后端返回的，后端返回没点之前是false，以为还没点，所以这里用!
         const num=this.state.Likenum
+        console.log(num);
         this.setState({
             Likenum:num+1,
-            checkable:false
+            checked:true
         })
         e.target.style.cursor='default'
        }else{

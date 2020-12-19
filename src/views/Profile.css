@@ -1,8 +1,62 @@
-.afterheader_body_profile{
+.profile_container{
     display: flex;
-    width: 100vw;
-    height: 100vh;
-    justify-content: center;
-    background-color: rgb(243, 243, 243);
-    box-shadow: inset 0px 3px 5px 1px rgba(85, 84, 84, 0.2);
+    flex-direction: row;                /*row代表横着，colum代表竖着*/
+    margin-top: 80px;
+    flex-basis: 1200px;                     /*由于这个container继承了大盒子，父类是row方向的，所以这里的basis是横着的*/   
+    height: 322px;
+    background-color: #ffff;
 }
+
+.user_change_pic{
+    flex-basis: 250px;                      /*它的父类是row，所以这里的basis是横着的*/
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../assets/images/avatar_default.jpg);
+    background-size: cover;
+    margin-top: -40px;
+}
+
+.user_edit_camera {
+    margin-bottom: 40px;
+    width: 100px;
+    flex-basis: 100px;          /*这里的父类是colum，所以basis是height*/
+}
+
+.edit_content{
+    color: #fff;
+}
+
+.Big_Edit_container{                /*因为内部是竖着排的，所以我们这里需要些一个父类把这两个div给抱起来，然后displaycolum*/
+    display: flex;          /*如果不这样做的话，就是display:row了*/
+    flex-direction: column;
+}
+
+.profile_edit_container{
+    flex-basis: 50px;                       /*这里的父类是colum，竖着着排的，所以basis是竖着的高*/
+    flex-wrap: nowrap;                  /*如果这里不写nowrap的话，在缩小屏幕之后，会换行，把布局挤掉*/
+    width: 220px;                       /*因为我们这里用了column，主轴是y，副轴是x，但是我们又一定要给一个值*/
+    background-color: red;      /*不给这里的字就会掉出来*/
+    margin:30px;
+    font-size: 30px;
+}
+/* 这里还是由bug，如果flex-basis给了300的话，字就会因为放不下而掉下来，这里是为什么？ */
+
+.user_description{
+    flex-basis: 100px;
+    min-width: 500px;                               /*这里没办法，一定要写一个副轴的宽度咋办*/
+    display: flex;
+    flex-direction: row;                        /*这个描述的盒子就需要横着放了 */
+    margin:0 10px 30px 30px ;
+    background-color: red;
+}
+/*
+.user_detial_description{
+    flex-basis: 200px; 
+    height: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: pink;
+} */

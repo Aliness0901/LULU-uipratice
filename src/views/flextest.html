@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        .div1 {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            background-color: red;
+        }
+        .div2 {
+            /* width: 800px; */
+            background-color: yellow;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .div3 {
+            background-color: pink;
+            min-width: 800px;
+            flex-basis: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="div1">
+        <div class="div2">1132132132132132132132132132132132132132132132132132132132132132123</div>
+        <div class="div3">1</div>
+    </div>
+</body>
+</html>
