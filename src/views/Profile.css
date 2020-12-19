@@ -1,6 +1,7 @@
-.afterheader_body{
+.afterheader_body_profile{
     display: flex;
-    width: 99vw;
+    width: 100vw;
+    height: 100vh;
     justify-content: center;
     background-color: rgb(243, 243, 243);
     box-shadow: inset 0px 3px 5px 1px rgba(85, 84, 84, 0.2);

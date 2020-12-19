@@ -22,8 +22,8 @@ class Profile extends PureComponent {
                 {/* 把图片用作navlink，装饰背景 */}
                     <NavLink to='/profile' className='userpic' />
                 </header>
-                <div className='afterheader_body'>
-
+                <div className='afterheader_body_profile'>
+                    <div>1111</div>
                 </div>
             </div>
         )
