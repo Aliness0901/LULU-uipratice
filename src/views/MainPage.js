@@ -54,7 +54,8 @@ class MainPage extends PureComponent {
                                 <div className='small_Qustion_container' key={e.id}>
                                     <h4 className='Qustion_title'>{e.title}</h4>
                                     <div className='Qustion_detail'>{e.content}
-                                    <LikeTriButton like={e.number_of_likes} liked={e.liked} /></div>
+                                    <LikeTriButton like={e.number_of_likes} liked={e.liked} />
+                                    </div>
                                 </div>
                             )
                         })

@@ -1,9 +1,10 @@
 .mainpage_core {
-    width: 100vw;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    width: 100vw;
+    height: 100vh;
+
 }
 .mainHeader{
     height: 80px;
@@ -15,13 +16,15 @@
     background-color:#fff;
     color:  #ED5736;
     font-size: 30px;
+    cursor: default;
 }
 
 .afterheader_body{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
-    flex-basis: 100%;
+    align-items: center;
+    flex: 2;
     background-color: rgb(243, 243, 243);
     box-shadow: inset 0px 3px 5px 1px rgba(85, 84, 84, 0.2);
 }
@@ -50,7 +53,6 @@
     margin-bottom: 60px;
     text-align: justify;
     line-height: 30px;
-    text-overflow: ellipsis;
 }
 
 .Qustion_title{
