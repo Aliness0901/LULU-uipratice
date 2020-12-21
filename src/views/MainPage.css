@@ -19,6 +19,7 @@
 
 .afterheader_body{
     display: flex;
+    flex-direction: row;
     justify-content: center;
     flex-basis: 100%;
     background-color: rgb(243, 243, 243);

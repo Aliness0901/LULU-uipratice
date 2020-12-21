@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: row;                /*row代表横着，colum代表竖着*/
     margin-top: 80px;
-    flex-basis: 1200px;                     /*由于这个container继承了大盒子，父类是row方向的，所以这里的basis是横着的*/   
-    height: 322px;
+    width: 1200px;                     /*由于这个container继承了大盒子，父类是row方向的，所以这里的basis是横着的*/   
+    height: 500px;
     background-color: #ffff;
 }
 
@@ -35,28 +35,31 @@
 }
 
 .profile_edit_container{
-    flex-basis: 50px;                       /*这里的父类是colum，竖着着排的，所以basis是竖着的高*/
-    flex-wrap: nowrap;                  /*如果这里不写nowrap的话，在缩小屏幕之后，会换行，把布局挤掉*/
-    width: 220px;                       /*因为我们这里用了column，主轴是y，副轴是x，但是我们又一定要给一个值*/
-    background-color: red;      /*不给这里的字就会掉出来*/
+    /*height: 40px;                       /*这里的父类是colum，竖着着排的，所以basis是竖着的高*/
+    white-space: nowrap;                  /*如果这里不写nowrap的话，在缩小屏幕之后，会换行，把布局挤掉，注意是whitespace，而不是flex-wrap，flex-wrap是盒子之间的换行*/
+    text-overflow: ellipsis;                      /*因为我们这里用了column，主轴是y，副轴是x，但是我们又一定要给一个值*/      /*不给这里的字就会掉出来*/
     margin:30px;
+    /*width: 220px;*/           /*因为这里我们要加点击后的button这些，所以盒子会扩开，这里就不加固定的高宽了*/
     font-size: 30px;
+    overflow: hidden;
+    /* background-color: red; */
 }
 /* 这里还是由bug，如果flex-basis给了300的话，字就会因为放不下而掉下来，这里是为什么？ */
 
 .user_description{
-    flex-basis: 100px;
-    min-width: 500px;                               /*这里没办法，一定要写一个副轴的宽度咋办*/
+    height: 100px;
+    width: 500px;                               /*这里没办法，一定要写一个副轴的宽度咋办*/
     display: flex;
     flex-direction: row;                        /*这个描述的盒子就需要横着放了 */
     margin:0 10px 30px 30px ;
-    background-color: red;
 }
-/*
+
 .user_detial_description{
-    flex-basis: 200px; 
+    margin-left: 80px;
+    width: 200px; 
     height: 110px;
+    text-align: justify;
     overflow: hidden;
     text-overflow: ellipsis;
-    background-color: pink;
-} */
+    /* background-color: pink; */
+}
