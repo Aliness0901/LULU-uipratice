@@ -53,13 +53,17 @@
     margin-bottom: 60px;
     text-align: justify;
     line-height: 30px;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .Qustion_title{
+    display: inline-block;
     margin-top: 25px;
     width: 842px;
     overflow: hidden;
     white-space: nowrap;            
     text-overflow: ellipsis;
+    font-weight: 800;
+    color: #000;
+    cursor: pointer;
 }

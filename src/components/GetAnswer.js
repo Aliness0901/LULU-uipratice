@@ -10,20 +10,23 @@ export default function GetQustion(id, success, fail) {
         .then(function (response) {
             if (response.ok) {
                 return response.json();   
-            }else{
-                fail();
-                console.log('something error'+response.error);
+            }else if(response.status===404){
+                return ''
             }
         })
         .then(function (data) {
             answers.answer=data.answers
             success();
-            console.log(answers.answer);
-            // console.log(data.answers);
-            // return data                         //同之前拿用户的数据一样，return在这里只能return给getquestion这个函数
+            console.log(data.answers);
+                        //同之前拿用户的数据一样，return在这里只能return给getquestion这个函数
             //而不能return出去，所以最好的解决办法还是在判断读取成功了之后，在函数本身里拿
         })
-        .catch(function (error) {
+        .catch(function (error){
             console.log('catch'+error);
         })
 }
+
+
+/*
+以上代码已经合并到了GetQustion中
+*/ 
