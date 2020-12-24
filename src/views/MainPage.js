@@ -5,6 +5,9 @@ import AskJumpButton from '../components/AskJumpButton'
 // import {user_token} from '../views/Login'
 import LikeTriButton from '../components/LikeTriButton'
 import GetQustion from '../components/GetQustions'
+import getuserInfo from '../components/GetUserInfo'
+import {userdatadetail} from '../views/Profile'
+
 
 import './MainPage.css'
 
@@ -22,7 +25,7 @@ class MainPage extends PureComponent {
 
         this.state = {
             questionsdataRev: false,
-            
+            user_pic:''
         }
     }
 
@@ -33,9 +36,23 @@ class MainPage extends PureComponent {
     }
 
 
+    SucessgetUser=()=>{
+        this.setState({
+            user_pic:userdatadetail.detail.avatar_url
+        })
+        if (this.state.user_pic!==null) {                       //设置默认头像，在判断赋值过后是否为空之后，赋值我们自己的默认图片
+            return 
+        }else{
+            this.setState({
+                user_pic:"http://www.hw2jp.com/wp-content/uploads/2019/03/%E6%B5%B7%E8%B4%BC%E7%8E%8B.jpg"
+            })
+        }
+    }
+
 
     componentDidMount = () => {
         GetQustion(this.SuccessGet,this.SuccessGet);                    //此处应该还有一个没有拿到内容的函数fail
+        getuserInfo(localStorage.user_id,localStorage.userkey,this.SucessgetUser);
     }
 
 
@@ -57,7 +74,7 @@ class MainPage extends PureComponent {
                 <header className='mainHeader'>
                     BIG FISH
                     {/* 把图片用作navlink，装饰背景 */}
-                    <NavLink to='/profile' className='userpic' />
+                    <NavLink to='/profile' className='userpic' style={{backgroundImage:`url(${this.state.user_pic})`}} />
                 </header>
                 <div className='afterheader_body'>
                     <div className='Qustion_container'>

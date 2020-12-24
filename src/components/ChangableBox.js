@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react'
 
 import Input from '../components/Input'
-import pencil from '../assets/images/icons/pencil-edit-button.svg'
+import Patchuserinfo from '../components/Patchuserinfo'
 
+import pencil from '../assets/images/icons/pencil-edit-button.svg'
 import './ChangableBox.css'
 
 class ChangableBox extends PureComponent {
@@ -48,6 +49,8 @@ class ChangableBox extends PureComponent {
             inputshow:'none',
             editshow:'flex'
         })
+        let {email,password,userName,description,user_pic}=this.props.changeabledata
+        Patchuserinfo(localStorage.user_id,localStorage.userkey,email,password,userName,description,user_pic)
     }
 
     CancleButton=()=>{
@@ -77,7 +80,7 @@ export default ChangableBox
 
 /*
 *****接收参数
-**ChangedText用来接收父类中对input框中改变的文字后调用的回调函数，这个函数将会接收已改变的text内容，用来监控用户输入的是否有敏感词汇，可以在父类中书写规则
+**ChangedText用来接收父类中对input框中改变的文字后调用的回调函数，这个函数将会接收已改变的text内容，用来监控用户输入的是否有敏感词汇，可以在父类中书写规则并且存储在父类的state中
 **支持divclassname，无需解构
 **支持defaultvalue以及ph
 */ 
