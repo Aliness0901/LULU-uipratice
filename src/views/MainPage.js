@@ -1,11 +1,10 @@
 import React, { PureComponent } from 'react'
-import { NavLink ,withRouter} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 import AskJumpButton from '../components/AskJumpButton'
 // import {user_token} from '../views/Login'
 import LikeTriButton from '../components/LikeTriButton'
 import GetQustion from '../components/GetQustions'
-import GetAnswer from '../components/GetAnswer'
 
 import './MainPage.css'
 
@@ -14,9 +13,7 @@ export let questionsdata = {
     data: []             //这个data是一定要的，全局变量是questionsdata中data的部分，而questionsdata本身不是全局变量
 }           //如果你不写data这个属性的话，js就会随便给你开一个变量，有了这个data才能去使用，也就是说questionsdata相当于一个文件夹名字而已
 
-export let answers = {
-    answer: []
-}
+
 
 
 class MainPage extends PureComponent {
@@ -25,7 +22,7 @@ class MainPage extends PureComponent {
 
         this.state = {
             questionsdataRev: false,
-            answerdataRev: '',
+            
         }
     }
 
@@ -35,26 +32,15 @@ class MainPage extends PureComponent {
         })
     }
 
+
+
     componentDidMount = () => {
-        GetQustion(this.SuccessGet,this.SuccessAnswer,this.FailAnswer);                    //此处应该还有一个没有拿到内容的函数fail
+        GetQustion(this.SuccessGet,this.SuccessGet);                    //此处应该还有一个没有拿到内容的函数fail
     }
 
-    SuccessAnswer = () => {                         //利用组件来监控answer是否有内容，如果有则开启开关，没有就关闭开关，执行另一套方案
-        this.setState({
-            answerdataRev: true
-        })
-        this.props.history.push('/answers')         //因为这里需要异步操作，在用户点击完成之后等待获取完成，所以需要判断一下，不能直接navlink
-    }
-
-    FailAnswer = () => {
-        this.setState({
-            answerdataRev: false
-        })
-    }
 
     GetAnswerClick = (e) => {
-        GetAnswer(e.target.id,this.SuccessAnswer,this.FailAnswer)
-        localStorage.questionid=e.target.id;
+                      //在这里获取answer是没必要的，因为我们只需要获取到当前question的id
     }
 
     render() {
@@ -79,14 +65,13 @@ class MainPage extends PureComponent {
                             questionsdata.data.map((e) => {
                                 return (
                                     <div className='small_Qustion_container' key={e.id}>
-                                        <div className='Qustion_title' id={e.id} onClick={this.GetAnswerClick}>{e.title}</div>
+                                        <NavLink to={{pathname: '/answers', id: e.id, title: e.title, content: e.content}} onClick={this.GetAnswerClick}>{e.title}</NavLink>
                                         {/* 在这里，由于我们无法直接给getanswerclick传我们想要的参数，只能用event.target来做参数的时候 */}
                                         {/* 我们就需要创建一个属性或者利用react自身dom的属性来存储当前返回的e.id */}
                                         <div className='Qustion_detail'>
                                             {e.content}
                                             <LikeTriButton like={e.number_of_likes} liked={e.liked} />
-                                        </div>
-
+                                        </div>     
                                     </div>
                                 )
                             })
@@ -98,6 +83,8 @@ class MainPage extends PureComponent {
     }
 }
 
-export default withRouter(MainPage)
+export default MainPage
 
-//全局变量的跳转依旧在这里有问题
+//全局变量的跳转依旧在这里有问题                    //***已无问题***/
+
+//这里的设计思路就是将title，questionid放到local存储，当前页面跳转的时候，我们只需要拿着id和title到下一个页面去就行
