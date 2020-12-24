@@ -65,7 +65,7 @@ class MainPage extends PureComponent {
                             questionsdata.data.map((e) => {
                                 return (
                                     <div className='small_Qustion_container' key={e.id}>
-                                        <NavLink to={{pathname: '/answers', id: e.id, title: e.title, content: e.content}} onClick={this.GetAnswerClick}>{e.title}</NavLink>
+                                        <NavLink className='Qustion_title' to={{pathname: '/answers', id: e.id, title: e.title, content: e.content}} onClick={this.GetAnswerClick}>{e.title}</NavLink>
                                         {/* 在这里，由于我们无法直接给getanswerclick传我们想要的参数，只能用event.target来做参数的时候 */}
                                         {/* 我们就需要创建一个属性或者利用react自身dom的属性来存储当前返回的e.id */}
                                         <div className='Qustion_detail'>

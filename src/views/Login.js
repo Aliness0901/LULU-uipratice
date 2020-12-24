@@ -46,6 +46,8 @@ class Login extends Component {
         this.setState({
             checked: true
         })
+        localStorage.user_id=user_token.user_id         //讲道理我们不需要拿一个全局变量去接收了，直接在fetch里赋给全局变量就行了
+        localStorage.userkey=user_token.key
         // getuserInfo(user_id,key);                    //这里我们就只是把它log出来看一下，这个用户信息到底包含了什么
         // console.log('以下是用户信息'+user_token.user_id);  //这里log出来是undefined，此时的id还没有被附上，看是不是锁帧的问题
         //这里不是锁帧的问题，是本身在这个函数中，success是执行在赋值之前的，所以此时打印的话，当然是undefined

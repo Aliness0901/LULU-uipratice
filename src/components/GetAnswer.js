@@ -11,7 +11,7 @@ export default function GetAnswer(id, success, fail) {
             if (response.ok) {
                 return response.json();   
             }else if (response.status===404) {                      //不要在return里赋值的习惯
-                return {answers:[]}                     //
+                return {answers:['']}                     //如何处理404的catch
             }
         })
         .then(function (data) {

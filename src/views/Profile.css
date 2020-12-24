@@ -87,3 +87,6 @@
     -webkit-box-orient: vertical;
 }
 
+ .user_detial_description:hover{
+    border: 1px solid silver;
+}

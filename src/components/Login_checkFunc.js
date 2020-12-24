@@ -31,7 +31,7 @@ export let Login_Check = (url, email, password, success, fail) => {
     })
         .then(function (response) {         //status只有在这里会生成
             if (response.ok) {              //在这里判断response是否返回正确
-                success();                      //response会在这里返回一个属性，如果是正确的，.ok就会返回true
+                                      //response会在这里返回一个属性，如果是正确的，.ok就会返回true
                 return response.json();         //把拿到的数据返回一个json格式的文件，并在下面接收data.属性
             } else {
                 fail();                 //如果是错误的，.ok返回的就是一个false，所以这里我们可以写两个callback函数
@@ -42,6 +42,7 @@ export let Login_Check = (url, email, password, success, fail) => {
             // console.log(JSON.stringify(data));          //这里可以logdata出来看data现在是什么属性，如果没有成功拿到，那就是undefined
             user_token.user_id = data.user_token.user_id;      //如果成功的话，这里会返回user_id
             user_token.key = data.user_token.key                //以及返回key
+            success();
             // window.open('http://localhost:3000/mainpage', '_blank')      //无法用这种方式来打开新网页，不符合react用法，不是onepageapp了
             // console.log(data.user_token.id);
             // console.log(data.user_token.key );

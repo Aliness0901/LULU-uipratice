@@ -2,6 +2,9 @@ import React, { PureComponent } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import GetAnswer from '../components/GetAnswer'
+import LikeTriButton from '../components/LikeTriButton'
+
+import './Answers.css'
 
 export let answers = {
     answer: []
@@ -33,6 +36,7 @@ class Answers extends PureComponent {
     }
 
     render() {
+        console.log(answers.answer);
         return (
             <div className='mainpage_core'>
                 <header className='mainHeader'>
@@ -41,25 +45,36 @@ class Answers extends PureComponent {
                 </header>
                 <div className='afterheader_body2'>
                     <div className='repeat_title'>
-                        <h3>{this.props.location.title}</h3>
-                        <div>{this.props.location.content}</div>
+                        <h3 className='Rquestion_title'>{this.props.location.title}</h3>
+                        <div className='Rquestion_content'>{this.props.location.content}</div>
                     </div>
                     <div className='answers_body'>
                         {answers.answer.map((e) => {
-                            return (
-                                <div key={e.id}>
-                                    <div className='difuser_title'>                     
-                                    {/*这里的父盒子display是row，竖着*/}
-                                        <div>img</div>
-                                        <div className='user_detail'>                   
-                                        {/*这里的盒子display是column，横着*/}
-                                            <div>name</div>
-                                            <div>{e.created_at}</div>
+                            console.log(e);
+                            if (e!=='') {               //这里的e就是answer拿出来的东西，所以404的时候answer里面是空，所以e就是空
+                                return (
+                                    <div className='each_answer' key={e.id}>
+                                        <div className='difuser_title'>
+                                            {/*这里的父盒子display是row，竖着*/}
+                                            <div className='user_pic_ans'></div>
+                                            <div className='user_detail'>
+                                                {/*这里的盒子display是column，横着*/}
+                                                <div>name</div>
+                                                <div>{e.created_at}</div>
+                                            </div>
                                         </div>
+                                        <div className='answer_detail'>{this.props.location.content}</div>
+                                        <LikeTriButton like={e.number_of_likes} />
                                     </div>
-                                    <div className='answer_detail'>{this.props.location.content}</div>
-                                </div>
-                            )
+                                )
+                            }else if (e===''){
+                                    return(
+                                        <div key='none'>啊哦，还没有人答题哦</div>
+                                    )
+                                }
+                                else {
+                                    return null                     //这里如果网页崩溃了，就在这里写else的情况
+                                }
                         })}
                     </div>
                 </div>
@@ -72,4 +87,3 @@ export default Answers
 
 
 
- 

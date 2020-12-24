@@ -1,0 +1,49 @@
+.repeat_title{
+    width: 900px;
+    margin-top: 20px;
+    padding: 10px 20px 10px 20px;
+    background-color: #fff;
+    text-align: justify;
+    color: rgb(54, 54, 54);
+    line-height: 30px;
+}
+
+.Rquestion_title{
+    margin-bottom: 10px;
+}
+
+.answers_body{
+    margin-top: 40px ;
+    margin-bottom: 10px;
+    width: 900px;
+    padding: 10px 20px 10px 20px;
+    background-color: #fff;
+}
+
+.each_answer{
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid silver;
+}
+
+.difuser_title{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+}
+
+.user_pic_ans{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    margin-right: 10px;
+    background-color: red;
+    background-image: url(../assets/images/avatar_default.jpg);                 /*这里的用户头像是需要网络访问了拿的*/
+    background-size: cover;
+}
+
+.answer_detail{
+    text-align: justify;
+    margin-bottom: 10px;
+    line-height: 40px;
+}
