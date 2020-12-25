@@ -25,11 +25,11 @@ export default function Patchuserinfo(user_id, key, email, password,name, avatar
                 return response.json();
               }
             else if (response.status>300) {
-                return response.json
+                return response.json();
             }
         })
         .then(function (data) {
-            console.log("login successfully: " + JSON.stringify(data.errors));
+            console.log("login successfully: " + JSON.stringify(data));
         });
 }
 
