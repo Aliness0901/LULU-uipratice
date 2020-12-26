@@ -108,7 +108,7 @@ class Answers extends Component {                       //这里有purecomponent
                                         <LikeTriButton like={e.number_of_likes} />
                                     </div>
                                 )
-                            }else if (e===['']){
+                            }else if (e===[]){
                                     return(
                                         <div key='none'>啊哦，还没有人答题哦</div>
                                     )
