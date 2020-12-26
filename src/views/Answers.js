@@ -114,7 +114,7 @@ class Answers extends Component {                       //这里有purecomponent
                                     }
                                     else {
                                         console.log(userinfoLength);
-                                        console.log('else');
+                                        //这边可以做一个loading的图片
                                         return null                     //这里如果网页崩溃了，就在这里写else的情况
                                     }
                                 }
