@@ -37,8 +37,8 @@
     height: 50px;
     border-radius: 50px;
     margin-right: 10px;
-    background-color: red;
-    background-image: url(../assets/images/avatar_default.jpg);                 /*这里的用户头像是需要网络访问了拿的*/
+    /* background-color: red; */
+    /* background-image: url(../assets/images/avatar_default.jpg);                 这里的用户头像是需要网络访问了拿的 */
     background-size: cover;
 }
 

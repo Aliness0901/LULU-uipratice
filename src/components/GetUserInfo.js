@@ -24,7 +24,7 @@ export default function getuserInfo(user_id,key,success){
       //console.log("get user info successfully: " + JSON.stringify(data));     //如果这里没有stringify的话，就会显示obj obj这样奇怪的东西
       //但是在调用赋值的时候，千万不要加JSON.stringify，不然会出现赋值完拿不出来的情况，stringify只是看一下里面有什么而已
       userdatadetail.detail=data.user
-      console.log((userdatadetail.detail)); 
+      // console.log((userdatadetail.detail)); 
       success();
     });
 }

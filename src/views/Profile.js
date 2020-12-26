@@ -35,12 +35,23 @@ class Profile extends PureComponent {
         }else{
             return
         }
+        console.log(text);
     }
 
     ChangedDesDetail=(text)=>{
         this.setState({
             description:text
         })
+    }
+
+    changedURL=(text)=>{
+        if (text!=='') {                    //因为名字不能是空的，所以这里加了判断,但是其实还是会传给后面的fetch，之后可以加个判断，来阻止跳转fetch
+            this.setState({
+                user_pic:text
+            })   
+        }else{
+            return
+        }
     }
 
     SucessgetUser=()=>{
@@ -50,7 +61,7 @@ class Profile extends PureComponent {
             description:userdatadetail.detail.description,
             user_pic:userdatadetail.detail.avatar_url,
             email:userdatadetail.detail.email,
-            password:userdatadetail.detail.password_digest
+            password:''
         })
         if (this.state.user_pic!==null) {                       //设置默认头像
             return 
@@ -69,6 +80,7 @@ class Profile extends PureComponent {
     render() {
         // console.log(localStorage.user_id,localStorage.userkey);
         // console.log(this.state.user_pic);
+        console.log(this.state.userName);       //这里是确实更改过state的了，问题出在传的上面，传过去的时候不是更改过的state
         return (
             <div className='mainpage_core'>
                 {/* 所有的css都只需要写一遍，不管你写在哪里，都是会生效的 */}
@@ -82,13 +94,13 @@ class Profile extends PureComponent {
                         {/* 这一这里的afterheader_body是row的 */}
                         <div className='user_change_pic' style={{backgroundImage:`url(${this.state.user_pic})`}}>
                             <img className='user_edit_camera' src={camera} alt='22' />
-                            <div className='edit_content'>Edit your avatar</div>
+                            <ChangableBox className='edit_content' ph='Edit your avatar' defvalue='Edit your avatar' type='avatar_url' changedtext={this.changedURL}/>
                         </div>
                         <div className='Big_Edit_container'>
-                            <ChangableBox className='profile_edit_container' changbletext={this.state.userName} changeabledata={this.state} changedtext={this.ChangedName} defvalue={this.state.userName} ph={this.state.userName}/>   
+                            <ChangableBox className='profile_edit_container' type='name' changbletext={this.state.userName}  changedtext={this.ChangedName} defvalue={this.state.userName} ph={this.state.userName}/>   
                             <div className='user_description'>
                                 <div className='discription'>Short Description</div>
-                                <ChangableBox defvalue={this.state.description} ph='Short Description' className='user_detial_description' changeabledata={this.state} changbletext={this.state.description} changedtext={this.ChangedDesDetail}/>
+                                <ChangableBox type='description' defvalue={this.state.description} ph='Short Description' className='user_detial_description' changbletext={this.state.description} changedtext={this.ChangedDesDetail}/>
                             </div>
                         </div>
                     </div>

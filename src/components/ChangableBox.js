@@ -48,9 +48,8 @@ class ChangableBox extends PureComponent {
         this.setState({
             inputshow:'none',
             editshow:'flex'
-        })
-        let {email,password,userName,description,user_pic}=this.props.changeabledata
-        Patchuserinfo(localStorage.user_id,localStorage.userkey,email,password,userName,description,user_pic)
+        })                  //记住这个传键值对的方式，键值对包装成对象，然后传进参数中
+        Patchuserinfo({[this.props.type]: this.state.Changingtext })           //利用父类传过来的type的名字当成键值对，然后传给fetch，在fetch中直接调用这个键值对
     }
 
     CancleButton=()=>{

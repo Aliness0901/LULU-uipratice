@@ -1,6 +1,6 @@
-import {answers} from '../views/Answers'
+import { answers } from '../views/Answers'
 
-export default function GetAnswer(id, success, fail) {
+export default function GetAnswer(id, success, fail, successgetAnsInfo) {
     fetch(`https://bigfish-aliness.herokuapp.com/questions/${id}/answers`, {
         method: 'GET',
         headers: new Headers({
@@ -9,23 +9,60 @@ export default function GetAnswer(id, success, fail) {
     })
         .then(function (response) {
             if (response.ok) {
-                return response.json();   
-            }else if (response.status===404) {                      //不要在return里赋值的习惯
-                return {answers:['']}                     //如何处理404的catch
-            }
+                return response.json();
+            } else if (response.status === 404) {                      //不要在return里赋值的习惯
+                return {answers:[1]}                      //如何处理404的catch，传下去的时候会有一个data包着
+            }       //一定要注意需要用大括号抱起来，这样才可以跟上面ok的情况保持一致，相当于传一个名字一样的对象下去
         })
         .then(function (data) {
-            answers.answer=data.answers
+            answers.answer = data.answers;
             success();
+            console.log(answers.answer);
             //同之前拿用户的数据一样，return在这里只能return给getquestion这个函数
             //而不能return出去，所以最好的解决办法还是在判断读取成功了之后，在函数本身里拿
+            return {answers}                //这里我们传的data是全局变量的answers,不是data.answers
         })
-        .catch((error)=>{
-             console.log('catch'+error);                         //这里总是给我报错说success不是函数，但是又不影响整体
+        .then(function (data) {
+            //这里的['1']必须给，因为如果是空数组的话，下面的map连啊哦都不会显示了
+            if (answers.answer!==[1]) {          //因为上面我们给的404没有的情况是''，所以这里我们也要给相同的
+                for (let n = 0; n < data.answers.answer.length; n++) {
+                    console.log('循环开始');
+                    console.log(answers.answer);
+                    fetch(`https://bigfish-aliness.herokuapp.com/users/${data.answers.answer[n].user_id}`, {                   //这里的返回也是异步的，所以并不能确定返回的顺序是否正确
+                        method: 'GET',                              //所以最好的情况就是把所有的数据打包在一起，不要分开放，做成一个像字典一样的查询对象
+                        headers: new Headers({
+                            'Content-Type': 'application/json',
+                            'Authorization': JSON.stringify({
+                                "user_token": {
+                                  "user_id": localStorage.user_id,
+                                  "key": localStorage.userkey,
+                                },                 
+                              }),     
+                        }),
+                    })
+                        .then(function (response) {
+                            if (response.status >= 200 && response.status < 300) {      
+                                return response.json(); 
+                            }
+                        })
+                        .then(function (data) {
+                            answers.userinfo[data.user.id]=data.user                //字典里面根据用户id来排序，因此如果要查询的话就需要用户id
+                            console.log(answers.userinfo);
+                            console.log(answers.answer);
+                            successgetAnsInfo();
+                        });
+                }
+            }else{
+                console.log('什么都没干');
+            }
+            console.log('结束');
+        })
+        .catch((error) => {
+            console.log('catch' + error);                         //这里总是给我报错说success不是函数，但是又不影响整体
         })
 }
 
 
 /*
 以上代码已经合并到了GetQustion中
-*/ 
+*/

@@ -7,6 +7,7 @@ import LikeTriButton from '../components/LikeTriButton'
 import GetQustion from '../components/GetQustions'
 import getuserInfo from '../components/GetUserInfo'
 import {userdatadetail} from '../views/Profile'
+import { answers } from '../views/Answers'
 
 
 import './MainPage.css'
@@ -51,6 +52,10 @@ class MainPage extends PureComponent {
 
 
     componentDidMount = () => {
+        answers.answers_pic=[]                      //这里在组件每次重新加载之后，确保全局变量中的回答者信息不会被一直叠加，确保只是当前组件中的answer
+        answers.answer_name=[]
+        answers.answer_date=[]
+        answers.updated_at=[]
         GetQustion(this.SuccessGet,this.SuccessGet);                    //此处应该还有一个没有拿到内容的函数fail
         getuserInfo(localStorage.user_id,localStorage.userkey,this.SucessgetUser);
     }
