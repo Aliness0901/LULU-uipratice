@@ -8,3 +8,14 @@
     color: #ED5736;
     cursor: pointer;
 }
+
+.Liked_container{
+    width: 109px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color:#f55f3d;
+    color: white;
+    cursor: pointer;
+}

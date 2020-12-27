@@ -21,6 +21,7 @@
     color: white;
     line-height: 50px;
     font-size: 60px;
+    cursor: pointer;
 }
 
 .ask_small_container{

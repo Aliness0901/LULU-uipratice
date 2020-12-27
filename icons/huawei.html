@@ -7,14 +7,10 @@
 </head>
 <body>
     <script>
-        let x={
-            a:{
-                a:'aa',
-                b:'bb'
-            }
-        }
-        console.log(Object.keys(x.a).length);
-
+        var input = prompt('请输入英文字符')
+        var Check = prompt('输入想要查询的英文字母')
+        console.log(input.toString().toLowerCase().split('').filter((e)=>e===Check.toLowerCase()).length);
+        console.log(input);
     </script>
 </body>
 </html>

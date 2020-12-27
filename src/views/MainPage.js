@@ -52,10 +52,6 @@ class MainPage extends PureComponent {
 
 
     componentDidMount = () => {
-        answers.answers_pic=[]                      //这里在组件每次重新加载之后，确保全局变量中的回答者信息不会被一直叠加，确保只是当前组件中的answer
-        answers.answer_name=[]
-        answers.answer_date=[]
-        answers.updated_at=[]
         GetQustion(this.SuccessGet,this.SuccessGet);                    //此处应该还有一个没有拿到内容的函数fail
         getuserInfo(localStorage.user_id,localStorage.userkey,this.SucessgetUser);
     }
@@ -75,7 +71,7 @@ class MainPage extends PureComponent {
         //我们不需要把所有的回答都放到local里面，要放的只是用户点击了哪个id而已
         return (
             <div className='mainpage_core'>
-                <AskJumpButton />
+                <AskJumpButton  type='question'/>
                 <header className='mainHeader'>
                     BIG FISH
                     {/* 把图片用作navlink，装饰背景 */}
@@ -92,7 +88,7 @@ class MainPage extends PureComponent {
                                         {/* 我们就需要创建一个属性或者利用react自身dom的属性来存储当前返回的e.id */}
                                         <div className='Qustion_detail'>
                                             {e.content}
-                                            <LikeTriButton like={e.number_of_likes} liked={e.liked} />
+                                            <LikeTriButton type='questions' questionid={e.id} like={e.number_of_likes} liked={e.liked} />
                                         </div>     
                                     </div>
                                 )

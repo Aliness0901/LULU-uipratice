@@ -1,10 +1,16 @@
 import { answers } from '../views/Answers'
 
-export default function GetAnswer(id, success, fail, successgetAnsInfo) {
+export default function GetAnswer(id, success, successgetAnsInfo) {
     fetch(`https://bigfish-aliness.herokuapp.com/questions/${id}/answers`, {
         method: 'GET',
         headers: new Headers({
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': JSON.stringify({
+                "user_token": {
+                  "user_id": localStorage.user_id,
+                  "key": localStorage.userkey,
+                },                 
+              }),
         })
     })
         .then(function (response) {
@@ -15,6 +21,8 @@ export default function GetAnswer(id, success, fail, successgetAnsInfo) {
             }       //一定要注意需要用大括号抱起来，这样才可以跟上面ok的情况保持一致，相当于传一个名字一样的对象下去
         })
         .then(function (data) {
+            answers.answer={}                       //每次提取之前，都把上一次的数据情况
+            answers.userinfo = {}
             answers.answer = data.answers;
             success();
             console.log(answers.answer);
@@ -52,6 +60,7 @@ export default function GetAnswer(id, success, fail, successgetAnsInfo) {
                             successgetAnsInfo();
                         });
                 }
+                //添加回调函数对比查询
             }else{
                 console.log('什么都没干');
             }
@@ -62,7 +71,3 @@ export default function GetAnswer(id, success, fail, successgetAnsInfo) {
         })
 }
 
-
-/*
-以上代码已经合并到了GetQustion中
-*/

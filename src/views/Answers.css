@@ -13,7 +13,7 @@
 }
 
 .answers_body{
-    margin-top: 40px ;
+    margin-top: 30px ;
     margin-bottom: 10px;
     width: 900px;
     padding: 10px 20px 10px 20px;
@@ -46,4 +46,40 @@
     text-align: justify;
     margin-bottom: 10px;
     line-height: 40px;
+}
+
+.user_can_answerbox_container{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    margin-top: 15px;
+    width: 900px;
+    height: 279px;
+    background-color: white;
+}
+
+.user_can_answertextarea{
+    width: 900px;
+    height: 220px;
+    border: none;
+    resize: none;           /*解决textarea可以自由拖动的问题*/
+    padding: 15px 20px 15px 20px;
+    font-size: 18px;
+    color: black;
+    font-family: 'Microsoft YaHei';
+}
+
+.answer_button{
+    position: absolute;
+    width: 386px;
+    height: 50px;
+    right: 20px;
+    bottom: 10px;
+    background-color: #ED5736;
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+    border:  #ED5736;
+    border-radius: 5px;
+    font-size: 20px;
 }

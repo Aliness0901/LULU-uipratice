@@ -3,7 +3,9 @@ import { NavLink } from 'react-router-dom'
 
 import GetAnswer from '../components/GetAnswer'
 import getuserInfo from '../components/GetUserInfo'
+import PostAnswer from '../components/PostAnswer'
 import LikeTriButton from '../components/LikeTriButton'
+import AnswerButton from '../components/AnswerButton'
 
 import { userdatadetail } from '../views/Profile'
 
@@ -22,7 +24,11 @@ class Answers extends Component {                       //这里有purecomponent
             answerdataRev: '',                      //判断当前是否提取成功，并且刷新页面
             user_pic: '',
             answers_user: '',
-            answersAndUsersMatch: ''
+            answersAndUsersMatch: '',
+            useranswer_box: 'none',
+            useranswerContent:'',
+            answerBtnAva:true,
+            PostSuccess:false
         }
     }
 
@@ -30,7 +36,8 @@ class Answers extends Component {                       //这里有purecomponent
         this.setState({
             answerdataRev: true                     //确认已经异步完成了之后，页面再次刷新
         })
-        answers.userinfo = {}         //这里如果不刷新的话，后面拿取的时候就会对不上if，一定要刷新
+        //answers.userinfo = {}         //这里如果不刷新的话，后面拿取的时候就会对不上if，一定要刷新
+        //可以不要在页面渲染的时候清空，在fetch阶段清空更简单
     }
 
     FailAnswer = () => {
@@ -59,15 +66,63 @@ class Answers extends Component {                       //这里有purecomponent
         }
     }
 
+    UserAnswerboxShow = () => {
+        if (this.state.useranswer_box==='none') {
+            this.setState({
+                useranswer_box: 'block'
+            })
+        }else{
+            this.setState({
+                useranswer_box:'none'
+            })
+        }
+        
+    }
+
+    UserAnswerContent=(e)=>{
+        if (e.target.value!=='') {                          //这边还可以加一个判断输入字符多少的判断，以免出现后端错误
+            this.setState({
+                useranswerContent:e.target.value,
+                answerBtnAva:false
+            },console.log(this.state.useranswerContent));           //就算这里加了callback来log，发现还是是上一帧的东西           
+            this.answerBtn.style.backgroundColor='#ED5736'
+            this.answerBtn.style.cursor='pointer'
+        }else{
+            this.setState({
+                answerBtnAva:true
+            })
+            this.answerBtn.style.backgroundColor='silver'
+            this.answerBtn.style.cursor='not-allowed'
+        }
+    }
+
+    PostSuccess=()=>{
+        this.setState({
+            PostSuccess:true
+        })
+        GetAnswer(this.props.location.id, this.SuccessAnswer, this.FailAnswer, this.GetAnswerUserInfo)
+    }
+
+    UserPostNewAnswer=()=>{
+        console.log(this.state.useranswerContent);           //准确
+        PostAnswer(this.props.location.id,this.state.useranswerContent,this.PostSuccess);
+        this.setState({
+            useranswer_box:'none'
+        })
+    }
+
 
     componentDidMount = () => {
         GetAnswer(this.props.location.id, this.SuccessAnswer, this.FailAnswer, this.GetAnswerUserInfo)           //利用上一个页面跳转过来的问题，提取answer
-        getuserInfo(localStorage.user_id, localStorage.userkey, this.SucessgetUser);
+        getuserInfo(localStorage.user_id, localStorage.userkey,this.SucessgetUser );
+        //这里有一个问题，就是只要我删掉了fetch里面的id这些参数，就给我报错，说sucess不是一个函数
     }
 
     render() {
+        console.log(this.state.useranswerContent);
         return (
             <div className='mainpage_core'>
+                <AnswerButton onClick={this.UserAnswerboxShow} />
                 <header className='mainHeader'>
                     <NavLink to='mainpage' className='BigFish'>BIG FISH</NavLink>
                     <NavLink to='/profile' className='userpic' style={{ backgroundImage: `url(${this.state.user_pic})` }} />
@@ -78,7 +133,10 @@ class Answers extends Component {                       //这里有purecomponent
                         <div className='Rquestion_content'>{this.props.location.content}</div>
                     </div>
                     {/* 早知道就所有的头部都写一个组件了，这样就省得再这里一遍又一遍重复了 */}
-
+                    <div className='user_can_answerbox_container' style={{ display: this.state.useranswer_box }}>
+                        <textarea className='user_can_answertextarea' onChange={this.UserAnswerContent} />
+                        <button className='answer_button' onClick={this.UserPostNewAnswer} ref={(button)=>this.answerBtn=button} disabled={this.state.answerBtnAva} style={{cursor:'not-allowed',backgroundColor:'silver'}}>Answer</button>
+                    </div>
 
                     <div className='answers_body'>
                         {                   //这里是立即执行函数
@@ -86,6 +144,9 @@ class Answers extends Component {                       //这里有purecomponent
                                 () => {
                                     var userinfoLength = Object.keys(answers.userinfo).length;
                                     var answersLength = Object.keys(answers.answer).length;
+                                    console.log(answers.userinfo);              //后完成
+                                    console.log('****************');
+                                    console.log(answers.answer);                //先完成
                                     if (userinfoLength === answersLength && userinfoLength !== 0) {               //这里的e就是answer拿出来的东西，所以404的时候answer里面是空，所以e就是空
                                         return (
                                             answers.answer.map((e) => {
@@ -101,7 +162,7 @@ class Answers extends Component {                       //这里有purecomponent
                                                                 <div>{answers.userinfo[e.user_id].created_at}</div>
                                                             </div>
                                                         </div>
-                                                        <div className='answer_detail'>{this.props.location.content}</div>
+                                                        <div className='answer_detail'>{e.content}</div>
                                                         <LikeTriButton like={e.number_of_likes} />
                                                     </div>
                                                 )

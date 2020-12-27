@@ -17,6 +17,7 @@ export default function GetQustion(success, AnswerSucess, AnswerFail) {
         })
         .then(function (data) {
             questionsdata.data = data.questions
+            console.log(data.questions);
             success();
             // console.log(questionsdata.data);
             // return questionsdata.data.length                        //同之前拿用户的数据一样，return在这里只能return给getquestion这个函数
