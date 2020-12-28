@@ -56,7 +56,7 @@ class Login extends Component {
     }
 
     Login_fail = () => {
-        this.props.loginErrorFunc();            //利用父组件给子组件的方程，来改变父组件的state，从而让父组件的错误提示显示出来
+        this.props.loginErrorFunc('Email or password is wrong');            //利用父组件给子组件的方程，来改变父组件的state，从而让父组件的错误提示显示出来
         this.setState({
             checked: false
         })

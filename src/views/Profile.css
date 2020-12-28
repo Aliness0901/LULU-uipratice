@@ -15,7 +15,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex:1;
+    flex:2;
     background-color: rgb(243, 243, 243);
     box-shadow: inset 0px 3px 5px 1px rgba(85, 84, 84, 0.2);
 }
@@ -90,4 +90,18 @@
 
  .user_detial_description:hover{
     border: 1px solid silver;
+}
+
+.logout_box{
+    display: flex;
+    flex-direction: row;
+    width: 119px;
+    height: 29px;
+    line-height: 29px;
+    color:  #ED5736;
+}
+
+.logoutsign {
+    width: 50px;
+    height: 29px;
 }

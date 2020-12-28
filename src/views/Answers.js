@@ -28,7 +28,12 @@ class Answers extends Component {                       //这里有purecomponent
             useranswer_box: 'none',
             useranswerContent:'',
             answerBtnAva:true,
-            PostSuccess:false
+            PostSuccess:false,
+            answerBtnStyle:{
+                cursor:'not-allowed',
+                backgroundColor:'silver',
+                color:'white'
+            }
         }
     }
 
@@ -83,16 +88,22 @@ class Answers extends Component {                       //这里有purecomponent
         if (e.target.value!=='') {                          //这边还可以加一个判断输入字符多少的判断，以免出现后端错误
             this.setState({
                 useranswerContent:e.target.value,
-                answerBtnAva:false
-            },console.log(this.state.useranswerContent));           //就算这里加了callback来log，发现还是是上一帧的东西           
-            this.answerBtn.style.backgroundColor='#ED5736'
-            this.answerBtn.style.cursor='pointer'
+                answerBtnAva:false,
+                answerBtnStyle:{
+                    backgroundColor:'#ED5736',
+                    cursor:'pointer',
+                    color:'black'
+                }
+            });                                 //就算这里加了callback来log，发现还是是上一帧的东西,如果想要拿这一帧的东西，必须是箭头函数才行           
         }else{
             this.setState({
-                answerBtnAva:true
+                answerBtnAva:true,
+                answerBtnStyle:{
+                    backgroundColor:'silver',
+                    cursor:'not-allowed',
+                    color:'white'
+                }
             })
-            this.answerBtn.style.backgroundColor='silver'
-            this.answerBtn.style.cursor='not-allowed'
         }
     }
 
@@ -114,7 +125,7 @@ class Answers extends Component {                       //这里有purecomponent
 
     componentDidMount = () => {
         GetAnswer(this.props.location.id, this.SuccessAnswer, this.FailAnswer, this.GetAnswerUserInfo)           //利用上一个页面跳转过来的问题，提取answer
-        getuserInfo(localStorage.user_id, localStorage.userkey,this.SucessgetUser );
+        getuserInfo(localStorage.user_id, localStorage.userkey,this.SucessgetUser,'mainuser' );
         //这里有一个问题，就是只要我删掉了fetch里面的id这些参数，就给我报错，说sucess不是一个函数
     }
 
@@ -125,7 +136,7 @@ class Answers extends Component {                       //这里有purecomponent
                 <AnswerButton onClick={this.UserAnswerboxShow} />
                 <header className='mainHeader'>
                     <NavLink to='mainpage' className='BigFish'>BIG FISH</NavLink>
-                    <NavLink to='/profile' className='userpic' style={{ backgroundImage: `url(${this.state.user_pic})` }} />
+                    <NavLink to={{pathname:'/profile', type:'mainuser'}} className='userpic' style={{ backgroundImage: `url(${this.state.user_pic})` }} />
                 </header>
                 <div className='afterheader_body2'>
                     <div className='repeat_title'>
@@ -135,7 +146,7 @@ class Answers extends Component {                       //这里有purecomponent
                     {/* 早知道就所有的头部都写一个组件了，这样就省得再这里一遍又一遍重复了 */}
                     <div className='user_can_answerbox_container' style={{ display: this.state.useranswer_box }}>
                         <textarea className='user_can_answertextarea' onChange={this.UserAnswerContent} />
-                        <button className='answer_button' onClick={this.UserPostNewAnswer} ref={(button)=>this.answerBtn=button} disabled={this.state.answerBtnAva} style={{cursor:'not-allowed',backgroundColor:'silver'}}>Answer</button>
+                        <button className='answer_button' onClick={this.UserPostNewAnswer} style={this.state.answerBtnStyle}>Answer</button>
                     </div>
 
                     <div className='answers_body'>
@@ -155,10 +166,18 @@ class Answers extends Component {                       //这里有purecomponent
                                                     <div className='each_answer' key={e.id}>
                                                         <div className='difuser_title'>
                                                             {/*这里的父盒子display是row，竖着*/}
-                                                            <div className='user_pic_ans' style={{ backgroundImage: `url(${answers.userinfo[e.user_id].avatar_url})` }}></div>
+                                                            <NavLink to={{                  //利用更加清楚的方式传递属性
+                                                                pathname:'/otheruseInfo',
+                                                                    type:'otherusers',
+                                                                    answerUserID: e.user_id                                                                
+                                                            }}  className='user_pic_ans' style={{ backgroundImage: `url(${answers.userinfo[e.user_id].avatar_url})` }}></NavLink>
                                                             <div className='user_detail'>
                                                                 {/*这里的盒子display是column，横着*/}
-                                                                <div>{answers.userinfo[e.user_id].name}</div>
+                                                                <NavLink to={{
+                                                                pathname:'/otheruseInfo',
+                                                                type:'otherusers',
+                                                                answerUserID: e.user_id 
+                                                            }}>{answers.userinfo[e.user_id].name}</NavLink>
                                                                 <div>{answers.userinfo[e.user_id].created_at}</div>
                                                             </div>
                                                         </div>

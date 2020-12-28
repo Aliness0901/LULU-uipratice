@@ -1,7 +1,7 @@
 import { questionsdata } from '../views/MainPage'
 // import {answers} from '../views/MainPage'
 
-export default function GetQustion(success, AnswerSucess, AnswerFail) {
+export default function GetQustion(success) {
     fetch('https://bigfish-aliness.herokuapp.com/questions', {
         method: 'GET',
         headers: new Headers({
