@@ -1,9 +1,9 @@
-import React, {PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { NavLink, withRouter } from 'react-router-dom'
 
 import Input from '../components/Input'
-// import { user_token } from '../views/Login'
 import CreatUser from '../components/CreatUser'
+import { user_token } from '../views/Login'
 
 class Signup extends PureComponent {
 
@@ -34,55 +34,66 @@ class Signup extends PureComponent {
             this.setState({
                 email_checked: 'hidden',
                 email_botoom_color: 'grey',
-            })
+            }, ()=>{this.BtnChecked()})
+
         } else if (e.target.value === '') {          //这种的话就是刚刚刷新出页面的时候是不会显示的，除非你打完了然后删除会有
             this.setState({
                 email_checked: 'visible',
                 email_text_error: 'required',
                 email_botoom_color: 'red'
-            })
+            },()=>{this.BtnNoChecked()})
         } else {
             this.setState({
                 email_checked: 'visible',
                 email_text_error: 'error email',
                 email_botoom_color: 'red'
-            })
+            },()=>{this.BtnNoChecked()})
         }
     }
     CheckPassword = (e) => {
         this.setState({
             password: e.target.value
         })
-        const emailCheck = /\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}/
+        const emailCheck = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{6,12}$/
         if (e.target.value.match(emailCheck)) {         //这里的正则表达式还没有写
             this.setState({
                 password_checked: 'hidden',
                 password_botoom_color: 'grey',
-            })
+            }, ()=>{this.BtnChecked()})
         } else if (e.target.value === '') {
             this.setState({
                 passwordd_checked: 'visible',
                 password_text_error: 'required',
                 password_botoom_color: 'red'
-            })
+            },()=>{this.BtnNoChecked()})
         } else {
             this.setState({
                 password_checked: 'visible',
                 password_text_error: '密码需要大于6位且小于12位',
                 password_botoom_color: 'red'
-            })
+            },()=>{this.BtnNoChecked()})
         }
     }
 
     controlUsername = (e) => {
         this.setState({
             name: e.target.value
-        })
+        }, ()=>{this.BtnChecked();this.BtnNoChecked()})
     }
 
 
     SignupSuccess = () => {
+        localStorage.user_id=user_token.user_id        
+        localStorage.userkey=user_token.key
         this.props.history.push('/MainPage')
+    }
+
+    GetUserTokenSuccess=()=>{
+
+    }
+
+    FailGetUserToken=()=>{
+
     }
 
     SignupFail = () => {
@@ -91,11 +102,11 @@ class Signup extends PureComponent {
     }
 
     SignupClick = () => {
-        CreatUser(this.state.email, this.state.password, this.state.name, this.SignupSuccess, this.SignupFail)
+        CreatUser(this.state.email, this.state.password, this.state.name, this.SignupSuccess, this.SignupFail,this.GetUserTokenSuccess,this.FailGetUserToken)
     }
 
-    componentDidUpdate() {
-        if (this.state.email_checked === 'hidden') {
+    BtnChecked = () => {
+        if (this.state.email_checked === 'hidden' && this.state.password_checked === 'hidden' && this.state.name !== '') {
             this.setState({
                 SignBoxStyle: {
                     backgroundColor: '#ED5736',
@@ -107,8 +118,22 @@ class Signup extends PureComponent {
         }
     }
 
+    BtnNoChecked=()=>{
+        if (this.state.email_checked !== 'hidden' || this.state.password_checked !== 'hidden' || this.state.name === '') {
+            this.setState({
+                SignBoxStyle: {
+                    backgroundColor: 'silver',
+                    cursor: 'not-allowed',
+                    color: 'white'
+                },
+                BtnClickable: true
+            })
+        }
+    }
+
 
     render() {
+
         // console.log(user_token);
         //作为测试，这里的user_token只能显示key，id是undefined
         return (

@@ -66,7 +66,7 @@ class Login extends Component {
     Login_check = () => {
         let email = this.state.email
         let password = this.state.passowrd
-        Login_Check('https://bigfish-aliness.herokuapp.com/user_tokens', email, password, this.Login_success, this.Login_fail)
+        Login_Check( email, password, this.Login_success, this.Login_fail)
         this.setState({
             email: '',                          //通过如果是受控组件的话，我们的value就是在label里加value=state的
             passowrd: ''                        //再加上onchange的话，就可以形成联动combo

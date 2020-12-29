@@ -1,11 +1,8 @@
 .mainpage_core {
     display: flex;
-    position: relative;
     flex-direction: column;
     align-items: stretch;
-    width: 100%;
-    height: 100%;
-
+    flex: 2;
 }
 .mainHeader{
     height: 80px;
@@ -20,15 +17,6 @@
     cursor: default;
 }
 
-.afterheader_body{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex: 2;
-    background-color: rgb(243, 243, 243);
-    box-shadow: inset 0px 3px 5px 1px rgba(85, 84, 84, 0.2);
-}
 
 .userpic {
     width: 40px;

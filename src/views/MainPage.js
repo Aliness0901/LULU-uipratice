@@ -93,11 +93,11 @@ class MainPage extends PureComponent {
             <div className='mainpage_core'>
                 <AskJumpButton  type='question' refresh={this.NewQuestionUpdate} postfinish={this.PostFinish}/>
                 <header className='mainHeader'>
-                    BIG FISH
+                    <NavLink to='/mainpage' style={{color:'#ED5736'}}>BIG FISH</NavLink>
                     {/* 把图片用作navlink，装饰背景 */}
                     <NavLink to={{pathname:'/profile', type:'mainuser'}} className='userpic' style={{backgroundImage:`url(${this.state.user_pic})`}} />
                 </header>
-                <div className='afterheader_body'>
+                <div className='afterheader_body2'>
                     <div className='Qustion_container'>
                         {
                             questionsdata.data.map((e) => {

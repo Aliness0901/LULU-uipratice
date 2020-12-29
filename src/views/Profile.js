@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink,withRouter } from 'react-router-dom'
 
 import ChangableBox from '../components/ChangableBox'
 import getuserInfo from '../components/GetUserInfo'
+import Logout  from '../components/Logout'
 
 
 import './Profile.css'
@@ -73,6 +74,16 @@ class Profile extends PureComponent {
         }
     }
 
+    componp
+
+    LogoutSuccess=()=>{
+        this.props.history.push('/')
+    }
+
+    LogoutClick=()=>{
+        Logout(this.LogoutSuccess);
+    }
+
     componentDidMount = () => {
         getuserInfo(localStorage.user_id, localStorage.userkey, this.SucessgetUser, 'mainuser');
     }
@@ -101,7 +112,7 @@ class Profile extends PureComponent {
                                 <div className='discription'>Short Description</div>
                                 <ChangableBox type='description' defvalue={this.state.description} ph='Short Description' className='user_detial_description' changbletext={this.state.description} changedtext={this.ChangedDesDetail} />
                             </div>
-                            <NavLink to='/' className='logout_box'><img className='logoutsign' src={logout} alt='logout'/>Logout</NavLink>
+                            <div className='logout_box' style={{cursor:'pointer'}} onClick={this.LogoutClick}><img className='logoutsign' src={logout} alt='logout'/>Logout</div>
                         </div>
                     </div>
                 </div>
@@ -110,4 +121,4 @@ class Profile extends PureComponent {
     }
 }
 
-export default Profile
+export default withRouter(Profile) 

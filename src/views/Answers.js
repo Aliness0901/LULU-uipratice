@@ -24,22 +24,25 @@ class Answers extends Component {                       //这里有purecomponent
             answerdataRev: '',                      //判断当前是否提取成功，并且刷新页面
             user_pic: '',
             answers_user: '',
-            answersAndUsersMatch: '',
+            answersAndUsersMatch: false,
             useranswer_box: 'none',
-            useranswerContent:'',
-            answerBtnAva:true,
-            PostSuccess:false,
-            answerBtnStyle:{
-                cursor:'not-allowed',
-                backgroundColor:'silver',
-                color:'white'
-            }
+            useranswerContent: '',
+            answerBtnAva: true,
+            PostSuccess: false,
+            answerBtnStyle: {
+                cursor: 'not-allowed',
+                backgroundColor: 'silver',
+                color: 'white'
+            },
+            Array1: [],
+            returnArray: []
         }
     }
 
-    SuccessAnswer = () => {                         //利用组件来监控answer是否有内容，如果有则开启开关，没有就关闭开关，执行另一套方案
+    SuccessAnswer = (e) => {                         //利用组件来监控answer是否有内容，如果有则开启开关，没有就关闭开关，执行另一套方案
         this.setState({
-            answerdataRev: true                     //确认已经异步完成了之后，页面再次刷新
+            answerdataRev: true,                     //确认已经异步完成了之后，页面再次刷新
+            Array1: [...this.state.Array1, e]
         })
         //answers.userinfo = {}         //这里如果不刷新的话，后面拿取的时候就会对不上if，一定要刷新
         //可以不要在页面渲染的时候清空，在fetch阶段清空更简单
@@ -51,11 +54,24 @@ class Answers extends Component {                       //这里有purecomponent
         })
     }
 
-    GetAnswerUserInfo = () => {
-        console.log('刷新');
+    GetAnswerUserInfo = (e) => {
         this.setState({
-            answers_user: true
+            answers_user: true,
+            returnArray: [...this.state.returnArray, e]                     //把所有的id都拿到state中
         })
+        let egarry = this.state.returnArray;
+        let returnArray = [];
+        console.log(egarry);
+        for (let index = 0; index < egarry.length; index++) {               //在每拿一次用户id的时候就去查询排序一次
+            returnArray.push(this.state.Array1.indexOf(egarry[index]))      
+            returnArray.sort((a, b) => (a > b))
+            if (returnArray[0] >= 0 && index===this.state.Array1.length-1) {    //每次排序结束之后，确认是不是已经拿完全部数据了，fetch后端还有没有没有返回的        
+                this.setState({                             //这里必须放到for里面，拿出来的话就不知道组件中的for是否跟fetch中的for循环次数一样了
+                    answersAndUsersMatch:true
+                })
+            }
+        }
+
     }
 
     SucessgetUser = () => {
@@ -72,71 +88,78 @@ class Answers extends Component {                       //这里有purecomponent
     }
 
     UserAnswerboxShow = () => {
-        if (this.state.useranswer_box==='none') {
+        if (this.state.useranswer_box === 'none') {
             this.setState({
                 useranswer_box: 'block'
             })
-        }else{
+        } else {
             this.setState({
-                useranswer_box:'none'
+                useranswer_box: 'none'
             })
         }
-        
+
     }
 
-    UserAnswerContent=(e)=>{
-        if (e.target.value!=='') {                          //这边还可以加一个判断输入字符多少的判断，以免出现后端错误
+    UserAnswerContent = (e) => {
+        if (e.target.value !== '') {                          //这边还可以加一个判断输入字符多少的判断，以免出现后端错误
             this.setState({
-                useranswerContent:e.target.value,
-                answerBtnAva:false,
-                answerBtnStyle:{
-                    backgroundColor:'#ED5736',
-                    cursor:'pointer',
-                    color:'black'
+                useranswerContent: e.target.value,
+                answerBtnAva: false,
+                answerBtnStyle: {
+                    backgroundColor: '#ED5736',
+                    cursor: 'pointer',
+                    color: 'black'
                 }
             });                                 //就算这里加了callback来log，发现还是是上一帧的东西,如果想要拿这一帧的东西，必须是箭头函数才行           
-        }else{
+        } else {
             this.setState({
-                answerBtnAva:true,
-                answerBtnStyle:{
-                    backgroundColor:'silver',
-                    cursor:'not-allowed',
-                    color:'white'
+                answerBtnAva: true,
+                answerBtnStyle: {
+                    backgroundColor: 'silver',
+                    cursor: 'not-allowed',
+                    color: 'white'
                 }
             })
         }
     }
 
-    PostSuccess=()=>{
+    PostSuccess = () => {
         this.setState({
-            PostSuccess:true
+            PostSuccess: true
         })
         GetAnswer(this.props.location.id, this.SuccessAnswer, this.FailAnswer, this.GetAnswerUserInfo)
     }
 
-    UserPostNewAnswer=()=>{
+    UserPostNewAnswer = () => {
         console.log(this.state.useranswerContent);           //准确
-        PostAnswer(this.props.location.id,this.state.useranswerContent,this.PostSuccess);
+        PostAnswer(this.props.location.id, this.state.useranswerContent, this.PostSuccess);
         this.setState({
-            useranswer_box:'none'
+            useranswer_box: 'none'
         })
     }
 
+    UserInfoMatch = () => {
+        this.setState({
+            answersAndUsersMatch: true
+        })
+    }
 
     componentDidMount = () => {
-        GetAnswer(this.props.location.id, this.SuccessAnswer, this.FailAnswer, this.GetAnswerUserInfo)           //利用上一个页面跳转过来的问题，提取answer
-        getuserInfo(localStorage.user_id, localStorage.userkey,this.SucessgetUser,'mainuser' );
+        GetAnswer(this.props.location.id, this.SuccessAnswer, this.FailAnswer, this.GetAnswerUserInfo, this.UserInfoMatch)           //利用上一个页面跳转过来的问题，提取answer
+        getuserInfo(localStorage.user_id, localStorage.userkey, this.SucessgetUser, 'mainuser');
         //这里有一个问题，就是只要我删掉了fetch里面的id这些参数，就给我报错，说sucess不是一个函数
     }
 
     render() {
-        console.log(this.state.useranswerContent);
+        // console.log('*****'+this.state.answersAndUsersMatch);
+        console.log('这是' + this.state.Array1);
+        console.log('这是' + this.state.returnArray);
         return (
             <div className='mainpage_core'>
                 <AnswerButton onClick={this.UserAnswerboxShow} />
                 <header className='mainHeader'>
                     <NavLink to='mainpage' className='BigFish'>BIG FISH</NavLink>
-                    <NavLink to={{pathname:'/profile', type:'mainuser'}} className='userpic' style={{ backgroundImage: `url(${this.state.user_pic})` }} />
+                    <NavLink to={{ pathname: '/profile', type: 'mainuser' }} className='userpic' style={{ backgroundImage: `url(${this.state.user_pic})` }} />
                 </header>
                 <div className='afterheader_body2'>
                     <div className='repeat_title'>
@@ -154,11 +177,7 @@ class Answers extends Component {                       //这里有purecomponent
                             (
                                 () => {
                                     var userinfoLength = Object.keys(answers.userinfo).length;
-                                    var answersLength = Object.keys(answers.answer).length;
-                                    console.log(answers.userinfo);              //后完成
-                                    console.log('****************');
-                                    console.log(answers.answer);                //先完成
-                                    if (userinfoLength === answersLength && userinfoLength !== 0) {               //这里的e就是answer拿出来的东西，所以404的时候answer里面是空，所以e就是空
+                                    if (this.state.answersAndUsersMatch && userinfoLength !== 0) {               //这里的e就是answer拿出来的东西，所以404的时候answer里面是空，所以e就是空
                                         return (
                                             answers.answer.map((e) => {
                                                 return (
@@ -167,17 +186,17 @@ class Answers extends Component {                       //这里有purecomponent
                                                         <div className='difuser_title'>
                                                             {/*这里的父盒子display是row，竖着*/}
                                                             <NavLink to={{                  //利用更加清楚的方式传递属性
-                                                                pathname:'/otheruseInfo',
-                                                                    type:'otherusers',
-                                                                    answerUserID: e.user_id                                                                
-                                                            }}  className='user_pic_ans' style={{ backgroundImage: `url(${answers.userinfo[e.user_id].avatar_url})` }}></NavLink>
+                                                                pathname: '/otheruseInfo',
+                                                                type: 'otherusers',
+                                                                answerUserID: e.user_id
+                                                            }} className='user_pic_ans' style={{ backgroundImage: `url(${answers.userinfo[e.user_id].avatar_url})` }}></NavLink>
                                                             <div className='user_detail'>
                                                                 {/*这里的盒子display是column，横着*/}
                                                                 <NavLink to={{
-                                                                pathname:'/otheruseInfo',
-                                                                type:'otherusers',
-                                                                answerUserID: e.user_id 
-                                                            }}>{answers.userinfo[e.user_id].name}</NavLink>
+                                                                    pathname: '/otheruseInfo',
+                                                                    type: 'otherusers',
+                                                                    answerUserID: e.user_id
+                                                                }}>{answers.userinfo[e.user_id].name}</NavLink>
                                                                 <div>{answers.userinfo[e.user_id].created_at}</div>
                                                             </div>
                                                         </div>
@@ -193,8 +212,8 @@ class Answers extends Component {                       //这里有purecomponent
                                         )
                                     }
                                     else {
-                                        console.log(userinfoLength);
-                                        //这边可以做一个loading的图片
+                                        // console.log(userinfoLength);
+                                        //这边可以做一个loading的图片，把这里和state中的状态更改成loading为主就行，然后拿回了就更改
                                         return null                     //这里如果网页崩溃了，就在这里写else的情况
                                     }
                                 }
@@ -212,43 +231,24 @@ class Answers extends Component {                       //这里有purecomponent
 
 export default Answers
 
-// {answers.answer.map((e) => {
-//     //这里有一个问题就是当我们试图拿取的时候，有可能还没有返回这个数据，所以一定要考虑异步，如果没有拿取的话，这里的东西就是undefined
-//     //由于我们每次在fetch里调用success函数的时候，都会再次写入setstate，所以在不是purecomponent的情况下，会帮我们每拿取一次就刷新一次
-//     //所以在拿完全部的时候，如果不考虑下面的那个bug的话，就可以在拿取完成后，满足条件之后就再次刷新页面进去if
-//     //所以再次证明了fetch中回调函数的重要性，可以帮助我们刷新页面
-//     //目前来说，我们的主要刷新页面的手段就是setstate
-//         console.log(Object.keys(answers.userinfo).length);
-//         console.log(Object.keys(answers.answer).length);
-//         //输出结果是0 0 1 ， 也就是说到第三次刷新的时候才接收到
 
 
+// console.log(answers.userinfo[data.user.id].id);
+//                             let point = answers.userinfo[data.user.id].id;
+//                             returnArray.push(Array1.indexOf(point))
+//                             // console.log(Array1.indexOf(point));
+//                             returnArray.sort((a,b)=>(a-b))
+//                             console.log(returnArray);
+//                             if (n===Array1.length-1&&returnArray[0]>=0) {
+//                                 console.log('调用');
+//                                 console.log('此时n'+n);
+//                                 console.log('此时数组'+Array1);
+//                                 console.log('此时数组2'+returnArray);
+//                                 UserInfoMatch();
+//                             }
 
-//     //这里其实还是有bug的，就是如果一个人回答了两次，有两个答案都是一个人的，就会出现不匹配的问题，但是这个先放着
-//         if (userinfoLength===answersLength&&userinfoLength!==0) {               //这里的e就是answer拿出来的东西，所以404的时候answer里面是空，所以e就是空
-//             return (
-//                 console.log('进入渲染if'),
-//                 <div className='each_answer' key={e.id}>
-//                     <div className='difuser_title'>
-//                         {/*这里的父盒子display是row，竖着*/}
-//                         <div className='user_pic_ans' style={{backgroundImage:`url(${answers.userinfo[e.user_id].avatar_url})`}}></div>
-//                         <div className='user_detail'>
-//                             {/*这里的盒子display是column，横着*/}
-//                             <div>{answers.userinfo[e.user_id].name}</div>
-//                             <div>{answers.userinfo[e.user_id].created_at}</div>
-//                         </div>
-//                     </div>
-//                     <div className='answer_detail'>{this.props.location.content}</div>
-//                     <LikeTriButton like={e.number_of_likes} />
-//                 </div>
-//             )
-//         }else if (e===[]){
-//                 return(
-//                     <div key='none'>啊哦，还没有人答题哦</div>
-//                 )
-//         }
-//         else {
-//             return null                     //这里如果网页崩溃了，就在这里写else的情况
-//         }
-//     })}
+// for (let index = 0; index < answers.answer.length; index++) {
+//     Array1.push(answers.answer[index].user_id);
+//     console.log(Array1);
+// }
 

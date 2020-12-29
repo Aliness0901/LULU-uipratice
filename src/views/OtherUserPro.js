@@ -52,7 +52,7 @@ class OtherUserPro extends Component {
                 <div className='afterheader_body2'>
                     <div className='profile_container'>
                         {/* 这一这里的afterheader_body是row的 */}
-                        <div className='user_change_pic' style={{ backgroundImage: `url(${otheruserdatadetail.detail.avatar_url})` }}/>
+                        <div className='user_change_pic' style={{ backgroundImage: `url(${otheruserdatadetail.detail.avatar_url})`,cursor:'default' }}/>
                         <div className='Big_Edit_container'>
                             <div className='profile_edit_container' type='name'/>
                             <div className='user_description'>

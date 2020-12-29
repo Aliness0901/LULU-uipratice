@@ -10,7 +10,7 @@ import OtherUserPro from './views/OtherUserPro'
 class App extends Component {
   render() {
     return (
-      <div>
+      <div style={{height:'100vh',width:'100vw',position:'relative',display:'flex',flexDirection:'column'}}>
         <Switch>
           {/* 这里我们直接利用switch来定义mainpage的网页路径，然后在login里面用window.open来跳转，如果不是switch的话， 是跳转不出来的，不过有点疑惑，如果不用route的话，会出现什么样的问题 */} 
           <Route path='/mainpage' component={MainPage} />  

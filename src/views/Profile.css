@@ -13,6 +13,7 @@
 
 .afterheader_body2{
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
     flex:2;
