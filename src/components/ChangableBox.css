@@ -32,3 +32,28 @@
     color:white;
     border:  #ED5736;
 }
+
+.Pic_show_container{
+    display: flex;
+    width: 250px;
+    height: 250px;
+    align-items: center;
+    justify-content: center;
+}
+.pic_bigbox{
+    display: flex;
+    position: relative;
+    align-self: flex-start;
+}
+.pic_ChangeandSave{
+    background-color: rgb(255, 255, 255);
+    width: 600px;    
+    margin-left: 250px;
+}
+
+.btn{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

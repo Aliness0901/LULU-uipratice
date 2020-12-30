@@ -198,7 +198,6 @@ class Answers extends Component {                       //这里有purecomponent
                                                         </div>
                                                         <div className='answer_detail'>{e.content}</div>
                                                         <LikeTriButton type='answers' answerid={e.id} like={e.number_of_likes} liked={e.liked} />
-                                                        {console.log(e)}
                                                     </div>
                                                 )
                                             })

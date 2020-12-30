@@ -48,7 +48,6 @@ class Like_tri_button extends PureComponent {
         }
         else if (this.props.type === 'answers' && !this.state.checked) {           //这里增加了type来判断是不是question页面的，从而来调用question的fetch
             AnswerLikeApi(this.props.answerid, this.CanLikeQuestion, this.CantLikeQustion);              //这里增加如果后端返回的已经点过了，就用这个fail的回调函数
-            console.log(this.state.checked);
             e.target.style.cursor = 'default'
         }
         else if (this.props.type === 'answers' && this.state.checked) {
@@ -63,7 +62,6 @@ class Like_tri_button extends PureComponent {
 
 
     render() {
-        console.log(this.state.Likenum);
         if (!this.state.checked) {
             return (
                 <div className='Like_container' onClick={this.handleClick}>

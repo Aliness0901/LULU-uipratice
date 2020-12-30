@@ -7,7 +7,6 @@ import Logout  from '../components/Logout'
 
 
 import './Profile.css'
-import camera from '../assets/images/photo-camera.svg'
 import logout from '../assets/images/icons/logout.svg'
 
 export let userdatadetail = {
@@ -102,15 +101,14 @@ class Profile extends PureComponent {
                 <div className='afterheader_body2'>
                     <div className='profile_container'>
                         {/* 这一这里的afterheader_body是row的 */}
-                        <div className='user_change_pic' style={{ backgroundImage: `url(${this.state.user_pic})` }}>
-                            <img className='user_edit_camera' src={camera} alt='camera' />
-                            <ChangableBox className='edit_content' ph='Edit your avatar' defvalue='Edit your avatar' type='avatar_url' changedtext={this.changedURL} />
+                        <div className='user_change_pic' style={{ backgroundImage: `url(${this.state.user_pic})` }}>    
+                            <ChangableBox className='edit_content' typebox='user_pic' ph='Edit your avatar' defvalue='Edit your avatar' type='avatar_url' changedtext={this.changedURL} />
                         </div>
                         <div className='Big_Edit_container'>
-                            <ChangableBox className='profile_edit_container' type='name' changbletext={this.state.userName} changedtext={this.ChangedName} defvalue={this.state.userName} ph={this.state.userName} />
+                            <ChangableBox typebox='context' className='profile_edit_container' type='name' changbletext={this.state.userName} changedtext={this.ChangedName} defvalue={this.state.userName} ph={this.state.userName} />
                             <div className='user_description'>
                                 <div className='discription'>Short Description</div>
-                                <ChangableBox type='description' defvalue={this.state.description} ph='Short Description' className='user_detial_description' changbletext={this.state.description} changedtext={this.ChangedDesDetail} />
+                                <ChangableBox typebox='context' type='description' defvalue={this.state.description} ph='Short Description' className='user_detial_description' changbletext={this.state.description} changedtext={this.ChangedDesDetail} />
                             </div>
                             <div className='logout_box' style={{cursor:'pointer'}} onClick={this.LogoutClick}><img className='logoutsign' src={logout} alt='logout'/>Logout</div>
                         </div>

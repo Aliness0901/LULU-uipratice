@@ -22,7 +22,7 @@
 }
 
 .user_change_pic{
-    flex-basis: 250px;                      /*它的父类是row，所以这里的basis是横着的*/
+    width: 250px;                      /*它的父类是row，所以这里的basis是横着的*/
     height: 250px;
     display: flex;
     flex-direction: column;
