@@ -5,7 +5,13 @@ export default function GetQustion(success) {
     fetch('https://bigfish-aliness.herokuapp.com/questions', {
         method: 'GET',
         headers: new Headers({
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': JSON.stringify({
+                "user_token": {
+                  "user_id": localStorage.user_id,
+                  "key": localStorage.userkey,
+                },
+              }),
         })
     })
         .then(function (response) {

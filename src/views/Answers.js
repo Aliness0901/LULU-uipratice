@@ -35,7 +35,8 @@ class Answers extends Component {                       //这里有purecomponent
                 color: 'white'
             },
             Array1: [],
-            returnArray: []
+            returnArray: [],
+            liked:''
         }
     }
 
@@ -61,7 +62,6 @@ class Answers extends Component {                       //这里有purecomponent
         })
         let egarry = this.state.returnArray;
         let returnArray = [];
-        console.log(egarry);
         for (let index = 0; index < egarry.length; index++) {               //在每拿一次用户id的时候就去查询排序一次
             returnArray.push(this.state.Array1.indexOf(egarry[index]))      
             returnArray.sort((a, b) => (a > b))
@@ -151,9 +151,6 @@ class Answers extends Component {                       //这里有purecomponent
     }
 
     render() {
-        // console.log('*****'+this.state.answersAndUsersMatch);
-        console.log('这是' + this.state.Array1);
-        console.log('这是' + this.state.returnArray);
         return (
             <div className='mainpage_core'>
                 <AnswerButton onClick={this.UserAnswerboxShow} />
@@ -181,7 +178,6 @@ class Answers extends Component {                       //这里有purecomponent
                                         return (
                                             answers.answer.map((e) => {
                                                 return (
-                                                    console.log('进入渲染if'),
                                                     <div className='each_answer' key={e.id}>
                                                         <div className='difuser_title'>
                                                             {/*这里的父盒子display是row，竖着*/}
@@ -201,7 +197,8 @@ class Answers extends Component {                       //这里有purecomponent
                                                             </div>
                                                         </div>
                                                         <div className='answer_detail'>{e.content}</div>
-                                                        <LikeTriButton like={e.number_of_likes} />
+                                                        <LikeTriButton type='answers' answerid={e.id} like={e.number_of_likes} liked={e.liked} />
+                                                        {console.log(e)}
                                                     </div>
                                                 )
                                             })

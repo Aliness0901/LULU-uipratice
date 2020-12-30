@@ -24,6 +24,7 @@ export default function GetAnswer(id, success, fail,successgetAnsInfo, UserInfoM
             answers.answer = {}                       //每次提取之前，都把上一次的数据情况
             answers.userinfo = {}
             answers.answer = data.answers;
+            console.log(data);
             for (let index = 0; index < answers.answer.length; index++) {
                 success(answers.answer[index].user_id);
             }
@@ -54,17 +55,13 @@ export default function GetAnswer(id, success, fail,successgetAnsInfo, UserInfoM
                         })
                         .then(function (data) {
                             answers.userinfo[data.user.id] = data.user                //字典里面根据用户id来排序，因此如果要查询的话就需要用户id
-                            console.log(data.user.id);
                             successgetAnsInfo(answers.userinfo[data.user.id].id);
-                            console.log(answers.userinfo);
-                            console.log(answers.answer);
                         });
                 }
                 //添加回调函数对比查询
             } else {
                 console.log('什么都没干');
             }
-            console.log('结束');
         })
         .catch((error) => {
             console.log('catch' + error);                         //这里总是给我报错说success不是函数，但是又不影响整体

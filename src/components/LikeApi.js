@@ -1,5 +1,3 @@
-
-
 export default function getuserInfo(questionID,success,fail){
     fetch(`https://bigfish-aliness.herokuapp.com/questions/${questionID}/like`, {
       method: 'POST',
