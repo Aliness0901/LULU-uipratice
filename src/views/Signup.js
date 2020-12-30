@@ -3,7 +3,6 @@ import { NavLink, withRouter } from 'react-router-dom'
 
 import Input from '../components/Input'
 import CreatUser from '../components/CreatUser'
-import { user_token } from '../views/Login'
 
 class Signup extends PureComponent {
 
@@ -83,13 +82,10 @@ class Signup extends PureComponent {
 
 
     SignupSuccess = () => {
-        localStorage.user_id=user_token.user_id        
-        localStorage.userkey=user_token.key
-        this.props.history.push('/MainPage')
     }
 
     GetUserTokenSuccess=()=>{
-
+        this.props.history.push('/MainPage')
     }
 
     FailGetUserToken=()=>{
