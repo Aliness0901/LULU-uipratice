@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react'
-import { NavLink,withRouter } from 'react-router-dom'
+import {withRouter } from 'react-router-dom'
 
 import ChangableBox from '../components/ChangableBox'
 import getuserInfo from '../components/GetUserInfo'
 import Logout  from '../components/Logout'
+import Header from '../components/Header'
 
 
 import './Profile.css'
@@ -64,7 +65,7 @@ class Profile extends PureComponent {
             email: userdatadetail.detail.email,
             password: ''
         })
-        if (this.state.user_pic !== null) {                       //设置默认头像
+        if (this.state.user_pic !== '') {                       //设置默认头像
             return
         } else {
             this.setState({
@@ -84,7 +85,7 @@ class Profile extends PureComponent {
     }
 
     componentDidMount = () => {
-        getuserInfo(localStorage.user_id, localStorage.userkey, this.SucessgetUser, 'mainuser');
+        getuserInfo(localStorage.user_id, localStorage.userkey, this.SucessgetUser,);
     }
 
 
@@ -92,12 +93,7 @@ class Profile extends PureComponent {
         console.log(this.state.userName);       //这里是确实更改过state的了，问题出在传的上面，传过去的时候不是更改过的state
         return (
             <div className='mainpage_core'>
-                {/* 所有的css都只需要写一遍，不管你写在哪里，都是会生效的 */}
-                <header className='mainHeader'>
-                    <NavLink to='mainpage' className='BigFish'>BIG FISH</NavLink>
-                    {/* 把图片用作navlink，装饰背景 */}
-                    <NavLink to='/profile' className='userpic' style={{ backgroundImage: `url(${this.state.user_pic})` }} />
-                </header>
+                <Header/>
                 <div className='afterheader_body2'>
                     <div className='profile_container'>
                         {/* 这一这里的afterheader_body是row的 */}

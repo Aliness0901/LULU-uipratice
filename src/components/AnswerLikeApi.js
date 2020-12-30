@@ -1,6 +1,6 @@
-export default function AnswerLikeApi(answerID,success,fail){
+export default function AnswerLikeApi(method,answerID,success,fail){
     fetch(`https://bigfish-aliness.herokuapp.com/answers/${answerID}/like`, {
-      method: 'POST',
+      method: method,
       headers: new Headers({
         'Content-Type': 'application/json',
         'Authorization': JSON.stringify({

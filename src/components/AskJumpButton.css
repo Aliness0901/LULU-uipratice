@@ -27,6 +27,19 @@
     cursor: pointer;
 }
 
+.ask_button:hover{
+    animation: shake 0.35s linear infinite alternate;
+}
+
+@keyframes shake {
+    from{
+        transform: translateY(0px);            
+    }
+    to {
+        transform: translateY(-4px);
+    }
+}
+
 .ask_small_container{
     position: fixed;
     left: 50%+450px;

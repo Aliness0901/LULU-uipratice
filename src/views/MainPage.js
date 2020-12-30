@@ -1,14 +1,11 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import AskJumpButton from '../components/AskJumpButton'
 // import {user_token} from '../views/Login'
 import LikeTriButton from '../components/LikeTriButton'
 import GetQustion from '../components/GetQustions'
-import getuserInfo from '../components/GetUserInfo'
-import {userdatadetail} from '../views/Profile'
-
-
+import Header from '../components/Header'
 
 import './MainPage.css'
 
@@ -20,13 +17,12 @@ export let questionsdata = {
 
 
 
-class MainPage extends PureComponent {
+class MainPage extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
             questionsdataRev: false,
-            user_pic:'',
             postfinish:false
         }
     }
@@ -38,50 +34,23 @@ class MainPage extends PureComponent {
     }
 
 
-    SucessgetUser=()=>{
-        this.setState({
-            user_pic:userdatadetail.detail.avatar_url
-        })
-        if (this.state.user_pic!==null) {                       //设置默认头像，在判断赋值过后是否为空之后，赋值我们自己的默认图片
-            return 
-        }else{
-            this.setState({
-                user_pic:"http://www.hw2jp.com/wp-content/uploads/2019/03/%E6%B5%B7%E8%B4%BC%E7%8E%8B.jpg"
-            })
-        }
-    }
-
 
     componentDidMount = () => {
         GetQustion(this.SuccessGet,this.SuccessGet);                    //此处应该还有一个没有拿到内容的函数fail
-        getuserInfo(localStorage.user_id,localStorage.userkey,this.SucessgetUser,'mainuser');
     }
 
     PostFinish=()=>{                    //这边有两种写法，一种就是放回调函数，父组件中有调用这个fetch的函数，然后把这个函数给子组件，在子组件中调用的fetch中调用这个父组件的函数
-        console.log('上传完毕');
-        this.setState({
-            postfinish:true,
-        })
+        // console.log('上传完毕');
+        GetQustion(this.SuccessGet);
     }
 
     NewQuestionUpdate=()=>{
-        this.setState({
-            postfinish:false,
-            questionsdataRev:false
-        })
-        console.log('开始上传');
+        // console.log('开始上传');
     }
 
     
 
     render() {
-        if (this.state.postfinish) {
-            GetQustion(this.SuccessGet);
-            console.log('页面刷新');
-            this.setState({
-                postfinish:false
-            })
-        }
         //console.log(user_token);                    //这里依旧有一个问题，就是只要页面刷新了，user_token就又空了
         //这个刷新不是只react本身的刷新，而是用户点击浏览器的刷新，会丢失这个全局变量的内容
         //console.log(answers.answer);                //截止到目前，已经全部获取到answer内容了
@@ -91,12 +60,8 @@ class MainPage extends PureComponent {
         //我们不需要把所有的回答都放到local里面，要放的只是用户点击了哪个id而已
         return (
             <div className='mainpage_core'>
+                <Header/>
                 <AskJumpButton  type='question' refresh={this.NewQuestionUpdate} postfinish={this.PostFinish}/>
-                <header className='mainHeader'>
-                    <NavLink to='/mainpage' style={{color:'#ED5736'}}>BIG FISH</NavLink>
-                    {/* 把图片用作navlink，装饰背景 */}
-                    <NavLink to={{pathname:'/profile', type:'mainuser'}} className='userpic' style={{backgroundImage:`url(${this.state.user_pic})`}} />
-                </header>
                 <div className='afterheader_body2'>
                     <div className='Qustion_container'>
                         {

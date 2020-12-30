@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import GetAnswer from '../components/GetAnswer'
-import getuserInfo from '../components/GetUserInfo'
 import PostAnswer from '../components/PostAnswer'
 import LikeTriButton from '../components/LikeTriButton'
 import AnswerButton from '../components/AnswerButton'
+import Header from '../components/Header'
 
-import { userdatadetail } from '../views/Profile'
+
 
 import './Answers.css'
 
@@ -74,19 +74,6 @@ class Answers extends Component {                       //这里有purecomponent
 
     }
 
-    SucessgetUser = () => {
-        this.setState({
-            user_pic: userdatadetail.detail.avatar_url
-        })
-        if (this.state.user_pic !== null) {                       //设置默认头像，在判断赋值过后是否为空之后，赋值我们自己的默认图片
-            return
-        } else {
-            this.setState({
-                user_pic: "http://www.hw2jp.com/wp-content/uploads/2019/03/%E6%B5%B7%E8%B4%BC%E7%8E%8B.jpg"
-            })
-        }
-    }
-
     UserAnswerboxShow = () => {
         if (this.state.useranswer_box === 'none') {
             this.setState({
@@ -146,7 +133,6 @@ class Answers extends Component {                       //这里有purecomponent
 
     componentDidMount = () => {
         GetAnswer(this.props.location.id, this.SuccessAnswer, this.FailAnswer, this.GetAnswerUserInfo, this.UserInfoMatch)           //利用上一个页面跳转过来的问题，提取answer
-        getuserInfo(localStorage.user_id, localStorage.userkey, this.SucessgetUser, 'mainuser');
         //这里有一个问题，就是只要我删掉了fetch里面的id这些参数，就给我报错，说sucess不是一个函数
     }
 
@@ -154,16 +140,12 @@ class Answers extends Component {                       //这里有purecomponent
         return (
             <div className='mainpage_core'>
                 <AnswerButton onClick={this.UserAnswerboxShow} />
-                <header className='mainHeader'>
-                    <NavLink to='mainpage' className='BigFish'>BIG FISH</NavLink>
-                    <NavLink to={{ pathname: '/profile', type: 'mainuser' }} className='userpic' style={{ backgroundImage: `url(${this.state.user_pic})` }} />
-                </header>
+                <Header/>
                 <div className='afterheader_body2'>
                     <div className='repeat_title'>
                         <h3 className='Rquestion_title'>{this.props.location.title}</h3>
                         <div className='Rquestion_content'>{this.props.location.content}</div>
                     </div>
-                    {/* 早知道就所有的头部都写一个组件了，这样就省得再这里一遍又一遍重复了 */}
                     <div className='user_can_answerbox_container' style={{ display: this.state.useranswer_box }}>
                         <textarea className='user_can_answertextarea' onChange={this.UserAnswerContent} />
                         <button className='answer_button' onClick={this.UserPostNewAnswer} style={this.state.answerBtnStyle}>Answer</button>

@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
 
-import getuserInfo from '../components/GetUserInfo'
-import {userdatadetail} from '../views/Profile'
+import getotheruserInfo from '../components/GetOtheruser'
+import Header from '../components/Header'
 
 
 import './Profile.css'
@@ -16,17 +15,11 @@ class OtherUserPro extends Component {
         super(props)
 
         this.state = {
-            mainuser:'',
             otheruser:'',
         }
     }
 
-    SuccessGetmain=()=>{
-        this.setState({
-            mainuser:true,
-        })
-    }
-
+    
     SuccessGetOther=()=>{
         this.setState({
             otheruser:true,
@@ -34,21 +27,15 @@ class OtherUserPro extends Component {
         console.log(this.state.other_pic);
     }
 
-    componentDidMount(){   
-        console.log('传过来的'+this.props.location.answerUserID);              
-        getuserInfo(localStorage.user_id, localStorage.userkey,this.SuccessGetmain,'otherusers',this.SuccessGetOther,this.props.location.answerUserID)
+    componentDidMount(){                 
+        getotheruserInfo(this.props.location.answerUserID,this.SuccessGetOther)
     }
 
     render() {
         console.log(this.props.location.type);
         return (
             <div className='mainpage_core'>
-                <header className='mainHeader'>
-                    <NavLink to='mainpage' className='BigFish'>BIG FISH</NavLink>
-                    <NavLink to='/profile' className='userpic' style={{ backgroundImage: `url(${userdatadetail.detail.avatar_url}` }} />
-                </header>
-
-
+                <Header/>
                 <div className='afterheader_body2'>
                     <div className='profile_container'>
                         {/* 这一这里的afterheader_body是row的 */}
