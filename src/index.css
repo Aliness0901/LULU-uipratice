@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: RobotoRegular;
 }
 
 
@@ -16,6 +17,10 @@ input:focus, textarea:focus,button:focus {          /*去掉input，textarea，�
 @font-face
 {
 font-family: bigFish;
-src: url(./assets/fonts/Russo_One/RussoOne-Regular.ttf)
+src: url(./assets/fonts/Russo_One/RussoOne-Regular.ttf);
+font-family:RobotoMedium ;
+src: url(./assets/fonts/Roboto/Roboto-Medium.ttf);
+font-family:RobotoRegular ;
+src: url(./assets/fonts/Roboto/Roboto-Regular.ttf);
 }
 

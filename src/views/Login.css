@@ -1,20 +1,4 @@
 
-.Login_Sign_button {
-    display: inline-block;
-    width: 386px;
-    height: 50px;
-    margin-top: 71px;
-    background-color: #ED5736; 
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: white;
-}
-
-
 .error_info_container{
     width: 100vw;
     height: 100vh;

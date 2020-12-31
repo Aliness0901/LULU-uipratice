@@ -28,7 +28,7 @@ class Answers extends Component {                       //这里有purecomponent
             answersAndUsersMatch: false,
             useranswer_box: 'none',
             useranswerContent: '',
-            answerBtnAva: true,
+            answerBtnAva: false,
             PostSuccess: false,
             answerBtnStyle: {
                 cursor: 'not-allowed',
@@ -37,7 +37,7 @@ class Answers extends Component {                       //这里有purecomponent
             },
             Array1: [],
             returnArray: [],
-            liked:''
+            liked: ''
         }
     }
 
@@ -64,11 +64,11 @@ class Answers extends Component {                       //这里有purecomponent
         let egarry = this.state.returnArray;
         let returnArray = [];
         for (let index = 0; index < egarry.length; index++) {               //在每拿一次用户id的时候就去查询排序一次
-            returnArray.push(this.state.Array1.indexOf(egarry[index]))      
+            returnArray.push(this.state.Array1.indexOf(egarry[index]))
             returnArray.sort((a, b) => (a > b))
-            if (returnArray[0] >= 0 && index===this.state.Array1.length-1) {    //每次排序结束之后，确认是不是已经拿完全部数据了，fetch后端还有没有没有返回的        
+            if (returnArray[0] >= 0 && index === this.state.Array1.length - 1) {    //每次排序结束之后，确认是不是已经拿完全部数据了，fetch后端还有没有没有返回的        
                 this.setState({                             //这里必须放到for里面，拿出来的话就不知道组件中的for是否跟fetch中的for循环次数一样了
-                    answersAndUsersMatch:true
+                    answersAndUsersMatch: true
                 })
             }
         }
@@ -92,7 +92,7 @@ class Answers extends Component {                       //这里有purecomponent
         if (e.target.value !== '') {                          //这边还可以加一个判断输入字符多少的判断，以免出现后端错误
             this.setState({
                 useranswerContent: e.target.value,
-                answerBtnAva: false,
+                answerBtnAva: true,
                 answerBtnStyle: {
                     backgroundColor: '#ED5736',
                     cursor: 'pointer',
@@ -101,7 +101,7 @@ class Answers extends Component {                       //这里有purecomponent
             });                                 //就算这里加了callback来log，发现还是是上一帧的东西,如果想要拿这一帧的东西，必须是箭头函数才行           
         } else {
             this.setState({
-                answerBtnAva: true,
+                answerBtnAva: false,
                 answerBtnStyle: {
                     backgroundColor: 'silver',
                     cursor: 'not-allowed',
@@ -119,11 +119,15 @@ class Answers extends Component {                       //这里有purecomponent
     }
 
     UserPostNewAnswer = () => {
-        console.log(this.state.useranswerContent);           //准确
-        PostAnswer(this.props.location.id, this.state.useranswerContent, this.PostSuccess);
-        this.setState({
-            useranswer_box: 'none'
-        })
+        if (this.state.answerBtnAva) {
+            PostAnswer(this.props.location.id, this.state.useranswerContent, this.PostSuccess);
+            this.setState({
+                useranswer_box: 'none'
+            })
+        }else {
+            return                      //同样这里可以判断一下，加一个错误提示动画
+        }
+
     }
 
 
@@ -135,14 +139,14 @@ class Answers extends Component {                       //这里有purecomponent
         return (
             <div className='mainpage_core'>
                 <AnswerButton onClick={this.UserAnswerboxShow} />
-                <Header/>
+                <Header />
                 <div className='afterheader_body2'>
                     <div className='repeat_title'>
                         <h3 className='Rquestion_title'>{this.props.location.title}</h3>
                         <div className='Rquestion_content'>{this.props.location.content}</div>
                     </div>
                     <div className='user_can_answerbox_container' style={{ display: this.state.useranswer_box }}>
-                        <textarea className='user_can_answertextarea' onChange={this.UserAnswerContent} placeholder='Text your answer here'/>
+                        <textarea className='user_can_answertextarea' onChange={this.UserAnswerContent} placeholder='Text your answer here' />
                         <button className='answer_button' onClick={this.UserPostNewAnswer} style={this.state.answerBtnStyle}>Answer</button>
                     </div>
 
@@ -159,14 +163,14 @@ class Answers extends Component {                       //这里有purecomponent
                                                         <div className='difuser_title'>
                                                             {/*这里的父盒子display是row，竖着*/}
                                                             <NavLink to={{                  //利用更加清楚的方式传递属性
-                                                                pathname: '/otheruseInfo',
+                                                                pathname: '/otheruseinfo',
                                                                 type: 'otherusers',
                                                                 answerUserID: e.user_id
-                                                            }} className='user_pic_ans' style={{ backgroundImage: `url(${answers.userinfo[e.user_id].avatar_url})`}}></NavLink>
+                                                            }} className='user_pic_ans' style={{ backgroundImage: `url(${answers.userinfo[e.user_id].avatar_url})` }}></NavLink>
                                                             <div className='user_detail'>
                                                                 {/*这里的盒子display是column，横着*/}
                                                                 <NavLink className='user_name_ans' to={{
-                                                                    pathname: '/otheruseInfo',
+                                                                    pathname: '/otheruseinfo',
                                                                     type: 'otherusers',
                                                                     answerUserID: e.user_id
                                                                 }}>{answers.userinfo[e.user_id].name}</NavLink>

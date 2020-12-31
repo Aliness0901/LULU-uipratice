@@ -65,11 +65,9 @@ class Profile extends PureComponent {
             email: userdatadetail.detail.email,
             password: ''
         })
-        if (this.state.user_pic !== '') {                       //设置默认头像
-            return
-        } else {
+        if(this.state.user_pic===null){
             this.setState({
-                user_pic: "http://www.hw2jp.com/wp-content/uploads/2019/03/%E6%B5%B7%E8%B4%BC%E7%8E%8B.jpg"
+                user_pic:"http://www.hw2jp.com/wp-content/uploads/2019/03/%E6%B5%B7%E8%B4%BC%E7%8E%8B.jpg"
             })
         }
     }

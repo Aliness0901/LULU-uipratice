@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import LgandSu from './components/LgandSu'
 import { Route, Switch } from 'react-router-dom'
 
 import MainPage from './views/MainPage'
 import Profile from './views/Profile'
+import LgandSu from './components/LgandSu'
 import Answers from './views/Answers'
 import OtherUserPro from './views/OtherUserPro'
 
@@ -17,7 +17,7 @@ class App extends Component {
           <Route path='/profile' component={Profile}/>
           {/* 在过去，这里可以使用indexrouter来表示首页，但是已经过时了，现在可以path任何的链接，让他们同时显示 */}
           <Route path='/answers' component={Answers}/>
-          <Route path='/otheruseInfo' component={OtherUserPro}/>
+          <Route path='/otheruseinfo' component={OtherUserPro}/>
           <Route path='/' component={LgandSu}/>    
         </Switch>
       </div>

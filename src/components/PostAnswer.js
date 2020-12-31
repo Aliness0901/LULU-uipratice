@@ -20,7 +20,7 @@ export default function PostAnswer(id, content, success) {
                 return response.json();
             } else if (response.status === 404) { 
                 //fail();                           这里可以写一个fail的回调
-                return response.json                      
+                return response.json()                      
             }       
         })
         .then(function (data) {

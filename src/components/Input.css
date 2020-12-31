@@ -13,7 +13,7 @@
     height: 35px;
     margin-bottom: 30px;
     border-bottom: solid grey 1px;
-    align-self: center;
+    /* align-self: center; */
     /* background-color: red; */
 }
 
@@ -22,7 +22,7 @@
     width: 386px;
     height: 41px;
     border: none;
-    font-size: 17px;
+    font-size: 25px;
     background-color: transparent ;
     /* background: yellow */
 }

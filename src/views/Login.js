@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { NavLink,withRouter } from 'react-router-dom'
 
 import Input from '../components/Input'
-import {Login_Check } from '../components/Login_checkFunc'
+import { Login_Check } from '../components/Login_checkFunc'
 // import {getuserInfo} from '../components/GetUserInfo'        //返回的id在验证的时候就返回了，不是我们去获取了才有的
 //获取是需要通过id和key去获取该用户的详细信息的
 
