@@ -20,6 +20,18 @@
     background-color: #fff;
 }
 
+.user_name_ans{
+    color: black;
+}
+
+.user_name_ans:visited{
+    color: black;
+}
+
+.date_ans{
+    color: rgb(161, 159, 159);
+}
+
 .each_answer{
     margin-bottom: 20px;
     padding-bottom: 20px;

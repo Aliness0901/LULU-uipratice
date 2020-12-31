@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
+import Moment from 'moment'
 
 import GetAnswer from '../components/GetAnswer'
 import PostAnswer from '../components/PostAnswer'
@@ -125,15 +126,9 @@ class Answers extends Component {                       //这里有purecomponent
         })
     }
 
-    UserInfoMatch = () => {
-        this.setState({
-            answersAndUsersMatch: true
-        })
-    }
 
     componentDidMount = () => {
-        GetAnswer(this.props.location.id, this.SuccessAnswer, this.FailAnswer, this.GetAnswerUserInfo, this.UserInfoMatch)           //利用上一个页面跳转过来的问题，提取answer
-        //这里有一个问题，就是只要我删掉了fetch里面的id这些参数，就给我报错，说sucess不是一个函数
+        GetAnswer(this.props.location.id, this.SuccessAnswer, this.FailAnswer, this.GetAnswerUserInfo)           //利用上一个页面跳转过来的问题，提取answer
     }
 
     render() {
@@ -147,7 +142,7 @@ class Answers extends Component {                       //这里有purecomponent
                         <div className='Rquestion_content'>{this.props.location.content}</div>
                     </div>
                     <div className='user_can_answerbox_container' style={{ display: this.state.useranswer_box }}>
-                        <textarea className='user_can_answertextarea' onChange={this.UserAnswerContent} />
+                        <textarea className='user_can_answertextarea' onChange={this.UserAnswerContent} placeholder='Text your answer here'/>
                         <button className='answer_button' onClick={this.UserPostNewAnswer} style={this.state.answerBtnStyle}>Answer</button>
                     </div>
 
@@ -167,15 +162,15 @@ class Answers extends Component {                       //这里有purecomponent
                                                                 pathname: '/otheruseInfo',
                                                                 type: 'otherusers',
                                                                 answerUserID: e.user_id
-                                                            }} className='user_pic_ans' style={{ backgroundImage: `url(${answers.userinfo[e.user_id].avatar_url})` }}></NavLink>
+                                                            }} className='user_pic_ans' style={{ backgroundImage: `url(${answers.userinfo[e.user_id].avatar_url})`}}></NavLink>
                                                             <div className='user_detail'>
                                                                 {/*这里的盒子display是column，横着*/}
-                                                                <NavLink to={{
+                                                                <NavLink className='user_name_ans' to={{
                                                                     pathname: '/otheruseInfo',
                                                                     type: 'otherusers',
                                                                     answerUserID: e.user_id
                                                                 }}>{answers.userinfo[e.user_id].name}</NavLink>
-                                                                <div>{answers.userinfo[e.user_id].created_at}</div>
+                                                                <div className='date_ans'>Answered {Moment(e.created_at).format('D MMM YYYY')}</div>
                                                             </div>
                                                         </div>
                                                         <div className='answer_detail'>{e.content}</div>

@@ -70,8 +70,9 @@ class Ask_jump_button extends Component {
                 {/* 但是本身并不影响里面的子类的任何点击，如果和点击有冲突的话，我们可以用一个大的盒子包起来，来控制冒泡 */}
                 <div className='ask_cover' onClick={this.askCoverClose} style={{ display: this.state.askcover_display }}>
                     <div className='ask_small_container' onClick={this.stopPropagation}>
-                        <Input ph='Title' botline='700px' onChange={this.titleOnChanging} />
-                        <Input ph='Content' botline='700px' onChange={this.contentOnChanging} />
+                        <Input ph='Title' botline='700px' inputwidth='700px' onChange={this.titleOnChanging} />
+                        {/* <Input ph='Content' botline='700px' inputwidth='700px' onChange={this.contentOnChanging} /> */}
+                        <textarea className='user_can_questiontextarea' onChange={this.contentOnChanging} placeholder='Text your answer here'/>
                         <button className='askjump_ask' onClick={this.Questionask}>Ask</button>
                     </div>
                 </div>

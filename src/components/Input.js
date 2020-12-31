@@ -26,6 +26,7 @@ class Input extends Component {
                         onBlur={this.handleBlur}
                         placeholder={this.state.pH}
                         className='input'
+                        style={{width:this.props.inputwidth}}
                         {...this.props}
                     />
                 </div>

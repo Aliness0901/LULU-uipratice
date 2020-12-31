@@ -58,12 +58,13 @@
     /*width: 220px;*/           /*因为这里我们要加点击后的button这些，所以盒子会扩开，这里就不加固定的高宽了*/
     font-size: 30px;
     overflow: hidden;
-    /* background-color: red; */
+cursor: pointer;
 }
 /* 这里还是由bug，如果flex-basis给了300的话，字就会因为放不下而掉下来，这里是为什么？ */
 
 .discription{
-    margin-right: 80px;                 
+    margin-right: 80px;  
+    font-weight: 800;               
 }
 
 .user_description{

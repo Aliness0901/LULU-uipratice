@@ -3,11 +3,10 @@
     flex-direction: row;
     align-items: flex-end;                 /*让图片和字中间对齐*/
     /* background-color: red; */
+    cursor: default;
 }
 
-.Edit_show_container:hover{
-    cursor: text;
-}
+
 
 .Edit_icon_pencil{
     margin-left: 50px;

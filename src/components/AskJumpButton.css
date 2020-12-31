@@ -66,4 +66,16 @@
     border:  #ED5736;
     border-radius: 5px;
     font-size: 20px;
+    cursor: pointer;
+}
+
+.user_can_questiontextarea{
+    width: 700px;
+    height: 220px;
+    /* border: none; */
+    resize: none;           /*解决textarea可以自由拖动的问题*/
+    padding: 15px 20px 15px 20px;
+    font-size: 18px;
+    color: black;
+    font-family: 'Microsoft YaHei';
 }

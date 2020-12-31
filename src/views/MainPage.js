@@ -73,7 +73,7 @@ class MainPage extends Component {
                                         {/* 我们就需要创建一个属性或者利用react自身dom的属性来存储当前返回的e.id */}
                                         <div className='Qustion_detail'>
                                             {e.content}
-                                            <LikeTriButton type='questions' questionid={e.id} like={e.number_of_likes} liked={e.liked}/>
+                                            <LikeTriButton className='Like' type='questions' questionid={e.id} like={e.number_of_likes} liked={e.liked}/>
                                         </div>     
                                     </div>
                                 )

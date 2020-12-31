@@ -68,7 +68,7 @@ class Signup extends PureComponent {
         } else {
             this.setState({
                 password_checked: 'visible',
-                password_text_error: '密码需要大于6位且小于12位',
+                password_text_error: '密码需要大于6位，小于12位且至少有一个大写字母和小写字母',
                 password_botoom_color: 'red'
             },()=>{this.BtnNoChecked()})
         }
@@ -135,10 +135,10 @@ class Signup extends PureComponent {
         return (
             <div className='Login_Sign_container'>
                 <Input className='email_container input' type='text' ph='Email' onChange={this.CheckEmail} checked={this.state.email_checked} errortext={this.state.email_text_error} buttomcolor={this.state.email_botoom_color} value={this.state.email} />
-                <Input type='text' className='pssw_container input' ph='Password' onChange={this.CheckPassword} checked={this.state.password_checked} errortext={this.state.password_text_error} buttomcolor={this.state.password_botoom_color} value={this.state.password} />
+                <Input type='password' className='pssw_container input' ph='Password' onChange={this.CheckPassword} checked={this.state.password_checked} errortext={this.state.password_text_error} buttomcolor={this.state.password_botoom_color} value={this.state.password} />
                 <Input type='text' className='name_container input' ph='Name' onChange={this.controlUsername} value={this.state.name} />
                 <button style={this.state.SignBoxStyle} className='Login_Sign_button' disabled={this.state.BtnClickable} onClick={this.SignupClick}>Signup</button>
-                <footer className='Login_Sign_footer'>Already have an account?<NavLink to='/'>Login</NavLink></footer>
+                <footer className='Login_Sign_footer'>Already have an account? <NavLink to='/'  style={{color:'#ED5736'}}>Login</NavLink></footer>
             </div>
         );
     }

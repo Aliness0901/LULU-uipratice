@@ -4,6 +4,7 @@ import AnswerLikeApi from '../components/AnswerLikeApi'
 
 
 import triangleorange from '../assets/images/icons/triangleorange.svg'
+import triangle from '../assets/images/icons/triangle.svg'
 
 import './LikeTriButton.css'
 
@@ -78,7 +79,7 @@ class Like_tri_button extends PureComponent {
         } else {              //这里就先用clickable来代替返回的true或者false，等改了就替换掉
             return (
                 <div className='Liked_container' onClick={this.handleClick}>
-                    <img src={triangleorange} alt='' />
+                    <img src={triangle} alt='' />
                     Agree
                     <span>{this.state.Likenum}</span>
                 </div>

@@ -76,7 +76,7 @@
     display: block;
     width: 500px;
     height: 118px;
-    background-color:rgba(177, 173, 173,0.8);
+    background-color:rgba(199, 190, 190, 0.8);
     text-align: center;
     line-height: 118px;
 }
@@ -86,7 +86,7 @@
     width: 800px;
     height: 130px;
     background-color: #fff;
-    padding: 10px;
+    padding: 20px;
     border-radius: 5px;
 }
 
@@ -96,7 +96,8 @@
     position: absolute;
     right: 10px;
     bottom: 10px;
-    background-color: gray;
+    background-color: rgb(175, 175, 175);
     background-image: url(../assets//images/icons/cancel.svg);
     border-radius: 50%;
+    cursor: pointer;
 }

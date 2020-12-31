@@ -77,9 +77,9 @@ class Login extends Component {
         return (
             <div className='Login_Sign_container'>
                 <Input type='text' value={this.state.email} ref={Input => this.emailbox = Input} className='email_container input' ph='Email' onChange={this.Login_email_Control} />
-                <Input type='text' value={this.state.passowrd} ref={Input => this.passwordbox = Input} className='pssw_container input' ph='Password' onChange={this.Login_password_Control} />
+                <Input type='password' value={this.state.passowrd} ref={Input => this.passwordbox = Input} className='pssw_container input' ph='Password' onChange={this.Login_password_Control} />
                 <button onClick={this.Login_check} className='Login_Sign_button'>Login</button>
-                <footer className='Login_Sign_footer'>Don't have an account?<NavLink to='/signup'>SignUp</NavLink></footer>
+                <footer className='Login_Sign_footer'>Don't have an account? <NavLink to='/signup' style={{color:'#ED5736'}}>SignUp</NavLink></footer>
             </div>
 
         );

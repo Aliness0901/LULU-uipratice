@@ -11,25 +11,14 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    color: white;
 }
 
-.Login_Sign_footer {
-    position: absolute;
-    bottom: 0px;
-    display: block;
-    width: 500px;
-    height: 118px;
-    background-color:rgb(177, 173, 173);
-    text-align: center;
-    line-height: 118px;
-}
 
 .error_info_container{
     width: 100vw;
     height: 100vh;
     background-color: red;
 }
-.Login_button{
-    color: #000;
-}
+
 
