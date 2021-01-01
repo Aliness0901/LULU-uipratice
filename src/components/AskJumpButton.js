@@ -10,10 +10,10 @@ class Ask_jump_button extends Component {
         super(props)
 
         this.state = {
-            askcover_display: 'none',
+            askCoverDisplay: 'none',
             title: '',
             content: '',
-            askquestionSuccess: '',
+            askQuestionSuccess: '',
             canClick: false,
             answerBtnStyle: {
                 cursor: 'not-allowed',
@@ -25,13 +25,13 @@ class Ask_jump_button extends Component {
 
     askCoverJump = () => {
         this.setState({
-            askcover_display: 'flex',
+            askCoverDisplay: 'flex',
         })
     }
 
     askCoverClose = () => {
         this.setState({
-            askcover_display: 'none'
+            askCoverDisplay: 'none'
         })
     }
 
@@ -39,18 +39,18 @@ class Ask_jump_button extends Component {
         e.stopPropagation();            //这里的阻止冒泡的方法和js中一样
     }
 
-    AskquestionSuccess = () => {
+    askQuestionSuccess = () => {
         this.setState({
-            askquestionSuccess: true
+            askQuestionSuccess: true
         })
         this.props.postfinish();
     }
 
-    Questionask = () => {
+    questionAsk = () => {
         if (this.state.canClick) {
-            PostQuestion(this.state.title, this.state.content, this.AskquestionSuccess);
+            PostQuestion(this.state.title, this.state.content, this.askQuestionSuccess);
             this.setState({
-                askcover_display: 'none',
+                askCoverDisplay: 'none',
                 title: '',
                 content: '',
             })
@@ -66,7 +66,6 @@ class Ask_jump_button extends Component {
         })
         if (e.target.value !== '' && this.state.content !== '') {                          //这边还可以加一个判断输入字符多少的判断，以免出现后端错误
             this.setState({
-                useranswerContent: e.target.value,
                 answerBtnAva: false,
                 canClick: true,
                 answerBtnStyle: {
@@ -93,7 +92,6 @@ class Ask_jump_button extends Component {
         })
         if (e.target.value !== '' && this.state.title !== '') {                          //这边还可以加一个判断输入字符多少的判断，以免出现后端错误
             this.setState({
-                useranswerContent: e.target.value,
                 answerBtnAva: false,
                 canClick: true,
                 answerBtnStyle: {
@@ -121,14 +119,11 @@ class Ask_jump_button extends Component {
         return (
             <div className='ask_big_container'>
                 <button className='ask_button' onClick={this.askCoverJump}>+</button>
-                {/* 非常需要注意的是，如果我们想要停止冒泡的话，需要在子类中添加这个onclick的事件来阻止里面所有的子类向上冒泡 */}
-                {/* 但是本身并不影响里面的子类的任何点击，如果和点击有冲突的话，我们可以用一个大的盒子包起来，来控制冒泡 */}
-                <div className='ask_cover' onClick={this.askCoverClose} style={{ display: this.state.askcover_display }}>
+                <div className='ask_cover' onClick={this.askCoverClose} style={{ display: this.state.askCoverDisplay }}>
                     <div className='ask_small_container' onClick={this.stopPropagation}>
                         <Input ph='Title' botline='700px' inputwidth='700px' onChange={this.titleOnChanging} />
-                        {/* <Input ph='Content' botline='700px' inputwidth='700px' onChange={this.contentOnChanging} /> */}
                         <textarea className='user_can_questiontextarea' onChange={this.contentOnChanging} placeholder='Text your answer here' />
-                        <button className='askjump_ask' onClick={this.Questionask} style={this.state.answerBtnStyle}>Ask</button>
+                        <button className='askjump_ask' onClick={this.questionAsk} style={this.state.answerBtnStyle}>Ask</button>
                     </div>
                 </div>
 
@@ -138,5 +133,3 @@ class Ask_jump_button extends Component {
 }
 
 export default Ask_jump_button
-
-//这里的ask还需要有一个提交的方法，监控就写在两个input里

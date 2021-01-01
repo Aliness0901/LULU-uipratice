@@ -15,16 +15,15 @@ class OtherUserPro extends Component {
         super(props)
 
         this.state = {
-            otheruser:'',
+            otherUser:'',
         }
     }
 
     
     SuccessGetOther=()=>{
         this.setState({
-            otheruser:true,
+            otherUser:true,
         })
-        console.log(this.state.other_pic);
     }
 
     componentDidMount(){                 

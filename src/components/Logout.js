@@ -16,7 +16,6 @@ export default function PostAnswer(sucess) {
                 sucess();
                 return response.json();
             } else if (response.status === 404) { 
-                //fail();                           这里可以写一个fail的回调
                 return response.json                      
             }       
         })

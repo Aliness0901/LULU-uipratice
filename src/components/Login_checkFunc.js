@@ -19,38 +19,32 @@ export let Login_Check = (email, password, success, fail) => {
     fetch('https://bigfish-aliness.herokuapp.com/user_tokens', {
         method: 'POST',
         headers: new Headers({
-            'Content-Type': 'application/json'   //世界固定格式
+            'Content-Type': 'application/json'   
         }),
-        body: JSON.stringify({      //这里就是传一个对象键值对进去
-            'credential': {          //对象名是写好的，必须是这个，后端写好的request
-                //用来验证
+        body: JSON.stringify({      
+            'credential': {          
                 'email': email,
-                'password': password    //这里的键就是string的，后端会匹配
+                'password': password   
             }
         }),
     })
-        .then(function (response) {         //status只有在这里会生成
-            if (response.ok) {              //在这里判断response是否返回正确
-                                       //response会在这里返回一个属性，如果是正确的，.ok就会返回true
-                return response.json();         //把拿到的数据返回一个json格式的文件，并在下面接收data.属性
+        .then(function (response) {         
+            if (response.ok) {              
+                return response.json();         
             } else {
-                fail();                 //如果是错误的，.ok返回的就是一个false，所以这里我们可以写两个callback函数
-                // return Promise.reject('something went wrong!')
+                fail();                
             }
         })
-        .then(function (data) {             //这里的话就是成功了会进这里
-            // console.log(JSON.stringify(data));          //这里可以logdata出来看data现在是什么属性，如果没有成功拿到，那就是undefined
-            user_token.user_id = data.user_token.user_id;      //如果成功的话，这里会返回user_id
-            user_token.key = data.user_token.key;                //以及返回key
+        .then(function (data) {             
+            user_token.user_id = data.user_token.user_id;      
+            user_token.key = data.user_token.key;                
             localStorage.user_id=data.user_token.user_id;
             localStorage.userkey=data.user_token.key;
             console.log(data);
             success();
         })
-        .catch(function (error) {        //如果不写这个catch的话，就会整个页面都弹错
+        .catch(function (error) {        
             console.log('There has been a problem with your fetch operation: ', error.message);
-            // return 400               //函数本身是没办法跨域来return东西的，所以对于这个fetch是否拿到东西了，我们只能在ok的时候判断，然后加callback函数，这个也是fetch的最常用方法
-        });     //因此这个return本身就是没有任何的意义的，除非是在同一个component里，那么return是可以的，但是如果是不同组件的话，是没有用的
+        });    
 }
 
-// export  default Login_Check        //如果你想要导出方程的话，就用这种方式

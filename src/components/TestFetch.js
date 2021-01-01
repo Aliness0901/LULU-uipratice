@@ -6,7 +6,6 @@ export default function TestFetch() {
   let key;
 
   function login() {
-    // 登陆
     fetch('https://bigfish-aliness.herokuapp.com/user_tokens', {
       method: 'POST',
       headers: new Headers({
@@ -23,14 +22,12 @@ export default function TestFetch() {
       return response.json();
     })
     .then(function(data) {
-      // 这里再用一次stringify就是为了保证把js的对象转变为字符串，因为有的时候并不会一口气传完整
       console.log("login successfully: " + JSON.stringify(data));
       user_id = data.user_token.user_id;
       key = data.user_token.key;
     });
   }
 
-  // 获取当前用户信息
   function getUserInfo() {
     fetch('https://bigfish-aliness.herokuapp.com/user', {
       method: 'GET',
@@ -45,8 +42,8 @@ export default function TestFetch() {
       }),
     })
     .then(function(response) {
-      if (response.status >= 200 && response.status < 300) {      //这里用这个的意思就是如果用户想要查看的时候，不存在，就会返回
-        return response.json(); //等待所有后续的报文，第二个事情就是等待所有js的对象
+      if (response.status >= 200 && response.status < 300) {      
+        return response.json(); 
       }
     })
     .then(function(data) {

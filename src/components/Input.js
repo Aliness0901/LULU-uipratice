@@ -3,7 +3,7 @@ import '../components/Input.css'
 
 class Input extends Component {
     state = {
-        pH: this.props.ph,
+        placeholder: this.props.ph,
         // checked:this.props.checked           在这里赋值是不会受到父组件变动而更改的，state本身就是子组件的属性
     }                   //一旦被赋值完，就是一次性赋值，渲染的时候不会再去渲染这个赋值的过程
     handleClick = () => {

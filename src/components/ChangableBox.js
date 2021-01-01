@@ -14,9 +14,9 @@ class ChangableBox extends PureComponent {
         this.state = {
             show: 'hidden',
             // user_changable_text: this.props.ChangbleText,            //能改变state的就只有setstate，所以这里就算父类更改了，子类如果下面引用的是this.state的话，也不会更改
-            editshow: 'flex',
-            inputshow: 'none',
-            Changingtext: ''                 //这里的输入的文字有必要保存，如果不保存的话，后面的save就无法上传到后台
+            editShow: 'flex',
+            inputShow: 'none',
+            changingText: ''                 //这里的输入的文字有必要保存，如果不保存的话，后面的save就无法上传到后台
         }
     }
 
@@ -31,32 +31,32 @@ class ChangableBox extends PureComponent {
         })
     }
 
-    EditShowDisp = () => {
+    editShowDisp = () => {
         this.setState({
-            editshow: 'none',
-            inputshow: 'block'
+            editShow: 'none',
+            inputShow: 'block'
         })
     }
 
-    InputChanging = (e) => {
+    inputChanging = (e) => {
         this.setState({
-            Changingtext: e.target.value
+            changingText: e.target.value
         })
     }
 
-    SaveButton = () => {
-        this.props.changedtext(this.state.Changingtext);
+    saveButton = () => {
+        this.props.changedtext(this.state.changingText);
         this.setState({
-            inputshow: 'none',
-            editshow: 'flex'
+            inputShow: 'none',
+            editShow: 'flex'
         })                  //记住这个传键值对的方式，键值对包装成对象，然后传进参数中
-        Patchuserinfo({ [this.props.type]: this.state.Changingtext })           //利用父类传过来的type的名字当成键值对，然后传给fetch，在fetch中直接调用这个键值对
+        Patchuserinfo({ [this.props.type]: this.state.changingText })           //利用父类传过来的type的名字当成键值对，然后传给fetch，在fetch中直接调用这个键值对
     }
 
-    CancleButton = () => {
+    cancleButton = () => {
         this.setState({
-            inputshow: 'none',
-            editshow: 'flex'
+            inputShow: 'none',
+            editShow: 'flex'
         })
     }
 
@@ -64,13 +64,13 @@ class ChangableBox extends PureComponent {
         if (this.props.typebox === 'context') {
             return (
                 <div>
-                    <div className='Edit_show_container' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} onClick={this.EditShowDisp} style={{ display: this.state.editshow }}>
+                    <div className='Edit_show_container' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} onClick={this.editShowDisp} style={{ display: this.state.editShow }}>
                         <div className={this.props.className}>{this.props.changbletext}</div>       {/*这里讲道理有点问题，就是没必要写在属性里面，可以写在两个label之间，用this.props.value来做*/}
                         <img className='Edit_icon_pencil' src={pencil} style={{ visibility: this.state.show }} alt='33' />
                     </div>
-                    <div className='ChangeandSave' style={{ display: this.state.inputshow }}>
-                        <Input defaultValue={this.props.defvalue} ph={this.props.ph} onChange={this.InputChanging} />
-                        <button onClick={this.SaveButton} className='Profilebutton current'>Save</button><button className='Profilebutton' onClick={this.CancleButton}>Cancel</button>
+                    <div className='ChangeandSave' style={{ display: this.state.inputShow }}>
+                        <Input defaultValue={this.props.defvalue} ph={this.props.ph} onChange={this.inputChanging} />
+                        <button onClick={this.saveButton} className='Profilebutton current'>Save</button><button className='Profilebutton' onClick={this.cancleButton}>Cancel</button>
                     </div>
                 </div>
             )
@@ -78,13 +78,13 @@ class ChangableBox extends PureComponent {
         else if (this.props.typebox === 'user_pic') {
             return (
                 <div className='pic_bigbox'>
-                    <div className='Pic_show_container' onClick={this.EditShowDisp} style={{ display: this.state.editshow }}>
+                    <div className='Pic_show_container' onClick={this.editShowDisp} style={{ display: this.state.editShow }}>
                         <img className='user_edit_camera' src={camera} alt='camera' />
                     </div>
-                    <div className='pic_ChangeandSave' style={{ display: this.state.inputshow }}>
-                        <Input defaultValue={this.props.defvalue} ph={this.props.ph} onChange={this.InputChanging} botline={'600px'} />
+                    <div className='pic_ChangeandSave' style={{ display: this.state.inputShow }}>
+                        <Input defaultValue={this.props.defvalue} ph={this.props.ph} onChange={this.inputChanging} botline={'600px'} />
                         <div className='btn'>
-                            <button onClick={this.SaveButton} className='Profilebutton current'>Save</button><button className='Profilebutton' onClick={this.CancleButton}>Cancel</button>
+                            <button onClick={this.saveButton} className='Profilebutton current'>Save</button><button className='Profilebutton' onClick={this.cancleButton}>Cancel</button>
                         </div>
                     </div>
                 </div>

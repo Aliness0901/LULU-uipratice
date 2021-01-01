@@ -19,17 +19,17 @@ class Profile extends PureComponent {
         super(props)
 
         this.state = {
-            getuser: false,
+            getUser: false,
             userName: '',                             //这里应该是需要用服务端接收的，至于刷新就会没有信息就需要用到localstorage，这里我们就先用名字代替
             description: '',
-            user_pic: '',
+            userPic: '',
             email: '',
             password: ''
         }
     }
 
     //现在我们需要一个方程，来给子类，可以改变父类的state状态，子类只需要传入一个字符串就可以改变父类的状态
-    ChangedName = (text) => {
+    changedName = (text) => {
         if (text !== '') {                    //因为名字不能是空的，所以这里加了判断
             this.setState({
                 userName: text
@@ -40,7 +40,7 @@ class Profile extends PureComponent {
         console.log(text);
     }
 
-    ChangedDesDetail = (text) => {
+    changedDesDetail = (text) => {
         this.setState({
             description: text
         })
@@ -49,62 +49,61 @@ class Profile extends PureComponent {
     changedURL = (text) => {
         if (text !== '') {                    //因为名字不能是空的，所以这里加了判断,但是其实还是会传给后面的fetch，之后可以加个判断，来阻止跳转fetch
             this.setState({
-                user_pic: text
+                userPic: text
             })
         } else {
             return
         }
     }
 
-    SucessgetUser = () => {
+    sucessGetUser = () => {
         this.setState({
             getuser: true,
             userName: userdatadetail.detail.name,
             description: userdatadetail.detail.description,
-            user_pic: userdatadetail.detail.avatar_url,
+            userPic: userdatadetail.detail.avatar_url,
             email: userdatadetail.detail.email,
             password: ''
         })
-        if(this.state.user_pic===null){
+        if(this.state.userPic===null){
             this.setState({
-                user_pic:"http://www.hw2jp.com/wp-content/uploads/2019/03/%E6%B5%B7%E8%B4%BC%E7%8E%8B.jpg"
+                userPic:"http://www.hw2jp.com/wp-content/uploads/2019/03/%E6%B5%B7%E8%B4%BC%E7%8E%8B.jpg"
             })
         }
     }
 
     componp
 
-    LogoutSuccess=()=>{
+    logoutSuccess=()=>{
         this.props.history.push('/')
     }
 
-    LogoutClick=()=>{
-        Logout(this.LogoutSuccess);
+    logoutClick=()=>{
+        Logout(this.logoutSuccess);
     }
 
     componentDidMount = () => {
-        getuserInfo(localStorage.user_id, localStorage.userkey, this.SucessgetUser,);
+        getuserInfo(localStorage.user_id, localStorage.userkey, this.sucessGetUser,);
     }
 
 
     render() {
-        console.log(this.state.userName);       //这里是确实更改过state的了，问题出在传的上面，传过去的时候不是更改过的state
         return (
             <div className='mainpage_core'>
                 <Header/>
                 <div className='afterheader_body2'>
                     <div className='profile_container'>
                         {/* 这一这里的afterheader_body是row的 */}
-                        <div className='user_change_pic' style={{ backgroundImage: `url(${this.state.user_pic})` }}>    
+                        <div className='user_change_pic' style={{ backgroundImage: `url(${this.state.userPic})` }}>    
                             <ChangableBox className='edit_content' typebox='user_pic' ph='Edit your avatar' defvalue='Edit your avatar' type='avatar_url' changedtext={this.changedURL} />
                         </div>
                         <div className='Big_Edit_container'>
-                            <ChangableBox typebox='context' className='profile_edit_container' type='name' changbletext={this.state.userName} changedtext={this.ChangedName} defvalue={this.state.userName} ph={this.state.userName} />
+                            <ChangableBox typebox='context' className='profile_edit_container' type='name' changbletext={this.state.userName} changedtext={this.changedName} defvalue={this.state.userName} ph={this.state.userName} />
                             <div className='user_description'>
                                 <div className='discription'>Short Description</div>
-                                <ChangableBox typebox='context' type='description' defvalue={this.state.description} ph='Short Description' className='user_detial_description' changbletext={this.state.description} changedtext={this.ChangedDesDetail} />
+                                <ChangableBox typebox='context' type='description' defvalue={this.state.description} ph='Short Description' className='user_detial_description' changbletext={this.state.description} changedtext={this.changedDesDetail} />
                             </div>
-                            <div className='logout_box' style={{cursor:'pointer'}} onClick={this.LogoutClick}><img className='logoutsign' src={logout} alt='logout'/>Logout</div>
+                            <div className='logout_box' style={{cursor:'pointer'}} onClick={this.logoutClick}><img className='logoutsign' src={logout} alt='logout'/>Logout</div>
                         </div>
                     </div>
                 </div>

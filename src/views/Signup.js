@@ -10,13 +10,13 @@ class Signup extends PureComponent {
         email: '',                            //此处是为了给注册而保存的地方
         password: '',
         name: '',
-        email_checked: 'hidden',                  //为了css的布局，如果block的话，就会弹一下高度
-        email_text_error: '',            //所以索性就改了让里面没有文字，并且那个框是一直留在那里的
-        email_botoom_color: 'grey',      //但是组件依然是可以更改显示状态的
-        password_checked: 'hidden',
-        password_text_error: '',
-        password_bottom_color: 'grey',
-        SignBoxStyle: {
+        emailChecked: 'hidden',                  //为了css的布局，如果block的话，就会弹一下高度
+        emailTextError: '',            //所以索性就改了让里面没有文字，并且那个框是一直留在那里的
+        emailBottomColor: 'grey',      //但是组件依然是可以更改显示状态的
+        passwordChecked: 'hidden',
+        passwordTextError: '',
+        passwordBottomColor: 'grey',
+        signBoxStyle: {
             backgroundColor: 'silver',
             cursor: 'not-allowed',
             color: 'white'
@@ -24,120 +24,117 @@ class Signup extends PureComponent {
         BtnClickable: true
     }
 
-    CheckEmail = (e) => {
+    checkEmail = (e) => {
         this.setState({
             email: e.target.value
         })
         const emailCheck = /\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}/
         if (e.target.value.match(emailCheck)) {
             this.setState({
-                email_checked: 'hidden',
-                email_botoom_color: 'grey',
-            }, ()=>{this.BtnChecked()})
+                emailChecked: 'hidden',
+                emailBottomColor: 'grey',
+            }, ()=>{this.bottomChecked()})
 
         } else if (e.target.value === '') {          //这种的话就是刚刚刷新出页面的时候是不会显示的，除非你打完了然后删除会有
             this.setState({
-                email_checked: 'visible',
-                email_text_error: 'required',
-                email_botoom_color: 'red'
-            },()=>{this.BtnNoChecked()})
+                emailChecked: 'visible',
+                emailTextError: 'required',
+                emailBottomColor: 'red'
+            },()=>{this.bottomNoChecked()})
         } else {
             this.setState({
-                email_checked: 'visible',
-                email_text_error: 'error email',
-                email_botoom_color: 'red'
-            },()=>{this.BtnNoChecked()})
+                emailChecked: 'visible',
+                emailTextError: 'error email',
+                emailBottomColor: 'red'
+            },()=>{this.bottomNoChecked()})
         }
     }
-    CheckPassword = (e) => {
+    checkPassword = (e) => {
         this.setState({
             password: e.target.value
         })
         const emailCheck = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{6,12}$/
         if (e.target.value.match(emailCheck)) {         //这里的正则表达式还没有写
             this.setState({
-                password_checked: 'hidden',
-                password_botoom_color: 'grey',
-            }, ()=>{this.BtnChecked()})
+                passwordChecked: 'hidden',
+                passwordBottomColor: 'grey',
+            }, ()=>{this.bottomChecked()})
         } else if (e.target.value === '') {
             this.setState({
                 passwordd_checked: 'visible',
-                password_text_error: 'required',
-                password_botoom_color: 'red'
-            },()=>{this.BtnNoChecked()})
+                passwordTextError: 'required',
+                passwordBottomColor: 'red'
+            },()=>{this.bottomNoChecked()})
         } else {
             this.setState({
-                password_checked: 'visible',
-                password_text_error: '密码需要大于6位，小于12位且至少有一个大写字母和小写字母',
-                password_botoom_color: 'red'
-            },()=>{this.BtnNoChecked()})
+                passwordChecked: 'visible',
+                passwordTextError: '密码需要大于6位，小于12位且至少有一个大写字母和小写字母',
+                passwordBottomColor: 'red'
+            },()=>{this.bottomNoChecked()})
         }
     }
 
     controlUsername = (e) => {
         this.setState({
             name: e.target.value
-        }, ()=>{this.BtnChecked();this.BtnNoChecked()})
+        }, ()=>{this.bottomChecked();this.bottomNoChecked()})
     }
 
 
-    SignupSuccess = () => {
+    signupSuccess = () => {
     }
 
-    GetUserTokenSuccess=()=>{
+    getUserTokenSuccess=()=>{
         this.props.history.push('/MainPage')
     }
 
-    FailGetUserToken=()=>{
+    failGetUserToken=()=>{
 
     }
 
-    SignupFail = () => {
+    signUpFail = () => {
         this.props.loginErrorFunc('This email has been used');
         console.log('邮件重复');
     }
 
-    SignupClick = () => {
-        CreatUser(this.state.email, this.state.password, this.state.name, this.SignupSuccess, this.SignupFail,this.GetUserTokenSuccess,this.FailGetUserToken)
+    signUpClick = () => {
+        CreatUser(this.state.email, this.state.password, this.state.name, this.signupSuccess, this.signUpFail,this.getUserTokenSuccess,this.failGetUserToken)
     }
 
-    BtnChecked = () => {
-        if (this.state.email_checked === 'hidden' && this.state.password_checked === 'hidden' && this.state.name !== '') {
+    bottomChecked = () => {
+        if (this.state.emailChecked === 'hidden' && this.state.passwordChecked === 'hidden' && this.state.name !== '') {
             this.setState({
-                SignBoxStyle: {
+                signBoxStyle: {
                     backgroundColor: '#ED5736',
                     cursor: 'pointer',
                     color: 'black'
                 },
-                BtnClickable: false
+                bottomClickable: false
             })
         }
     }
 
-    BtnNoChecked=()=>{
-        if (this.state.email_checked !== 'hidden' || this.state.password_checked !== 'hidden' || this.state.name === '') {
+    bottomNoChecked=()=>{
+        if (this.state.emailChecked !== 'hidden' || this.state.passwordChecked !== 'hidden' || this.state.name === '') {
             this.setState({
-                SignBoxStyle: {
+                signBoxStyle: {
                     backgroundColor: 'silver',
                     cursor: 'not-allowed',
                     color: 'white'
                 },
-                BtnClickable: true
+                bottomClickable: true
             })
         }
     }
 
 
     render() {
-
-        // console.log(user_token);
-        //作为测试，这里的user_token只能显示key，id是undefined
         return (
             <div className='Login_Sign_container'>
-                <Input className='email_container input' type='text' ph='Email' onChange={this.CheckEmail} checked={this.state.email_checked} errortext={this.state.email_text_error} buttomcolor={this.state.email_botoom_color} value={this.state.email} />
-                <Input type='password' className='pssw_container input' ph='Password' onChange={this.CheckPassword} checked={this.state.password_checked} errortext={this.state.password_text_error} buttomcolor={this.state.password_botoom_color} value={this.state.password} />
+                <Input className='email_container input' type='text' ph='Email' onChange={this.checkEmail} checked={this.state.emailChecked} errortext={this.state.emailTextError} buttomcolor={this.state.emailBottomColor} value={this.state.email} />
+                <Input type='password' className='pssw_container input' ph='Password' onChange={this.checkPassword} checked={this.state.passwordChecked} errortext={this.state.passwordTextError} buttomcolor={this.state.passwordBottomColor} value={this.state.password} />
                 <Input type='text' className='name_container input' ph='Name' onChange={this.controlUsername} value={this.state.name} />
-                <button style={this.state.SignBoxStyle} className='Login_Sign_button' disabled={this.state.BtnClickable} onClick={this.SignupClick}>Signup</button>
+                <button style={this.state.signBoxStyle} className='Login_Sign_button' disabled={this.state.bottomClickable} onClick={this.signUpClick}>Signup</button>
                 <footer className='Login_Sign_footer'>Already have an account? <NavLink to='/'  style={{color:'#ED5736'}}>Login</NavLink></footer>
             </div>
         );

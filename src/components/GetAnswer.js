@@ -1,6 +1,6 @@
 import { answers } from '../views/Answers'
 
-export default function GetAnswer(id, success, fail,successgetAnsInfo) {
+export default function GetAnswer(id, success, fail,successGetAnsInfo) {
     fetch(`https://bigfish-aliness.herokuapp.com/questions/${id}/answers`, {
         method: 'GET',
         headers: new Headers({
@@ -55,7 +55,7 @@ export default function GetAnswer(id, success, fail,successgetAnsInfo) {
                         })
                         .then(function (data) {
                             answers.userinfo[data.user.id] = data.user                //字典里面根据用户id来排序，因此如果要查询的话就需要用户id
-                            successgetAnsInfo(answers.userinfo[data.user.id].id);   
+                            successGetAnsInfo(answers.userinfo[data.user.id].id);   
                         });
                 }
                 //添加回调函数对比查询

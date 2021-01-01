@@ -9,7 +9,7 @@ export default function PostAnswer(title,content,success) {
                   "key": localStorage.userkey,
                 },                 
               }),
-        }),body: JSON.stringify({                       //头部写验证，然后身部发post内容
+        }),body: JSON.stringify({                       
             'question':{
                 'title':title,
                 'content':content
@@ -20,7 +20,6 @@ export default function PostAnswer(title,content,success) {
             if (response.ok) {
                 return response.json();
             } else if (response.status === 404) { 
-                //fail();                           这里可以写一个fail的回调
                 return response.json                      
             }       
         })
