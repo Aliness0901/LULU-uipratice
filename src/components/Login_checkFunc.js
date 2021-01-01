@@ -11,7 +11,7 @@
     不相同就返回invalid_credential
     缺少参数就会返回missing_field
 */
-import { user_token } from '../views/Login'
+import { userToken } from '../views/Login'
 //这里是我暂时把全局变量写在了login里面，所以这里我们import的这个文件看起来有点怪怪的
 
 
@@ -36,9 +36,9 @@ export let Login_Check = (email, password, success, fail) => {
             }
         })
         .then(function (data) {             
-            user_token.user_id = data.user_token.user_id;      
-            user_token.key = data.user_token.key;                
-            localStorage.user_id=data.user_token.user_id;
+            userToken.userID = data.user_token.user_id;      
+            userToken.key = data.user_token.key;                
+            localStorage.userID=data.user_token.user_id;
             localStorage.userkey=data.user_token.key;
             console.log(data);
             success();

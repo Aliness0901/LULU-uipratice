@@ -14,7 +14,7 @@ import './Answers.css'
 
 export let answers = {
     answer: [],
-    userinfo: {}
+    userInfo: {}
 }
 
 class Answers extends Component {                       
@@ -152,7 +152,7 @@ class Answers extends Component {
                         {                   
                             (
                                 () => {
-                                    var userinfoLength = Object.keys(answers.userinfo).length;
+                                    var userinfoLength = Object.keys(answers.userInfo).length;
                                     if (this.state.answersAndUsersMatch && userinfoLength !== 0) {               
                                         return (
                                             answers.answer.map((e) => {
@@ -164,14 +164,14 @@ class Answers extends Component {
                                                                 pathname: '/otheruseinfo',
                                                                 type: 'otherusers',
                                                                 answerUserID: e.user_id
-                                                            }} className='user_pic_ans' style={{ backgroundImage: `url(${answers.userinfo[e.user_id].avatar_url})` }}></NavLink>
+                                                            }} className='user_pic_ans' style={{ backgroundImage: `url(${answers.userInfo[e.user_id].avatar_url})` }}></NavLink>
                                                             <div className='user_detail'>
                                                                 {/*这里的盒子display是column，横着*/}
                                                                 <NavLink className='user_name_ans' to={{
                                                                     pathname: '/otheruseinfo',
                                                                     type: 'otherusers',
                                                                     answerUserID: e.user_id
-                                                                }}>{answers.userinfo[e.user_id].name}</NavLink>
+                                                                }}>{answers.userInfo[e.user_id].name}</NavLink>
                                                                 <div className='date_ans'>Answered {Moment(e.created_at).format('D MMM YYYY')}</div>
                                                             </div>
                                                         </div>

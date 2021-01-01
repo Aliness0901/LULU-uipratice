@@ -23,8 +23,8 @@ export default function TestFetch() {
     })
     .then(function(data) {
       console.log("login successfully: " + JSON.stringify(data));
-      user_id = data.user_token.user_id;
-      key = data.user_token.key;
+      user_id = data.userToken.user_id;
+      key = data.userToken.key;
     });
   }
 
@@ -34,7 +34,7 @@ export default function TestFetch() {
       headers: new Headers({
         'Content-Type': 'application/json',
         'Authorization': JSON.stringify({
-          "user_token": {
+          "userToken": {
             "user_id": user_id,
             "key": key,
           },
