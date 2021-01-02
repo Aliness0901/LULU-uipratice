@@ -58,7 +58,7 @@
     /*width: 220px;*/           /*因为这里我们要加点击后的button这些，所以盒子会扩开，这里就不加固定的高宽了*/
     font-size: 30px;
     overflow: hidden;
-cursor: pointer;
+    cursor: pointer;
 }
 /* 这里还是由bug，如果flex-basis给了300的话，字就会因为放不下而掉下来，这里是为什么？ */
 
@@ -80,14 +80,14 @@ cursor: pointer;
     width: 500px; 
     height: 110px;
     text-align: justify;
-    /* background-color: red; */
-    /* 一下是利用webkit盒子，多行超出省略的方法，这个5就是表示第几行省略，其实也不是智能省略，只是装装样子 */
-    line-height: 22px;              /*这里利用设置行高，把其实并没有真正省略的地方给隐藏起来*/
+    line-height: 22px;              
     white-space: normal;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
+    resize: none;
+    margin-bottom: 27px;
 }
 
  .user_detial_description:hover{
@@ -97,6 +97,7 @@ cursor: pointer;
 .logout_box{
     display: flex;
     flex-direction: row;
+    margin-top: 100px;
     width: 119px;
     height: 29px;
     line-height: 29px;

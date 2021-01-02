@@ -33,7 +33,7 @@ export default function getUserInfo(otheruserid,successother,) {
           })
           .then(function (data) {
             otherUserDataDetail.detail=data.user
-            successother();
+            successother(data.user.description);
             console.log(otherUserDataDetail.detail);
           })
       })

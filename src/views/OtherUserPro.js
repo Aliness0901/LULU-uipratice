@@ -16,21 +16,32 @@ class OtherUserPro extends Component {
 
         this.state = {
             otherUser:'',
+            description:''
         }
     }
 
     
-    successGetOther=()=>{
+    successGetOther=(e)=>{
         this.setState({
             otherUser:true,
         })
+        if (e===null) {
+            this.setState({
+                description:'这个人太懒了，什么都没写。。。'
+            })
+        }
     }
 
-    componentDidMount(){                 
-        getOtherUserInfo(this.props.location.answerUserID,this.successGetOther)
+    componentDidMount(){   
+        let urlParams = this.props.location.search
+        let urlArrayParams =urlParams.split('');
+        urlArrayParams.shift()
+        let params = urlArrayParams.join('')              
+        getOtherUserInfo(params,this.successGetOther)
     }
 
     render() {
+        console.log(this.state.description);
         console.log(this.props.location.type);
         return (
             <div className='mainpage_core'>
@@ -43,7 +54,7 @@ class OtherUserPro extends Component {
                             <div className='profile_edit_container' type='name'>{otherUserDataDetail.detail.name}</div>
                             <div className='user_description'>
                                 <div className='discription'>Short Description</div>
-                                <div type='description'>{otherUserDataDetail.detail.description}</div>
+                                <div type='description'>{this.state.description}</div>
                             </div>
                         </div>
                     </div>

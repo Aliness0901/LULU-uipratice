@@ -8,6 +8,7 @@ import getOneQuestion from '../components/getOneQuestion'
 import LikeTriButton from '../components/LikeTriButton'
 import AnswerButton from '../components/AnswerButton'
 import Header from '../components/Header'
+import LoadingShow from '../components/LoadingShow'
 
 
 
@@ -18,33 +19,34 @@ export let answers = {
     userInfo: {}
 }
 
-class Answers extends Component {                       
-    constructor(props) {    
+class Answers extends Component {
+    constructor(props) {
         super(props)
 
-        this.state = {                    
+        this.state = {
             userPic: '',
             answersAndUsersMatch: false,
             userAnswerBox: 'none',
             userAnswerContent: '',
             answerBtnAva: false,
             questionUserID: [],
-            answerUserIndexArray: [],                    
+            answerUserIndexArray: [],
             liked: '',
-            title:'',
-            content:'',
-            componentRecvProps:this.props.location.search,
+            title: '',
+            content: '',
+            componentRecvProps: this.props.location.search,
             answerBtnStyle: {
                 cursor: 'not-allowed',
                 backgroundColor: 'silver',
                 color: 'white'
-            }
+            },
+            loadingShow: 'none'
         }
     }
 
-    successAnswer = (e) => {                        
-        this.setState({                   
-            questionUserID: [...this.state.questionUserID, e]
+    successAnswer = (e) => {
+        this.setState({
+            questionUserID: [...this.state.questionUserID, e],
         })
     }
 
@@ -53,15 +55,15 @@ class Answers extends Component {
 
     GetAnswerUserInfo = (e) => {
         this.setState({
-            answerUserIndexArray: [...this.state.answerUserIndexArray, e]                    
+            answerUserIndexArray: [...this.state.answerUserIndexArray, e],
         })
         let findUserIDIndex = this.state.answerUserIndexArray;
         let answerUserIndexArray = [];
-        for (let index = 0; index < findUserIDIndex.length; index++) {              
+        for (let index = 0; index < findUserIDIndex.length; index++) {
             answerUserIndexArray.push(this.state.questionUserID.indexOf(findUserIDIndex[index]))
             answerUserIndexArray.sort((a, b) => (a > b))
-            if (answerUserIndexArray[0] >= 0 && index === this.state.questionUserID.length - 1) {    
-                this.setState({                             
+            if (answerUserIndexArray[0] >= 0 && index === this.state.questionUserID.length - 1) {
+                this.setState({
                     answersAndUsersMatch: true
                 })
             }
@@ -83,7 +85,7 @@ class Answers extends Component {
     }
 
     userAnswerContent = (e) => {
-        if (e.target.value !== '') {                          
+        if (e.target.value !== '') {
             this.setState({
                 userAnswerContent: e.target.value,
                 answerBtnAva: true,
@@ -92,7 +94,7 @@ class Answers extends Component {
                     cursor: 'pointer',
                     color: 'black'
                 }
-            });                                
+            });
         } else {
             this.setState({
                 answerBtnAva: false,
@@ -115,26 +117,30 @@ class Answers extends Component {
             this.setState({
                 userAnswerBox: 'none'
             })
-        }else {
-            return                    
+        } else {
+            return
         }
 
     }
 
-    getOneQuestionSuccess=(e)=>{
+    getOneQuestionSuccess = (e) => {
         this.setState({
-            title:e.title,
-            content:e.content
+            title: e.title,
+            content: e.content,
+            loadingShow: 'none'
         })
     }
 
     componentDidMount = () => {
         let urlParams = this.props.location.search
-        let urlArrayParams =urlParams.split('');
-        urlArrayParams.shift(1)
-        let Params = urlArrayParams.join('')
-        getOneQuestion(Params,this.getOneQuestionSuccess)
-        getAnswer(Params, this.successAnswer, this.failAnswer, this.GetAnswerUserInfo)           //利用上一个页面跳转过来的问题，提取answer
+        let urlArrayParams = urlParams.split('');
+        urlArrayParams.shift()
+        let params = urlArrayParams.join('')
+        this.setState({
+            loadingShow: 'flex'
+        })
+        getOneQuestion(params, this.getOneQuestionSuccess)
+        getAnswer(params, this.successAnswer, this.failAnswer, this.GetAnswerUserInfo)           //利用上一个页面跳转过来的问题，提取answer
     }
 
     render() {
@@ -153,36 +159,46 @@ class Answers extends Component {
                     </div>
 
                     <div className='answers_body'>
-                        {                   
+                        {
                             (
                                 () => {
                                     var userinfoLength = Object.keys(answers.userInfo).length;
-                                    if (this.state.answersAndUsersMatch && userinfoLength !== 0) {               
+                                    if (this.state.answersAndUsersMatch && userinfoLength !== 0) {
                                         return (
-                                            answers.answer.map((e) => {
-                                                return (
-                                                    <div className='each_answer' key={e.id}>
-                                                        <div className='difuser_title'>
-                                                            {/*这里的父盒子display是row，竖着*/}
-                                                            <NavLink to={{                 
-                                                                pathname: '/otheruseinfo',
-                                                                type: 'otherusers',
-                                                                answerUserID: e.user_id
-                                                            }} className='user_pic_ans' style={{ backgroundImage: `url(${answers.userInfo[e.user_id].avatar_url})` }}></NavLink>
-                                                            <div className='user_detail'>
-                                                                {/*这里的盒子display是column，横着*/}
-                                                                <NavLink className='user_name_ans' to={{
-                                                                    pathname: '/otheruseinfo',
-                                                                    type: 'otherusers',
-                                                                    answerUserID: e.user_id
-                                                                }}>{answers.userInfo[e.user_id].name}</NavLink>
-                                                                <div className='date_ans'>Answered {Moment(e.created_at).format('D MMM YYYY')}</div>
+                                            answers.answer.map((e, index) => {
+                                                if (index !== answers.answer.length - 1) {
+                                                    return (
+                                                        <div className='each_answer' key={e.id}>
+                                                            <div className='difuser_title'>
+                                                                {/*这里的父盒子display是row，竖着*/}
+                                                                <NavLink to={'/otheruseinfo?' + e.user_id} className='user_pic_ans' style={{ backgroundImage: `url(${answers.userInfo[e.user_id].avatar_url})` }}></NavLink>
+                                                                <div className='user_detail'>
+                                                                    {/*这里的盒子display是column，横着*/}
+                                                                    <NavLink to={'/otheruseinfo?' + e.user_id}>{answers.userInfo[e.user_id].name}</NavLink>
+                                                                    <div className='date_ans'>Answered {Moment(e.created_at).format('D MMM YYYY')}</div>
+                                                                </div>
                                                             </div>
+                                                            <div className='answer_detail'>{e.content}</div>
+                                                            <LikeTriButton type='answers' answerid={e.id} like={e.number_of_likes} liked={e.liked} />
                                                         </div>
-                                                        <div className='answer_detail'>{e.content}</div>
-                                                        <LikeTriButton type='answers' answerid={e.id} like={e.number_of_likes} liked={e.liked} />
-                                                    </div>
-                                                )
+                                                    )
+                                                }else {
+                                                    return (
+                                                        <div className='each_answer' key={e.id} style={{borderBottomColor:'white'}}>
+                                                            <div className='difuser_title'>
+                                                                {/*这里的父盒子display是row，竖着*/}
+                                                                <NavLink to={'/otheruseinfo?' + e.user_id} className='user_pic_ans' style={{ backgroundImage: `url(${answers.userInfo[e.user_id].avatar_url})` }}></NavLink>
+                                                                <div className='user_detail'>
+                                                                    {/*这里的盒子display是column，横着*/}
+                                                                    <NavLink to={'/otheruseinfo?' + e.user_id}>{answers.userInfo[e.user_id].name}</NavLink>
+                                                                    <div className='date_ans'>Answered {Moment(e.created_at).format('D MMM YYYY')}</div>
+                                                                </div>
+                                                            </div>
+                                                            <div className='answer_detail'>{e.content}</div>
+                                                            <LikeTriButton type='answers' answerid={e.id} like={e.number_of_likes} liked={e.liked} />
+                                                        </div>
+                                                    )
+                                                }
                                             })
                                         )
                                     } else if (userinfoLength === 0) {
@@ -193,13 +209,14 @@ class Answers extends Component {
                                     else {
                                         // console.log(userinfoLength);
                                         //这边可以做一个loading的图片，把这里和state中的状态更改成loading为主就行，然后拿回了就更改
-                                        return null                     
+                                        return null
                                     }
                                 }
                             )()
                         }
                     </div>
                 </div>
+                <LoadingShow style={{ display: this.state.loadingShow }} />
             </div>
         )
     }

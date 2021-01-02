@@ -50,7 +50,7 @@ class ChangableBox extends PureComponent {
             inputShow: 'none',
             editShow: 'flex'
         })                  //记住这个传键值对的方式，键值对包装成对象，然后传进参数中
-        Patchuserinfo({ [this.props.type]: this.state.changingText })           //利用父类传过来的type的名字当成键值对，然后传给fetch，在fetch中直接调用这个键值对
+        Patchuserinfo({ [this.props.type]: this.state.changingText },this.props.saveGetUserInfo)           //利用父类传过来的type的名字当成键值对，然后传给fetch，在fetch中直接调用这个键值对
     }
 
     cancleButton = () => {
@@ -86,6 +86,20 @@ class ChangableBox extends PureComponent {
                         <div className='btn'>
                             <button onClick={this.saveButton} className='Profilebutton current'>Save</button><button className='Profilebutton' onClick={this.cancleButton}>Cancel</button>
                         </div>
+                    </div>
+                </div>
+            )
+        }
+        else if(this.props.typebox === 'content'){
+            return (
+                <div>
+                    <div className='Edit_show_container' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} onClick={this.editShowDisp} style={{ display: this.state.editShow }}>
+                        <div className={this.props.className}>{this.props.changbletext}</div>       {/*这里讲道理有点问题，就是没必要写在属性里面，可以写在两个label之间，用this.props.value来做*/}
+                        <img className='Edit_icon_pencil' src={pencil} style={{ visibility: this.state.show }} alt='33' />
+                    </div>
+                    <div className='ChangeandSave' style={{ display: this.state.inputShow }}>
+                        <textarea className={this.props.className} defaultValue={this.props.defvalue} placeholder={this.props.ph} onChange={this.inputChanging} />
+                        <button onClick={this.saveButton} className='Profilebutton current save_profile_description'>Save</button><button className='Profilebutton cancle_button' onClick={this.cancleButton}>Cancel</button>
                     </div>
                 </div>
             )

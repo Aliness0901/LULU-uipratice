@@ -5,8 +5,6 @@
     cursor: default;
 }
 
-
-
 .Edit_icon_pencil{
     margin-left: 50px;
     width: 15px;
@@ -49,9 +47,18 @@
     margin-left: 250px;
 }
 
+.save_profile_description{
+    margin-left: 45px;
+}
+
 .btn{
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.profile_content_box{
+    resize: none;
+    margin-bottom: 50px;
 }

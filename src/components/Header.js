@@ -33,7 +33,6 @@ class Header extends PureComponent {
     }
 
     render() {
-        console.log(this.state.userPic);
         return (
             <header className='mainHeader'>
                     <NavLink to='/mainpage' style={{color:'#ED5736'}}>BIG FISH</NavLink>

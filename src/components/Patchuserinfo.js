@@ -1,4 +1,4 @@
-export default function Patchuserinfo(userInfo) {
+export default function Patchuserinfo(userInfo,success) {
     fetch('https://bigfish-aliness.herokuapp.com/user', {
         method: 'PATCH',
         headers: new Headers({
@@ -23,7 +23,7 @@ export default function Patchuserinfo(userInfo) {
             }
         })
         .then(function (data) {
-            console.log("login successfully: " + JSON.stringify(data));
+            success();
         });
 }
 
