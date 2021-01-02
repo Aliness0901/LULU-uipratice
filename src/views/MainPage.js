@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import AskJumpButton from '../components/AskJumpButton'
 // import {user_token} from '../views/Login'
 import LikeTriButton from '../components/LikeTriButton'
-import GetQustion from '../components/GetQustions'
+import GetQustion from '../components/getQustions'
 import Header from '../components/Header'
 
 import './MainPage.css'

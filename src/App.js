@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 
 import MainPage from './views/MainPage'
 import Profile from './views/Profile'
-import LgandSu from './components/LgandSu'
+import LoginAndSignUp from './components/LoginAndSignUp'
 import Answers from './views/Answers'
 import OtherUserPro from './views/OtherUserPro'
 
@@ -16,7 +16,7 @@ class App extends Component {
           <Route path='/profile' component={Profile}/>
           <Route path='/answers' component={Answers}/>
           <Route path='/otheruseinfo' component={OtherUserPro}/>
-          <Route path='/' component={LgandSu}/>    
+          <Route path='/' component={LoginAndSignUp}/>    
         </Switch>
       </div>
     );

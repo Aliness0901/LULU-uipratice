@@ -1,7 +1,7 @@
 import { PureComponent } from 'react'
 import { NavLink } from 'react-router-dom'
 
-import getuserInfo from '../components/GetUserInfo'
+import getUserInfo from './getUserInfo'
 import {userdatadetail} from '../views/Profile'
 
 import Patchuserinfo from '../components/Patchuserinfo'
@@ -29,7 +29,7 @@ class Header extends PureComponent {
 
 
     componentDidMount = () => {
-        getuserInfo(localStorage.user_id,localStorage.userkey,this.sucessGetUser);
+        getUserInfo(localStorage.userID,localStorage.userKey,this.sucessGetUser);
     }
 
     render() {

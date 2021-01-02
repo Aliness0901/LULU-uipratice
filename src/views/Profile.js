@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import {withRouter } from 'react-router-dom'
 
 import ChangableBox from '../components/ChangableBox'
-import getuserInfo from '../components/GetUserInfo'
+import getuserInfo from '../components/getUserInfo'
 import Logout  from '../components/Logout'
 import Header from '../components/Header'
 
@@ -83,7 +83,7 @@ class Profile extends PureComponent {
     }
 
     componentDidMount = () => {
-        getuserInfo(localStorage.user_id, localStorage.userkey, this.sucessGetUser,);
+        getuserInfo(localStorage.userID, localStorage.userKey, this.sucessGetUser,);
     }
 
 

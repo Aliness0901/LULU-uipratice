@@ -2,7 +2,7 @@ import { userdatadetail } from '../views/Profile'
 
 //这个方程的目的就是在登录成功之后，如果有对用户信息有需求的话，我们需要用这个fetch来获得该用户在后端保存的信息
 //后面有可能在用户信息页需要用到
-export default function getuserInfo(user_id, key, success) {
+export default function getUserInfo(user_id, key, success) {
   fetch('https://bigfish-aliness.herokuapp.com/user', {
     method: 'GET',
     headers: new Headers({

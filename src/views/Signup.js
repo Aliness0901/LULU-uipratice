@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { NavLink, withRouter } from 'react-router-dom'
 
 import Input from '../components/Input'
-import CreatUser from '../components/CreatUser'
+import creatUser from '../components/creatUser'
 
 class Signup extends PureComponent {
 
@@ -98,7 +98,7 @@ class Signup extends PureComponent {
     }
 
     signUpClick = () => {
-        CreatUser(this.state.email, this.state.password, this.state.name, this.signupSuccess, this.signUpFail,this.getUserTokenSuccess,this.failGetUserToken)
+        creatUser(this.state.email, this.state.password, this.state.name, this.signupSuccess, this.signUpFail,this.getUserTokenSuccess,this.failGetUserToken)
     }
 
     bottomChecked = () => {

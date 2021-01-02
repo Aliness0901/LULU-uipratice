@@ -12,10 +12,8 @@
     缺少参数就会返回missing_field
 */
 import { userToken } from '../views/Login'
-//这里是我暂时把全局变量写在了login里面，所以这里我们import的这个文件看起来有点怪怪的
 
-
-export let Login_Check = (email, password, success, fail) => {
+export let loginCheck = (email, password, success, fail) => {
     fetch('https://bigfish-aliness.herokuapp.com/user_tokens', {
         method: 'POST',
         headers: new Headers({
@@ -39,7 +37,7 @@ export let Login_Check = (email, password, success, fail) => {
             userToken.userID = data.user_token.user_id;      
             userToken.key = data.user_token.key;                
             localStorage.userID=data.user_token.user_id;
-            localStorage.userkey=data.user_token.key;
+            localStorage.userKey=data.user_token.key;
             console.log(data);
             success();
         })

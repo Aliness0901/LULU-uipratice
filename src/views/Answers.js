@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import Moment from 'moment'
 
-import GetAnswer from '../components/GetAnswer'
+import getAnswer from '../components/getAnswer'
 import PostAnswer from '../components/PostAnswer'
 import LikeTriButton from '../components/LikeTriButton'
 import AnswerButton from '../components/AnswerButton'
@@ -113,7 +113,7 @@ class Answers extends Component {
         this.setState({
             postSuccess: true
         })
-        GetAnswer(this.props.location.id, this.successAnswer, this.failAnswer, this.GetAnswerUserInfo)
+        getAnswer(this.props.location.id, this.successAnswer, this.failAnswer, this.GetAnswerUserInfo)
     }
 
     userPostNewAnswer = () => {
@@ -130,7 +130,7 @@ class Answers extends Component {
 
 
     componentDidMount = () => {
-        GetAnswer(this.props.location.id, this.successAnswer, this.failAnswer, this.GetAnswerUserInfo)           //利用上一个页面跳转过来的问题，提取answer
+        getAnswer(this.props.location.id, this.successAnswer, this.failAnswer, this.GetAnswerUserInfo)           //利用上一个页面跳转过来的问题，提取answer
     }
 
     render() {

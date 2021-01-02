@@ -5,8 +5,8 @@ export default function PostAnswer(title,content,success) {
             'Content-Type': 'application/json',
             'Authorization': JSON.stringify({
                 "user_token": {
-                  "user_id": localStorage.user_id,
-                  "key": localStorage.userkey,
+                  "user_id": localStorage.userID,
+                  "key": localStorage.userKey,
                 },                 
               }),
         }),body: JSON.stringify({                       

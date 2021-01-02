@@ -1,28 +1,27 @@
-import { otheruserdatadetail } from '../views/OtherUserPro'
+import { otherUserDataDetail } from '../views/OtherUserPro'
 
-export default function getuserInfo(otheruserid,successother,) {
+export default function getUserInfo(otheruserid,successother,) {
     fetch('https://bigfish-aliness.herokuapp.com/user', {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json',
         'Authorization': JSON.stringify({
           "user_token": {
-            "user_id": localStorage.user_id,
+            "user_id": localStorage.userID,
             "key": localStorage.key,
           },
         }),
       }),
     })
       .then(function(){
-          //************************************************************* */
           fetch(`https://bigfish-aliness.herokuapp.com/users/${otheruserid}`, {
             method: 'GET',
             headers: new Headers({
               'Content-Type': 'application/json',
               'Authorization': JSON.stringify({
                 "user_token": {
-                  "user_id": localStorage.user_id,
-                  "key": localStorage.userkey,
+                  "user_id": localStorage.userID,
+                  "key": localStorage.userKey,
                 },
               }),
             }),
@@ -33,9 +32,9 @@ export default function getuserInfo(otheruserid,successother,) {
             }
           })
           .then(function (data) {
-            otheruserdatadetail.detail=data.user
+            otherUserDataDetail.detail=data.user
             successother();
-            console.log(otheruserdatadetail.detail);
+            console.log(otherUserDataDetail.detail);
           })
       })
   }

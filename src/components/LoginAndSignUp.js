@@ -5,10 +5,10 @@ import Login from '../views/Login'
 import Signup from '../views/Signup'
 
 
-import './LgandSu.css'
+import './LoginAndSignUp.css'
 
 
-class LgandSu extends Component {
+class LoginAndSignUp extends Component {
     state = {
         loginErrorBox: 'none',
         errorMessage:''
@@ -48,4 +48,4 @@ class LgandSu extends Component {
     }
 }
 
-export default LgandSu;
+export default LoginAndSignUp;

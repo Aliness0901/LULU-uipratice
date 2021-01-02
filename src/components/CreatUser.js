@@ -1,6 +1,6 @@
-import {Login_Check } from '../components/Login_checkFunc'
+import {loginCheck } from './loginCheck'
 
-export default function CreatUser(email, password, name, succsessCallback, failCallback,getUserSucess, getUserFail) {
+export default function creatUser(email, password, name, succsessCallback, failCallback,getUserSucess, getUserFail) {
     fetch('https://bigfish-aliness.herokuapp.com/users', {
         method: 'POST',
         headers: new Headers({
@@ -31,7 +31,7 @@ export default function CreatUser(email, password, name, succsessCallback, failC
             }
         )
         .then(function () {
-            Login_Check(email, password, getUserSucess, getUserFail)
+            loginCheck(email, password, getUserSucess, getUserFail)
         })
         .catch({function (error) {
             console.log(error);

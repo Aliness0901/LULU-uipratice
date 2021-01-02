@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { NavLink,withRouter } from 'react-router-dom'
 
 import Input from '../components/Input'
-import { Login_Check } from '../components/Login_checkFunc'
+import { loginCheck } from '../components/loginCheck'
 
 import './Login.css'
 
@@ -35,8 +35,8 @@ class Login extends Component {
         this.setState({
             checked: true
         })
-        localStorage.user_id=userToken.userID        
-        localStorage.userkey=userToken.key
+        localStorage.userID=userToken.userID        
+        localStorage.userKey=userToken.key
         this.props.history.push('/MainPage')      
     }
 
@@ -51,7 +51,7 @@ class Login extends Component {
     loginCheck = () => {
         let email = this.state.email
         let password = this.state.password
-        Login_Check( email, password, this.loginSuccess, this.loginFail)
+        loginCheck( email, password, this.loginSuccess, this.loginFail)
         this.setState({
             email: '',                          
             password: ''                        
