@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import getotheruserInfo from '../components/getOtheruser'
+import getotheruserInfo from '../components/getOtherUser'
 import Header from '../components/Header'
 
 

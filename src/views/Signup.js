@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { NavLink, withRouter } from 'react-router-dom'
 
 import Input from '../components/Input'
-import creatUser from '../components/creatUser'
+import creatUser from '../components/createUser'
 
 class Signup extends PureComponent {
 
