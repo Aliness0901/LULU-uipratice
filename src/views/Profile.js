@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import {withRouter } from 'react-router-dom'
 
 import ChangableBox from '../components/ChangableBox'
-import getuserInfo from '../components/GetUserInfo'
+import getUserInfo from '../components/getUserInfo'
 import Logout  from '../components/Logout'
 import Header from '../components/Header'
 
@@ -10,7 +10,7 @@ import Header from '../components/Header'
 import './Profile.css'
 import logout from '../assets/images/icons/logout.svg'
 
-export let userdatadetail = {
+export let userDataDetail = {
     detail: {}
 }
 
@@ -23,8 +23,6 @@ class Profile extends PureComponent {
             userName: '',                             //这里应该是需要用服务端接收的，至于刷新就会没有信息就需要用到localstorage，这里我们就先用名字代替
             description: '',
             userPic: '',
-            email: '',
-            password: ''
         }
     }
 
@@ -59,11 +57,9 @@ class Profile extends PureComponent {
     sucessGetUser = () => {
         this.setState({
             getuser: true,
-            userName: userdatadetail.detail.name,
-            description: userdatadetail.detail.description,
-            userPic: userdatadetail.detail.avatar_url,
-            email: userdatadetail.detail.email,
-            password: ''
+            userName: userDataDetail.detail.name,
+            description: userDataDetail.detail.description,
+            userPic: userDataDetail.detail.avatar_url,
         })
         if(this.state.userPic===null){
             this.setState({
@@ -71,8 +67,6 @@ class Profile extends PureComponent {
             })
         }
     }
-
-    componp
 
     logoutSuccess=()=>{
         this.props.history.push('/')
@@ -83,7 +77,7 @@ class Profile extends PureComponent {
     }
 
     componentDidMount = () => {
-        getuserInfo(localStorage.userID, localStorage.userKey, this.sucessGetUser,);
+        getUserInfo(localStorage.userID, localStorage.userKey, this.sucessGetUser,);
     }
 
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import getotheruserInfo from '../components/getOtherUser'
+import getOtherUserInfo from '../components/getOtherUser'
 import Header from '../components/Header'
 
 
@@ -20,14 +20,14 @@ class OtherUserPro extends Component {
     }
 
     
-    SuccessGetOther=()=>{
+    successGetOther=()=>{
         this.setState({
             otherUser:true,
         })
     }
 
     componentDidMount(){                 
-        getotheruserInfo(this.props.location.answerUserID,this.SuccessGetOther)
+        getOtherUserInfo(this.props.location.answerUserID,this.successGetOther)
     }
 
     render() {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom'
 
+import LoadingShow from '../components/LoadingShow'
 import Login from '../views/Login'
 import Signup from '../views/Signup'
 
@@ -11,7 +12,8 @@ import './LoginAndSignUp.css'
 class LoginAndSignUp extends Component {
     state = {
         loginErrorBox: 'none',
-        errorMessage:''
+        errorMessage:'',
+        loadingShow:'none'
     }
 
     loginErrorFunc = (message) => {
@@ -27,16 +29,23 @@ class LoginAndSignUp extends Component {
         })
     }
 
+    loadingShow=()=>{
+        this.setState({
+            loadingShow:'flex'
+        })
+    }
+
     render() {
         return (
             <div className='container'>
                 <div className='login'>
                     <header className='login_header'>BIG FISH</header>
                     <Switch>
-                        <Route path='/signup' render={()=><Signup loginErrorFunc={this.loginErrorFunc} />} />
-                        <Route path='/' render={()=><Login loginErrorFunc={this.loginErrorFunc} />} />
+                        <Route path='/signup' render={()=><Signup loginErrorFunc={this.loginErrorFunc} loadingShow={this.loadingShow} />} />
+                        <Route path='/' render={()=><Login loginErrorFunc={this.loginErrorFunc} loadingShow={this.loadingShow} />} />
                     </Switch>
                 </div>
+                <LoadingShow style={{display:this.state.loadingShow}}/>
                 <div className='error_login_container' style={{display:this.state.loginErrorBox}}>
                     <div className='error_login_info'>
                         {this.state.errorMessage}

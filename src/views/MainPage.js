@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import AskJumpButton from '../components/AskJumpButton'
-// import {user_token} from '../views/Login'
+import LoadingShow from '../components/LoadingShow'
 import LikeTriButton from '../components/LikeTriButton'
-import GetQustion from '../components/GetQustions'
+import getQustion from '../components/getQuestions'
 import Header from '../components/Header'
 
 import './MainPage.css'
@@ -19,43 +19,45 @@ class MainPage extends Component {
         super(props)
 
         this.state = {
-            questionsdataRev: false,
-            postFinish:false
+            postFinish:false,
+            loadingShow:'none'
         }
     }
 
     successGet = () => {
         this.setState({
-            questionsdataRev: true                      
+            loadingShow:'none'                    
         })
     }
 
     componentDidMount = () => {
-        GetQustion(this.successGet,this.successGet);                    
+        getQustion(this.successGet,this.successGet);            
     }
 
     postFinish=()=>{                   
-        GetQustion(this.successGet);
+        getQustion(this.successGet); 
     }
 
-    newQuestionUpdate=()=>{
-        // console.log('开始上传');
-    }
 
-    
+
+    loadingShow=()=>{
+        this.setState({
+            loadingShow:'flex'
+        })
+    }
 
     render() {
         return (
             <div className='mainpage_core'>
                 <Header/>
-                <AskJumpButton  type='question' refresh={this.newQuestionUpdate} postfinish={this.PostFinish}/>
+                <AskJumpButton loadingShow={this.loadingShow}  type='question' postfinish={this.postFinish}/>
                 <div className='afterheader_body2'>
                     <div className='Qustion_container'>
                         {
                             questionsdata.data.map((e) => {
                                 return (
                                     <div className='small_Qustion_container' key={e.id}>
-                                        <NavLink className='Qustion_title' to={{pathname: '/answers', id: e.id, title: e.title, content: e.content}} onClick={this.GetAnswerClick}>{e.title}</NavLink>
+                                        <NavLink className='Qustion_title' to={{pathname: '/answers?'+e.id}} onClick={this.GetAnswerClick}>{e.title}</NavLink>
                                         <div className='Qustion_detail'>
                                             {e.content}
                                             <LikeTriButton className='Like' type='questions' questionid={e.id} like={e.number_of_likes} liked={e.liked}/>
@@ -66,6 +68,7 @@ class MainPage extends Component {
                         }
                     </div>
                 </div>
+                <LoadingShow style={{display:this.state.loadingShow}} />
             </div>
         )
     }

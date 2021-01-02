@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavLink,withRouter } from 'react-router-dom'
 
 import Input from '../components/Input'
+
 import { loginCheck } from '../components/loginCheck'
 
 import './Login.css'
@@ -37,7 +38,7 @@ class Login extends Component {
         })
         localStorage.userID=userToken.userID        
         localStorage.userKey=userToken.key
-        this.props.history.push('/MainPage')      
+        this.props.history.push('/mainPage')      
     }
 
     loginFail = () => {
@@ -49,6 +50,7 @@ class Login extends Component {
     }
 
     loginCheck = () => {
+        this.props.loadingShow();
         let email = this.state.email
         let password = this.state.password
         loginCheck( email, password, this.loginSuccess, this.loginFail)

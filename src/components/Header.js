@@ -1,8 +1,8 @@
 import { PureComponent } from 'react'
 import { NavLink } from 'react-router-dom'
 
-import getUserInfo from './GetUserInfo'
-import {userdatadetail} from '../views/Profile'
+import getUserInfo from './getUserInfo'
+import {userDataDetail} from '../views/Profile'
 
 import Patchuserinfo from './patchUserInfo'
 
@@ -17,7 +17,7 @@ class Header extends PureComponent {
 
     sucessGetUser=()=>{
         this.setState({
-            userPic:userdatadetail.detail.avatar_url
+            userPic:userDataDetail.detail.avatar_url
         })
         if(this.state.userPic===null){
             this.setState({

@@ -85,7 +85,7 @@ class Signup extends PureComponent {
     }
 
     getUserTokenSuccess=()=>{
-        this.props.history.push('/MainPage')
+        this.props.history.push('/mainPage')
     }
 
     failGetUserToken=()=>{
@@ -99,6 +99,7 @@ class Signup extends PureComponent {
 
     signUpClick = () => {
         creatUser(this.state.email, this.state.password, this.state.name, this.signupSuccess, this.signUpFail,this.getUserTokenSuccess,this.failGetUserToken)
+        this.props.loadingShow();
     }
 
     bottomChecked = () => {

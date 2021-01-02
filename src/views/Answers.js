@@ -3,7 +3,8 @@ import { NavLink } from 'react-router-dom'
 import Moment from 'moment'
 
 import getAnswer from '../components/getAnswer'
-import PostAnswer from '../components/PostAnswer'
+import postAnswer from '../components/postAnswer'
+import getOneQuestion from '../components/getOneQuestion'
 import LikeTriButton from '../components/LikeTriButton'
 import AnswerButton from '../components/AnswerButton'
 import Header from '../components/Header'
@@ -21,8 +22,7 @@ class Answers extends Component {
     constructor(props) {    
         super(props)
 
-        this.state = {
-            answerDataRev: '',                     
+        this.state = {                    
             userPic: '',
             answersUser: '',
             answersAndUsersMatch: false,
@@ -37,21 +37,20 @@ class Answers extends Component {
             },
             questionUserID: [],
             answerUserIndexArray: [],                    
-            liked: ''
+            liked: '',
+            title:'',
+            content:'',
+            componentRecvProps:this.props.location.search
         }
     }
 
     successAnswer = (e) => {                        
-        this.setState({
-            answerDataRev: true,                    
+        this.setState({                   
             questionUserID: [...this.state.questionUserID, e]
         })
     }
 
     failAnswer = () => {
-        this.setState({
-            answerDataRev: false
-        })
     }
 
     GetAnswerUserInfo = (e) => {
@@ -118,7 +117,7 @@ class Answers extends Component {
 
     userPostNewAnswer = () => {
         if (this.state.answerBtnAva) {
-            PostAnswer(this.props.location.id, this.state.userAnswerContent, this.postSuccess);
+            postAnswer(this.props.location.id, this.state.userAnswerContent, this.postSuccess);
             this.setState({
                 userAnswerBox: 'none'
             })
@@ -128,9 +127,20 @@ class Answers extends Component {
 
     }
 
+    getOneQuestionSuccess=(e)=>{
+        this.setState({
+            title:e.title,
+            content:e.content
+        })
+    }
 
     componentDidMount = () => {
-        getAnswer(this.props.location.id, this.successAnswer, this.failAnswer, this.GetAnswerUserInfo)           //利用上一个页面跳转过来的问题，提取answer
+        let urlParams = this.props.location.search
+        let urlArrayParams =urlParams.split('');
+        urlArrayParams.shift(1)
+        let Params = urlArrayParams.join('')
+        getOneQuestion(Params,this.getOneQuestionSuccess)
+        getAnswer(Params, this.successAnswer, this.failAnswer, this.GetAnswerUserInfo)           //利用上一个页面跳转过来的问题，提取answer
     }
 
     render() {
@@ -140,8 +150,8 @@ class Answers extends Component {
                 <Header />
                 <div className='afterheader_body2'>
                     <div className='repeat_title'>
-                        <h3 className='Rquestion_title'>{this.props.location.title}</h3>
-                        <div className='Rquestion_content'>{this.props.location.content}</div>
+                        <h3 className='Rquestion_title'>{this.state.title}</h3>
+                        <div className='Rquestion_content'>{this.state.content}</div>
                     </div>
                     <div className='user_can_answerbox_container' style={{ display: this.state.userAnswerBox }}>
                         <textarea className='user_can_answertextarea' onChange={this.userAnswerContent} placeholder='Text your answer here' />

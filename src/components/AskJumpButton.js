@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import PostQuestion from '../components/PostQuestion'
+import PostQuestion from './postQuestion'
 
 import Input from './Input'
 
@@ -41,20 +41,20 @@ class Ask_jump_button extends Component {
 
     askQuestionSuccess = () => {
         this.setState({
-            askQuestionSuccess: true
+            askQuestionSuccess: true,
         })
         this.props.postfinish();
     }
 
     questionAsk = () => {
+        this.props.loadingShow();
         if (this.state.canClick) {
-            PostQuestion(this.state.title, this.state.content, this.askQuestionSuccess);
             this.setState({
                 askCoverDisplay: 'none',
                 title: '',
                 content: '',
             })
-            this.props.refresh();
+            PostQuestion(this.state.title, this.state.content, this.askQuestionSuccess);
         }else{
             return                          //这里可以加一个左右晃动的错误提示效果
         }

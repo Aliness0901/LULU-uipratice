@@ -1,8 +1,5 @@
-import { questionsdata } from '../views/MainPage'
-// import {answers} from '../views/MainPage'
-
-export default function GetQustion(success) {
-    fetch('https://bigfish-aliness.herokuapp.com/questions', {
+export default function getQustion(id,success) {
+    fetch(`https://bigfish-aliness.herokuapp.com/questions/${id}`, {
         method: 'GET',
         headers: new Headers({
             'Content-Type': 'application/json',
@@ -18,12 +15,9 @@ export default function GetQustion(success) {
             if (response.ok) {
                 return response.json();
             } else {
-                // fail();
             }
         })
         .then(function (data) {
-            questionsdata.data = data.questions
-            console.log(data.questions);
-            success();
+            success(data.question);
         })
 }
