@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 
 import Input from '../components/Input'
-import Patchuserinfo from './patchUserInfo'
+import patchUserInfo from './patchUserInfo'
 
 import pencil from '../assets/images/icons/pencil-edit-button.svg'
 import camera from '../assets/images/photo-camera.svg'
@@ -50,7 +50,7 @@ class ChangableBox extends PureComponent {
             inputShow: 'none',
             editShow: 'flex'
         })                  //记住这个传键值对的方式，键值对包装成对象，然后传进参数中
-        Patchuserinfo({ [this.props.type]: this.state.changingText },this.props.saveGetUserInfo)           //利用父类传过来的type的名字当成键值对，然后传给fetch，在fetch中直接调用这个键值对
+        patchUserInfo({ [this.props.type]: this.state.changingText },this.props.saveGetUserInfo)           //利用父类传过来的type的名字当成键值对，然后传给fetch，在fetch中直接调用这个键值对
     }
 
     cancleButton = () => {

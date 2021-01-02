@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom'
 
 import LoadingShow from '../components/LoadingShow'
-import Login from '../views/Login'
-import Signup from '../views/Signup'
+import Login from '../pages/Login'
+import Signup from '../pages/Signup'
 
 
 import './LoginAndSignUp.css'

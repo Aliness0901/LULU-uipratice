@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom'
 
-import MainPage from './views/MainPage'
-import Profile from './views/Profile'
+import MainPage from './pages/MainPage'
+import Profile from './pages/Profile'
 import LoginAndSignUp from './components/LoginAndSignUp'
-import Answers from './views/Answers'
-import OtherUserPro from './views/OtherUserPro'
+import Answers from './pages/Answers'
+import OtherUserPro from './pages/OtherUserPro'
 
 class App extends Component {
   render() {

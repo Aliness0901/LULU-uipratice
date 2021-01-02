@@ -174,7 +174,7 @@ class Answers extends Component {
                                                                 <NavLink to={'/otheruseinfo?' + e.user_id} className='user_pic_ans' style={{ backgroundImage: `url(${answers.userInfo[e.user_id].avatar_url})` }}></NavLink>
                                                                 <div className='user_detail'>
                                                                     {/*这里的盒子display是column，横着*/}
-                                                                    <NavLink to={'/otheruseinfo?' + e.user_id}>{answers.userInfo[e.user_id].name}</NavLink>
+                                                                    <NavLink to={'/otheruseinfo?' + e.user_id} className='user_name_ans'>{answers.userInfo[e.user_id].name}</NavLink>
                                                                     <div className='date_ans'>Answered {Moment(e.created_at).format('D MMM YYYY')}</div>
                                                                 </div>
                                                             </div>
@@ -190,7 +190,7 @@ class Answers extends Component {
                                                                 <NavLink to={'/otheruseinfo?' + e.user_id} className='user_pic_ans' style={{ backgroundImage: `url(${answers.userInfo[e.user_id].avatar_url})` }}></NavLink>
                                                                 <div className='user_detail'>
                                                                     {/*这里的盒子display是column，横着*/}
-                                                                    <NavLink to={'/otheruseinfo?' + e.user_id}>{answers.userInfo[e.user_id].name}</NavLink>
+                                                                    <NavLink to={'/otheruseinfo?' + e.user_id} className='user_name_ans'>{answers.userInfo[e.user_id].name}</NavLink>
                                                                     <div className='date_ans'>Answered {Moment(e.created_at).format('D MMM YYYY')}</div>
                                                                 </div>
                                                             </div>

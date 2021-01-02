@@ -1,4 +1,4 @@
-import { questionsdata } from '../views/MainPage'
+import { questionsdata } from '../pages/MainPage'
 
 export default function GetQustion(success) {
     fetch('https://bigfish-aliness.herokuapp.com/questions', {

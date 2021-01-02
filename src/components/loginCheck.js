@@ -11,7 +11,7 @@
     不相同就返回invalid_credential
     缺少参数就会返回missing_field
 */
-import { userToken } from '../views/Login'
+import { userToken } from '../pages/Login'
 
 export let loginCheck = (email, password, success, fail) => {
     fetch('https://bigfish-aliness.herokuapp.com/user_tokens', {

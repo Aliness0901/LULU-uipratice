@@ -1,4 +1,4 @@
-import { otherUserDataDetail } from '../views/OtherUserPro'
+import { otherUserDataDetail } from '../pages/OtherUserPro'
 
 export default function getUserInfo(otheruserid,successother,) {
     fetch('https://bigfish-aliness.herokuapp.com/user', {

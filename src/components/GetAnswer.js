@@ -1,4 +1,4 @@
-import { answers } from '../views/Answers'
+import { answers } from '../pages/Answers'
 
 export default function getAnswer(id, success, fail,successGetAnsInfo) {
     fetch(`https://bigfish-aliness.herokuapp.com/questions/${id}/answers`, {
