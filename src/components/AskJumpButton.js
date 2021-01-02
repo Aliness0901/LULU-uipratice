@@ -43,14 +43,15 @@ class Ask_jump_button extends Component {
     }
 
     questionAsk = () => {
-        this.props.loadingShow();
         if (this.state.canClick) {
             this.setState({
                 askCoverDisplay: 'none',
                 title: '',
                 content: '',
             })
+            this.props.loadingShow();
             PostQuestion(this.state.title, this.state.content, this.askQuestionSuccess);
+            console.log('提交');
         }else{
             return                          //这里可以加一个左右晃动的错误提示效果
         }
@@ -62,7 +63,6 @@ class Ask_jump_button extends Component {
         })
         if (e.target.value !== '' && this.state.content !== '') {                          //这边还可以加一个判断输入字符多少的判断，以免出现后端错误
             this.setState({
-                answerBtnAva: false,
                 canClick: true,
                 answerBtnStyle: {
                     backgroundColor: '#ED5736',
@@ -72,7 +72,7 @@ class Ask_jump_button extends Component {
             });                                 //就算这里加了callback来log，发现还是是上一帧的东西,如果想要拿这一帧的东西，必须是箭头函数才行           
         } else {
             this.setState({
-                answerBtnAva: true,
+                canClick: false,
                 answerBtnStyle: {
                     backgroundColor: 'silver',
                     cursor: 'not-allowed',
@@ -88,7 +88,6 @@ class Ask_jump_button extends Component {
         })
         if (e.target.value !== '' && this.state.title !== '') {                          //这边还可以加一个判断输入字符多少的判断，以免出现后端错误
             this.setState({
-                answerBtnAva: false,
                 canClick: true,
                 answerBtnStyle: {
                     backgroundColor: '#ED5736',
@@ -98,7 +97,7 @@ class Ask_jump_button extends Component {
             });                                 //就算这里加了callback来log，发现还是是上一帧的东西,如果想要拿这一帧的东西，必须是箭头函数才行           
         } else {
             this.setState({
-                answerBtnAva: true,
+                canClick: false,
                 answerBtnStyle: {
                     backgroundColor: 'silver',
                     cursor: 'not-allowed',
@@ -119,7 +118,7 @@ class Ask_jump_button extends Component {
                     <div className='ask_small_container' onClick={this.stopPropagation}>
                         <Input ph='Title' botline='700px' inputwidth='700px' onChange={this.titleOnChanging} />
                         <textarea className='user_can_questiontextarea' onChange={this.contentOnChanging} placeholder='Text your answer here' />
-                        <button className='askjump_ask' onClick={this.questionAsk} style={this.state.answerBtnStyle}>Ask</button>
+                        <button className='askjump_ask' onClick={this.questionAsk} style={this.state.answerBtnStyle} >Ask</button>
                     </div>
                 </div>
 
