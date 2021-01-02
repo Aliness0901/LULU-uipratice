@@ -62,12 +62,14 @@ class Profile extends PureComponent {
             userName: userDataDetail.detail.name,
             description: userDataDetail.detail.description,
             userPic: userDataDetail.detail.avatar_url,
+        },()=>{
+            if (!this.state.userPic) {
+                this.setState({
+                    userPic: "http://www.hw2jp.com/wp-content/uploads/2019/03/%E6%B5%B7%E8%B4%BC%E7%8E%8B.jpg"
+                })
+            };
         })
-        if (this.state.userPic === null) {
-            this.setState({
-                userPic: "http://www.hw2jp.com/wp-content/uploads/2019/03/%E6%B5%B7%E8%B4%BC%E7%8E%8B.jpg"
-            })
-        };
+        
         if (this.state.description===null||this.state.description==='') {
             this.setState({
                 description:'这个人太懒了，什么都没有写。。。。',
