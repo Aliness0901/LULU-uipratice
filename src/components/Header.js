@@ -1,10 +1,10 @@
 import { PureComponent } from 'react'
 import { NavLink } from 'react-router-dom'
 
-import getUserInfo from './getUserInfo'
+import getUserInfo from './getUserInfo1'
 import {userDataDetail} from '../pages/Profile'
 
-import Patchuserinfo from './patchUserInfo'
+import Patchuserinfo from './patchuserinfo1'
 
 class Header extends PureComponent {
     constructor(props) {
