@@ -16,7 +16,8 @@ class ChangableBox extends PureComponent {
             // user_changable_text: this.props.ChangbleText,            //能改变state的就只有setstate，所以这里就算父类更改了，子类如果下面引用的是this.state的话，也不会更改
             editShow: 'flex',
             inputShow: 'none',
-            changingText: ''                 //这里的输入的文字有必要保存，如果不保存的话，后面的save就无法上传到后台
+            changingText: '',                 //这里的输入的文字有必要保存，如果不保存的话，后面的save就无法上传到后台
+            cameraShow:false
         }
     }
 
@@ -60,12 +61,24 @@ class ChangableBox extends PureComponent {
         })
     }
 
+    picCameraShow=()=>{
+        this.setState({
+            cameraShow:true
+        })
+    }
+
+    picCameraNotShow=()=>{
+        this.setState({
+            cameraShow:false
+        })
+    }
+
     render() {
         if (this.props.typebox === 'context') {
             return (
                 <div>
                     <div className='Edit_show_container' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} onClick={this.editShowDisp} style={{ display: this.state.editShow }}>
-                        <div className={this.props.className}>{this.props.changbletext}</div>       {/*这里讲道理有点问题，就是没必要写在属性里面，可以写在两个label之间，用this.props.value来做*/}
+                        <div className={this.props.className} style={{color:this.props.textColor}}>{this.props.changbletext}</div>       {/*这里讲道理有点问题，就是没必要写在属性里面，可以写在两个label之间，用this.props.value来做*/}
                         <img className='Edit_icon_pencil' src={pencil} style={{ visibility: this.state.show }} alt='33' />
                     </div>
                     <div className='ChangeandSave' style={{ display: this.state.inputShow }}>
@@ -78,8 +91,8 @@ class ChangableBox extends PureComponent {
         else if (this.props.typebox === 'user_pic') {
             return (
                 <div className='pic_bigbox'>
-                    <div className='Pic_show_container' onClick={this.editShowDisp} style={{ display: this.state.editShow }}>
-                        <img className='user_edit_camera' src={camera} alt='camera' />
+                    <div className='Pic_show_container' onClick={this.editShowDisp} style={{ display: this.state.editShow }} onMouseEnter={this.picCameraShow} onMouseLeave={this.picCameraNotShow}>
+                        <img className='user_edit_camera' src={camera} alt='camera' style={{display:this.state.cameraShow?'block':'none'}}/>
                     </div>
                     <div className='pic_ChangeandSave' style={{ display: this.state.inputShow }}>
                         <Input defaultValue={this.props.defvalue} ph={this.props.ph} onChange={this.inputChanging} botline={'600px'} />

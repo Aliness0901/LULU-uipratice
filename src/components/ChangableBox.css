@@ -36,6 +36,11 @@
     align-items: center;
     justify-content: center;
 }
+
+.Pic_show_container:hover{
+    background-color: rgb(224, 224, 224,0.5)
+}
+
 .pic_bigbox{
     display: flex;
     position: relative;

@@ -5,6 +5,7 @@ import getUserInfo from './getUserInfo'
 import {userDataDetail} from '../pages/Profile'
 
 import patchUserInfo from './patchUserInfo'
+import defaultUserPic from '../assets/images/avatar_default.jpg'
 
 class Header extends PureComponent {
     constructor(props) {
@@ -19,12 +20,12 @@ class Header extends PureComponent {
         this.setState({
             userPic:userDataDetail.detail.avatar_url
         },()=>{
-            console.log(typeof this.state.userPic);
             if(!this.state.userPic){
                 this.setState({
-                    userPic:"http://www.hw2jp.com/wp-content/uploads/2019/03/%E6%B5%B7%E8%B4%BC%E7%8E%8B.jpg"
+                    userPic:defaultUserPic
+                },()=>{
+                    patchUserInfo({ avatar_url: this.state.userPic })                  //相对只在用户界面放默认头像的话，不如直接传给后台
                 })
-                patchUserInfo({ avatar_url: this.state.userPic })                  //相对只在用户界面放默认头像的话，不如直接传给后台
             }
         })
         
