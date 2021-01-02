@@ -24,23 +24,21 @@ class Answers extends Component {
 
         this.state = {                    
             userPic: '',
-            answersUser: '',
             answersAndUsersMatch: false,
             userAnswerBox: 'none',
             userAnswerContent: '',
             answerBtnAva: false,
-            postSuccess: false,
-            answerBtnStyle: {
-                cursor: 'not-allowed',
-                backgroundColor: 'silver',
-                color: 'white'
-            },
             questionUserID: [],
             answerUserIndexArray: [],                    
             liked: '',
             title:'',
             content:'',
-            componentRecvProps:this.props.location.search
+            componentRecvProps:this.props.location.search,
+            answerBtnStyle: {
+                cursor: 'not-allowed',
+                backgroundColor: 'silver',
+                color: 'white'
+            }
         }
     }
 
@@ -55,7 +53,6 @@ class Answers extends Component {
 
     GetAnswerUserInfo = (e) => {
         this.setState({
-            answersUser: true,
             answerUserIndexArray: [...this.state.answerUserIndexArray, e]                    
         })
         let findUserIDIndex = this.state.answerUserIndexArray;
@@ -109,9 +106,6 @@ class Answers extends Component {
     }
 
     postSuccess = () => {
-        this.setState({
-            postSuccess: true
-        })
         getAnswer(this.props.location.id, this.successAnswer, this.failAnswer, this.GetAnswerUserInfo)
     }
 

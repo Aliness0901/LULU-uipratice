@@ -13,7 +13,6 @@ class Ask_jump_button extends Component {
             askCoverDisplay: 'none',
             title: '',
             content: '',
-            askQuestionSuccess: '',
             canClick: false,
             answerBtnStyle: {
                 cursor: 'not-allowed',
@@ -40,9 +39,6 @@ class Ask_jump_button extends Component {
     }
 
     askQuestionSuccess = () => {
-        this.setState({
-            askQuestionSuccess: true,
-        })
         this.props.postfinish();
     }
 
