@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import Moment from 'moment'
 
-import getAnswer from '../components/getAnswer1'
+import getAnswer from '../components/getAnswer'
 import postAnswer from '../components/postAnswer'
 import getOneQuestion from '../components/getOneQuestion'
 import LikeTriButton from '../components/LikeTriButton'
