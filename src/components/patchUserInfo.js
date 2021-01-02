@@ -23,7 +23,10 @@ export default function Patchuserinfo(userInfo,success) {
             }
         })
         .then(function (data) {
-            success();
+            if (success) {
+                success();
+            }
+           
         });
 }
 
