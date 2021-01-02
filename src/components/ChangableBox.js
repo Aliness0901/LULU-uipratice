@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 
 import Input from '../components/Input'
-import patchUserInfo from './patchuserinfo1'
+import patchUserInfo from './patchUserInfo'
 
 import pencil from '../assets/images/icons/pencil-edit-button.svg'
 import camera from '../assets/images/photo-camera.svg'

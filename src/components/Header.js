@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import getUserInfo from './getUserInfo'
 import {userDataDetail} from '../pages/Profile'
 
-import Patchuserinfo from './patchuserinfo1'
+import Patchuserinfo from './patchUserInfo'
 
 class Header extends PureComponent {
     constructor(props) {
