@@ -1,7 +1,7 @@
 import { PureComponent } from 'react'
 import { NavLink } from 'react-router-dom'
 
-import getUserInfo from './getUserInfo'
+import getUserInfo from './GetUserInfo'
 import {userdatadetail} from '../views/Profile'
 
 import Patchuserinfo from './patchUserInfo'

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import {withRouter } from 'react-router-dom'
 
 import ChangableBox from '../components/ChangableBox'
-import getuserInfo from '../components/getUserInfo'
+import getuserInfo from '../components/GetUserInfo'
 import Logout  from '../components/Logout'
 import Header from '../components/Header'
 
