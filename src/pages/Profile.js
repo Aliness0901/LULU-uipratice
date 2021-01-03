@@ -39,7 +39,6 @@ class Profile extends PureComponent {
         } else {
             return
         }
-        console.log(text);
     }
 
     changedDesDetail = (text) => {
@@ -76,9 +75,7 @@ class Profile extends PureComponent {
             }
             if (!this.state.userName) {
                 this.setState({
-                    userName: '神秘人',
-                    userNamePlaceHolder: '神秘人',
-                    defalutNameValue: ''
+                    userName:'神秘人',
                 })
             }
         })
@@ -112,7 +109,7 @@ class Profile extends PureComponent {
                             <ChangableBox className='edit_content' typebox='user_pic' ph='Edit your avatar' defvalue='Edit your avatar' type='avatar_url' changedtext={this.changedURL} saveGetUserInfo={this.saveClickGetInfo} />
                         </div>
                         <div className='Big_Edit_container'>
-                            <ChangableBox typebox='context' className='profile_edit_container' type='name' changbletext={this.state.userName} changedtext={this.changedName} defvalue={this.state.defalutNameValue} ph={this.state.userNamePlaceHolder} saveGetUserInfo={this.saveClickGetInfo} textColor={this.state.defalutNameValue?'black':'silver'} />
+                            <ChangableBox typebox='context' className='profile_edit_container' type='name' changbletext={this.state.userName} changedtext={this.changedName} defvalue={this.state.defalutNameValue} ph={this.state.userNamePlaceHolder} saveGetUserInfo={this.saveClickGetInfo} textColor={this.state.userName!=='神秘人'?'black':'silver'} />
                             <div className='user_description'>
                                 <div className='discription'>
                                     Short Description

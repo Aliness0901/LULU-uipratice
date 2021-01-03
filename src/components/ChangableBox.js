@@ -74,6 +74,7 @@ class ChangableBox extends PureComponent {
     }
 
     render() {
+
         if (this.props.typebox === 'context') {
             return (
                 <div>

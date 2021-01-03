@@ -16,7 +16,7 @@ class App extends Component {
           <Route path='/profile' component={Profile}/>
           <Route path='/answers' component={Answers}/>
           <Route path='/otheruseinfo' component={OtherUserPro}/>
-          <Route exact path='/' component={LoginAndSignUp}/>    
+          <Route path='/' component={LoginAndSignUp}/>    
         </Switch>
       </div>
     );
