@@ -26,7 +26,8 @@ class Profile extends PureComponent {
             descriptionPlaceHolder: '',
             userNamePlaceHolder: '',
             defalutDescriptionValue: '',
-            defalutNameValue: ''
+            defalutNameValue: '',
+            descriptionColor:'black'
         }
     }
 
@@ -68,11 +69,17 @@ class Profile extends PureComponent {
         }, () => {
             if (this.state.description === null || this.state.description === '') {
                 this.setState({
-                    description: '这个人太懒了，什么都没有写。。。。',
-                    descriptionPlaceHolder: '这个人太懒了，什么都没有写。。。。',
-                    defalutDescriptionValue: ''
+                    description: 'to lazy to write ...',
+                    descriptionPlaceHolder: 'to lazy to write ...',
+                    defalutDescriptionValue: '',
+                    descriptionColor:'silver'
+                })
+            }else{
+                this.setState({
+                    descriptionColor:'black'
                 })
             }
+
             if (!this.state.userName) {
                 this.setState({
                     userName:'神秘人',
@@ -106,16 +113,16 @@ class Profile extends PureComponent {
                     <div className='profile_container'>
                         {/* 这一这里的afterheader_body是row的 */}
                         <div className='user_change_pic' style={{ backgroundImage: `url(${this.state.userPic})` }}>
-                            <ChangableBox className='edit_content' typebox='user_pic' ph='Edit your avatar' defvalue='Edit your avatar' type='avatar_url' changedtext={this.changedURL} saveGetUserInfo={this.saveClickGetInfo} />
+                            <ChangableBox className='edit_content' typebox='user_pic' ph='Edit your avatar' defvalue='' type='avatar_url' changedtext={this.changedURL} saveGetUserInfo={this.saveClickGetInfo} />
                         </div>
                         <div className='Big_Edit_container'>
-                            <ChangableBox typebox='context' className='profile_edit_container' type='name' changbletext={this.state.userName} changedtext={this.changedName} defvalue={this.state.defalutNameValue} ph={this.state.userNamePlaceHolder} saveGetUserInfo={this.saveClickGetInfo} textColor={this.state.userName!=='神秘人'?'black':'silver'} />
+                            <ChangableBox typebox='name' className='profile_edit_container' type='name' changbletext={this.state.userName} changedtext={this.changedName} defvalue={this.state.defalutNameValue} ph={this.state.userNamePlaceHolder} saveGetUserInfo={this.saveClickGetInfo} textColor={this.state.userName!=='神秘人'?'black':'silver'} />
                             <div className='user_description'>
                                 <div className='discription'>
                                     Short Description
                                     <div className='logout_box' style={{ cursor: 'pointer' }} onClick={this.logoutClick}><img className='logoutsign' src={logout} alt='logout' />Logout</div>
                                 </div>
-                                <ChangableBox ref={ChangableBox => this.conentBox = ChangableBox} typebox='content' ph={this.state.descriptionPlaceHolder} type='description' defvalue={this.state.defalutDescriptionValue} className='user_detial_description' changbletext={this.state.description} changedtext={this.changedDesDetail} saveGetUserInfo={this.saveClickGetInfo} />
+                                <ChangableBox ref={ChangableBox => this.conentBox = ChangableBox} typebox='description' ph={this.state.descriptionPlaceHolder} type='description' descriptionColor={this.state.descriptionColor} defvalue={this.state.defalutDescriptionValue} className='user_detial_description' changbletext={this.state.description} changedtext={this.changedDesDetail} saveGetUserInfo={this.saveClickGetInfo} />
                             </div>
 
                         </div>

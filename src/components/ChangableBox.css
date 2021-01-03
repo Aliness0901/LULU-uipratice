@@ -49,7 +49,7 @@
 .pic_ChangeandSave{
     background-color: rgb(255, 255, 255);
     width: 600px;    
-    margin-left: 250px;
+    margin-left: 280px;
 }
 
 .save_profile_description{
@@ -73,4 +73,8 @@
     font-size: x-small;
     color: red;
     margin-left: 8px;
+}
+
+.name_chang_box{
+    margin-top: 30px;
 }

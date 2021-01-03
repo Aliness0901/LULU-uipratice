@@ -17,7 +17,8 @@ class ChangableBox extends PureComponent {
             editShow: 'flex',
             inputShow: 'none',
             changingText: '',                 //这里的输入的文字有必要保存，如果不保存的话，后面的save就无法上传到后台
-            cameraShow: false
+            cameraShow: false,
+            saveButtonStyle: 'CantClickButton'
         }
     }
 
@@ -42,8 +43,33 @@ class ChangableBox extends PureComponent {
     inputChanging = (e) => {
         this.setState({
             changingText: e.target.value
+        }, () => {
+            if (this.state.changingText) {
+                this.setState({
+                    saveButtonStyle: 'Profilebutton current'
+                })
+            } else {
+                console.log(111);
+                this.setState({
+                    saveButtonStyle: 'CantClickButton'
+                })
+            }
         })
     }
+
+    avtartSaveButton = () => {
+        if (this.state.changingText) {
+            this.props.changedtext(this.state.changingText);
+            this.setState({
+                inputShow: 'none',
+                editShow: 'flex'
+            })                  //记住这个传键值对的方式，键值对包装成对象，然后传进参数中
+            patchUserInfo({ [this.props.type]: this.state.changingText }, this.props.saveGetUserInfo)
+        }else {
+            return
+        }
+    }
+
 
     saveButton = () => {
         this.props.changedtext(this.state.changingText);
@@ -74,19 +100,18 @@ class ChangableBox extends PureComponent {
     }
 
     render() {
-
-        if (this.props.typebox === 'context') {
+        if (this.props.typebox === 'name') {
             return (
                 <div>
                     <div className='Edit_show_container' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} onClick={this.editShowDisp} style={{ display: this.state.editShow }}>
                         <div className={this.props.className} style={{ color: this.props.textColor }}>{this.props.changbletext}
-                        <img className='Edit_icon_pencil' src={pencil} style={{ visibility: this.state.show }} alt='33' />
-                        <span className='profile_edit_word' style={{ visibility: this.state.show }}>Edite</span>
+                            <img className='Edit_icon_pencil' src={pencil} style={{ visibility: this.state.show }} alt='33' />
+                            <span className='profile_edit_word' style={{ visibility: this.state.show }}>Edite</span>
                         </div>       {/*这里讲道理有点问题，就是没必要写在属性里面，可以写在两个label之间，用this.props.value来做*/}
                     </div>
-                    <div className='ChangeandSave' style={{ display: this.state.inputShow }}>
-                        <Input defaultValue={this.props.defvalue} ph={this.props.ph} onChange={this.inputChanging} />
-                        <button onClick={this.saveButton} className='Profilebutton current'>Save</button><button className='Profilebutton' onClick={this.cancleButton}>Cancel</button>
+                    <div className='ChangeandSave name_chang_box' style={{ display: this.state.inputShow }}>
+                        <Input defaultValue={this.props.defvalue} ph={this.props.ph} onChange={this.inputChanging} botline='406px' inputwidth='406px' />
+                        <button onClick={this.saveButton} className='Profilebutton current'>Save</button><button className='Profilebutton' onClick={this.cancleButton} style={{ marginRight: '0' }}>Cancel</button>
                     </div>
                 </div>
             )
@@ -100,23 +125,24 @@ class ChangableBox extends PureComponent {
                     <div className='pic_ChangeandSave' style={{ display: this.state.inputShow }}>
                         <Input defaultValue={this.props.defvalue} ph={this.props.ph} onChange={this.inputChanging} botline={'600px'} />
                         <div className='btn'>
-                            <button onClick={this.saveButton} className='Profilebutton current'>Save</button><button className='Profilebutton' onClick={this.cancleButton}>Cancel</button>
+                            <button onClick={this.avtartSaveButton} className={this.state.saveButtonStyle}>Save</button><button className='Profilebutton' onClick={this.cancleButton}>Cancel</button>
                         </div>
                     </div>
                 </div>
             )
         }
-        else if (this.props.typebox === 'content') {
+        else if (this.props.typebox === 'description') {
             return (
                 <div>
                     <div className='Edit_show_container' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} onClick={this.editShowDisp} style={{ display: this.state.editShow }}>
-                        <div className={this.props.className}>{this.props.changbletext}
+                        <div className={this.props.className} style={{color:this.props.descriptionColor}}>
+                            {this.props.changbletext}
                             <img className='Edit_icon_pencil' src={pencil} style={{ visibility: this.state.show }} alt='33' />
                             <span className='profile_edit_word' style={{ visibility: this.state.show }}>Edite</span>
-                            </div>       {/*这里讲道理有点问题，就是没必要写在属性里面，可以写在两个label之间，用this.props.value来做*/}
+                        </div>      
                     </div>
                     <div className='ChangeandSave' style={{ display: this.state.inputShow }}>
-                        <textarea className={this.props.className} defaultValue={this.props.defvalue} placeholder={this.props.ph} onChange={this.inputChanging} />
+                        <textarea className={this.props.className} defaultValue={this.props.defvalue} placeholder={this.props.ph} onChange={this.inputChanging}  />
                         <button onClick={this.saveButton} className='Profilebutton current save_profile_description'>Save</button><button className='Profilebutton cancle_button' onClick={this.cancleButton}>Cancel</button>
                     </div>
                 </div>

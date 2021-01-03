@@ -49,6 +49,7 @@
 .Big_Edit_container{                /*因为内部是竖着排的，所以我们这里需要些一个父类把这两个div给抱起来，然后displaycolum*/
     display: flex;          /*如果不这样做的话，就是display:row了*/
     flex-direction: column;
+    align-items: flex-start;
 }
 
 .profile_edit_container{
@@ -64,6 +65,7 @@
 /* 这里还是由bug，如果flex-basis给了300的话，字就会因为放不下而掉下来，这里是为什么？ */
 
 .discription{
+    margin-top: 7px;
     margin-right: 80px;  
     font-weight: 800;               
 }
@@ -89,6 +91,7 @@
     resize: none;
     margin-bottom: 27px;
     padding: 5px;
+    font-size: 17px ;
 }
 
 .logout_box{
@@ -104,4 +107,18 @@
 .logoutsign {
     width: 50px;
     height: 29px;
+}
+
+.CantClickButton{
+    width: 193px;
+    height: 50px;
+    color: rgb(87, 87, 87);
+    font-size: 20px;
+    background-color: white;
+    border: 2px solid rgb(87, 87, 87);
+    margin-right: 20px;
+    border-radius: 5px;
+    color: white;
+    background-color: silver;
+    cursor: not-allowed;
 }
