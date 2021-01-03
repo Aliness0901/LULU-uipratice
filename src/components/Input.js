@@ -8,15 +8,16 @@ class Input extends Component {
     }                   //一旦被赋值完，就是一次性赋值，渲染的时候不会再去渲染这个赋值的过程
     handleClick = () => {
         this.setState({
-            pH: ''      //这里的是state里面的，相当于会变的
+            placeholder: ''      //这里的是state里面的，相当于会变的
         })
     }
     handleBlur = () => {
         this.setState({
-            pH: this.props.ph              //这里的placeholder是props中的，相当于不会变的那个
+            placeholder: this.props.ph              //这里的placeholder是props中的，相当于不会变的那个
         })
     }
     render() {
+        console.log(this.props.ph);
 // 关于此组件，可以接受4个属性，一个是是否显示'visibility'，一个是底框的颜色buttomcolor，一个是placeholder定义名叫ph，还有一个错误信息errortext
         return (
             <div className='big_input_container'>
@@ -24,7 +25,7 @@ class Input extends Component {
                     <input
                         onClick={this.handleClick}
                         onBlur={this.handleBlur}
-                        placeholder={this.state.pH}
+                        placeholder={this.state.placeholder}
                         className='input'
                         style={{width:this.props.inputwidth}}
                         {...this.props}
