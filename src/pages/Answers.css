@@ -9,6 +9,7 @@
 }
 
 .Rquestion_title{
+    color: #424c50;
     margin-bottom: 10px;
     font-family: RobotoMedium;
 }
@@ -21,14 +22,6 @@
     background-color: #fff;
 }
 
-.user_name_ans{
-    color: black;
-}
-
-.user_name_ans:visited{
-    color: black;
-}
-
 .date_ans{
     color: rgb(161, 159, 159);
 }
@@ -36,7 +29,7 @@
 .each_answer{
     margin-bottom: 20px;
     padding-bottom: 20px;
-    border-bottom: 1px solid silver;
+    border-bottom: 1px solid #9B9B9B;
 }
 
 .difuser_title{
@@ -50,8 +43,6 @@
     height: 50px;
     border-radius: 50px;
     margin-right: 10px;
-    /* background-color: red; */
-    /* background-image: url(../assets/images/avatar_default.jpg);                 这里的用户头像是需要网络访问了拿的 */
     background-size: cover;
 }
 
@@ -77,8 +68,7 @@
     border: none;
     resize: none;           /*解决textarea可以自由拖动的问题*/
     padding: 15px 20px 15px 20px;
-    font-size: 18px;
-    color: black;
+    font-size: 25px;
     font-family: 'Microsoft YaHei';
 }
 

@@ -73,7 +73,7 @@ class Like_tri_button extends PureComponent {
                 <div className='Like_container' onClick={this.handleClick}>
                     <img src={triangleorange} alt='' />
                     Agree
-                    <span>{this.state.likeNum}</span>
+                    <span className='unliked_num'>{this.state.likeNum}</span>
                 </div>
             )
         } else {              //这里就先用clickable来代替返回的true或者false，等改了就替换掉
@@ -81,7 +81,7 @@ class Like_tri_button extends PureComponent {
                 <div className='Liked_container' onClick={this.handleClick}>
                     <img src={triangle} alt='' />
                     Agree
-                    <span>{this.state.likeNum}</span>
+                    <span className='liked_num'>{this.state.likeNum}</span>
                 </div>
             )
         }

@@ -12,10 +12,10 @@ class Signup extends PureComponent {
         name: '',
         emailChecked: 'hidden',                  //为了css的布局，如果block的话，就会弹一下高度
         emailTextError: '',            //所以索性就改了让里面没有文字，并且那个框是一直留在那里的
-        emailBottomColor: 'grey',      //但是组件依然是可以更改显示状态的
+        emailBottomColor: '#bbcdc5',      //但是组件依然是可以更改显示状态的
         passwordChecked: 'hidden',
         passwordTextError: '',
-        passwordBottomColor: 'grey',
+        passwordBottomColor: '#bbcdc5',
         signBoxStyle: {
             backgroundColor: 'silver',
             cursor: 'not-allowed',
@@ -32,7 +32,7 @@ class Signup extends PureComponent {
         if (e.target.value.match(emailCheck)) {
             this.setState({
                 emailChecked: 'hidden',
-                emailBottomColor: 'grey',
+                emailBottomColor: '#bbcdc5',
             }, ()=>{this.bottomChecked()})
 
         } else if (e.target.value === '') {          //这种的话就是刚刚刷新出页面的时候是不会显示的，除非你打完了然后删除会有
@@ -68,7 +68,7 @@ class Signup extends PureComponent {
         } else {
             this.setState({
                 passwordChecked: 'visible',
-                passwordTextError: '密码需要大于6位，小于12位且至少有一个大写字母和小写字母',
+                passwordTextError: '密码需要大于6位，小于12位且至少有一个大写字母和小写字母和数字',
                 passwordBottomColor: 'red'
             },()=>{this.bottomNoChecked()})
         }
@@ -108,7 +108,6 @@ class Signup extends PureComponent {
                 signBoxStyle: {
                     backgroundColor: '#ED5736',
                     cursor: 'pointer',
-                    color: 'black'
                 },
                 bottomClickable: false
             })

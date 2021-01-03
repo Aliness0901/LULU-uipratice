@@ -23,3 +23,11 @@
     color: white;
     cursor: pointer;
 }
+
+.liked_num{
+    color: white;
+}
+
+.unliked_num{
+    color: #f55f3d;
+}

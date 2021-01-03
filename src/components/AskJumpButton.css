@@ -55,7 +55,7 @@
 
 .askjump_ask{
     position: absolute;
-    right: 105px;
+    right: 100px;
     bottom: 25px;
     width: 386px;
     height: 50px;
@@ -72,10 +72,9 @@
 .user_can_questiontextarea{
     width: 700px;
     height: 220px;
-    /* border: none; */
+    border-color: #bbcdc5;
     resize: none;           /*解决textarea可以自由拖动的问题*/
     padding: 15px 20px 15px 20px;
-    font-size: 18px;
-    color: black;
+    font-size: 25px;
     font-family: 'Microsoft YaHei';
 }

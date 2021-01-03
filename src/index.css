@@ -3,14 +3,23 @@
     padding: 0;
     box-sizing: border-box;
     font-family: RobotoRegular;
+    color: #424c50;
 }
 
+html {
+    scroll-behavior: smooth;
+  }
+
+::-webkit-input-placeholder {
+    color: #bbcdc5;
+    font-size: 25px;
+  }
 
 a {
     text-decoration: none;
 }
 
-input:focus, textarea:focus,button:focus {          /*去掉input，textarea，按钮点击之后的框*/
+input:focus, textarea:focus,button:focus {        
     outline: none;
 }
 

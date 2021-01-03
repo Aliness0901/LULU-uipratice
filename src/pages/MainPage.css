@@ -8,6 +8,9 @@
 .mainHeader{
     height: 80px;
     display: flex;
+    /* position: fixed; */
+    /* top: 50px; */
+    /* left: 0; */
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -20,8 +23,8 @@
 
 
 .userpic {
-    width: 40px;
-    height: 40px;
+    width: 49px;
+    height: 48px;
     border-radius: 50%;
     background-image: url(../assets/images/avatar_default.jpg);
     background-size: cover;     /*如果想让背景图片等比缩小，并且居中的话，就用bg-size*/
@@ -53,8 +56,9 @@
     overflow: hidden;
     white-space: nowrap;            
     text-overflow: ellipsis;
+    font-size: 18px;
     font-weight: 800;
-    color: #000;
+    color: #424c50;
     cursor: pointer;
     font-family: RobotoMedium;
 }

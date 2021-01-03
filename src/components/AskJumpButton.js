@@ -67,7 +67,6 @@ class Ask_jump_button extends Component {
                 answerBtnStyle: {
                     backgroundColor: '#ED5736',
                     cursor: 'pointer',
-                    color: 'black'
                 }
             });                                 //就算这里加了callback来log，发现还是是上一帧的东西,如果想要拿这一帧的东西，必须是箭头函数才行           
         } else {
@@ -76,7 +75,6 @@ class Ask_jump_button extends Component {
                 answerBtnStyle: {
                     backgroundColor: 'silver',
                     cursor: 'not-allowed',
-                    color: 'white'
                 }
             })
         }
@@ -92,7 +90,6 @@ class Ask_jump_button extends Component {
                 answerBtnStyle: {
                     backgroundColor: '#ED5736',
                     cursor: 'pointer',
-                    color: 'black'
                 }
             });                                 //就算这里加了callback来log，发现还是是上一帧的东西,如果想要拿这一帧的东西，必须是箭头函数才行           
         } else {
@@ -101,7 +98,6 @@ class Ask_jump_button extends Component {
                 answerBtnStyle: {
                     backgroundColor: 'silver',
                     cursor: 'not-allowed',
-                    color: 'white'
                 }
             })
         }

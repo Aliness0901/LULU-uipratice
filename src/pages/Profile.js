@@ -8,7 +8,10 @@ import Header from '../components/Header'
 
 
 import './Profile.css'
+
+
 import logout from '../assets/images/icons/logout.svg'
+import defaultUserPic from '../assets/images/avatar_default.jpg'
 
 export let userDataDetail = {
     detail: {}
@@ -27,7 +30,6 @@ class Profile extends PureComponent {
             userNamePlaceHolder: '',
             defalutDescriptionValue: '',
             defalutNameValue: '',
-            descriptionColor:'black'
         }
     }
 
@@ -76,7 +78,7 @@ class Profile extends PureComponent {
                 })
             }else{
                 this.setState({
-                    descriptionColor:'black'
+                    descriptionColor:'color: #424c50;'
                 })
             }
 
@@ -112,11 +114,11 @@ class Profile extends PureComponent {
                 <div className='afterheader_body2'>
                     <div className='profile_container'>
                         {/* 这一这里的afterheader_body是row的 */}
-                        <div className='user_change_pic' style={{ backgroundImage: `url(${this.state.userPic})` }}>
+                        <div className='user_change_pic' style={{ backgroundImage: `url(${this.state.userPic?this.state.userPic:defaultUserPic})` }}>
                             <ChangableBox className='edit_content' typebox='user_pic' ph='Edit your avatar' defvalue='' type='avatar_url' changedtext={this.changedURL} saveGetUserInfo={this.saveClickGetInfo} />
                         </div>
                         <div className='Big_Edit_container'>
-                            <ChangableBox typebox='name' className='profile_edit_container' type='name' changbletext={this.state.userName} changedtext={this.changedName} defvalue={this.state.defalutNameValue} ph={this.state.userNamePlaceHolder} saveGetUserInfo={this.saveClickGetInfo} textColor={this.state.userName!=='神秘人'?'black':'silver'} />
+                            <ChangableBox typebox='name' className='profile_edit_container' type='name' changbletext={this.state.userName} changedtext={this.changedName} defvalue={this.state.defalutNameValue} ph={this.state.userNamePlaceHolder} saveGetUserInfo={this.saveClickGetInfo} textColor={this.state.userName!=='神秘人'?'#424c50':'silver'} />
                             <div className='user_description'>
                                 <div className='discription'>
                                     Short Description

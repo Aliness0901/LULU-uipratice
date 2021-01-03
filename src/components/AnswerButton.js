@@ -11,7 +11,7 @@ class AnswerButton extends PureComponent {
 
     render() {
         return (
-            <button {...this.props} className='ask_button'>+</button>
+            <button {...this.props} className='ask_button'><a style={{color:'white'}} href="javascript:scrollTo(0,0)">+</a></button>
         )
     }
 }

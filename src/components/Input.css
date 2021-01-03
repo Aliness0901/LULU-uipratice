@@ -2,8 +2,6 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    /* width: 386px;
-    height: 58px; */
     margin-bottom: 10px;
 }
 
@@ -12,7 +10,7 @@
     width: 386px;
     height: 35px;
     margin-bottom: 30px;
-    border-bottom: solid grey 1px;
+    border-bottom: solid #bbcdc5 1px;
     align-self: center;
 }
 
@@ -23,7 +21,6 @@
     border: none;
     font-size: 25px;
     background-color: transparent ;
-    /* background: yellow */
 }
 
 .login_error_box {

@@ -9,6 +9,7 @@ import LikeTriButton from '../components/LikeTriButton'
 import AnswerButton from '../components/AnswerButton'
 import Header from '../components/Header'
 import LoadingShow from '../components/LoadingShow'
+import defaultUserPic from '../assets/images/avatar_default.jpg'
 
 
 
@@ -93,7 +94,6 @@ class Answers extends Component {
                 answerBtnStyle: {
                     backgroundColor: '#ED5736',
                     cursor: 'pointer',
-                    color: 'black'
                 }
             });
         } else {
@@ -102,7 +102,6 @@ class Answers extends Component {
                 answerBtnStyle: {
                     backgroundColor: 'silver',
                     cursor: 'not-allowed',
-                    color: 'white'
                 }
             })
         }
@@ -173,7 +172,8 @@ class Answers extends Component {
                                                         <div className='each_answer' key={e.id}>
                                                             <div className='difuser_title'>
                                                                 {/*这里的父盒子display是row，竖着*/}
-                                                                <NavLink to={'/otheruseinfo?' + e.user_id} className='user_pic_ans' style={{ backgroundImage: `url(${answers.userInfo[e.user_id].avatar_url})` }}></NavLink>
+                                                                <NavLink to={'/otheruseinfo?' + e.user_id} className='user_pic_ans' style={{ backgroundImage: `url(${answers.userInfo[e.user_id].avatar_url?answers.userInfo[e.user_id].avatar_url:'../assets/images/avatar_default.jpg'})` }}></NavLink>
+                                                                {console.log(answers.userInfo[e.user_id].avatar_url)}
                                                                 <div className='user_detail'>
                                                                     {/*这里的盒子display是column，横着*/}
                                                                     <NavLink to={'/otheruseinfo?' + e.user_id} className='user_name_ans'>{answers.userInfo[e.user_id].name}</NavLink>
@@ -189,8 +189,9 @@ class Answers extends Component {
                                                         <div className='each_answer' key={e.id} style={{borderBottomColor:'white'}}>
                                                             <div className='difuser_title'>
                                                                 {/*这里的父盒子display是row，竖着*/}
-                                                                <NavLink to={'/otheruseinfo?' + e.user_id} className='user_pic_ans' style={{ backgroundImage: `url(${answers.userInfo[e.user_id].avatar_url})` }}></NavLink>
+                                                                <NavLink to={'/otheruseinfo?' + e.user_id} className='user_pic_ans' style={{ backgroundImage: `url(${answers.userInfo[e.user_id].avatar_url?answers.userInfo[e.user_id].avatar_url:'../assets/images/avatar_default.jpg'})` }}></NavLink>
                                                                 <div className='user_detail'>
+                                                                    {answers.userInfo[e.user_id].avatar_url}
                                                                     {/*这里的盒子display是column，横着*/}
                                                                     <NavLink to={'/otheruseinfo?' + e.user_id} className='user_name_ans'>{answers.userInfo[e.user_id].name}</NavLink>
                                                                     <div className='date_ans'>Answered {Moment(e.created_at).format('D MMM YYYY')}</div>
