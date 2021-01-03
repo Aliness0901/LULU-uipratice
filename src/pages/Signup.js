@@ -94,7 +94,7 @@ class Signup extends PureComponent {
 
     signUpFail = () => {
         this.props.loginErrorFunc('This email has been used');
-        console.log('邮件重复');
+            this.props.loadingClose();
     }
 
     signUpClick = () => {
