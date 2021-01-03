@@ -40,7 +40,8 @@ class Answers extends Component {
                 backgroundColor: 'silver',
                 color: 'white'
             },
-            loadingShow: 'none'
+            loadingShow: 'none',
+            questionID:''
         }
     }
 
@@ -108,12 +109,12 @@ class Answers extends Component {
     }
 
     postSuccess = () => {
-        getAnswer(this.props.location.id, this.successAnswer, this.failAnswer, this.GetAnswerUserInfo)
+        getAnswer(this.state.questionID, this.successAnswer, this.failAnswer, this.GetAnswerUserInfo)
     }
 
     userPostNewAnswer = () => {
         if (this.state.answerBtnAva) {
-            postAnswer(this.props.location.id, this.state.userAnswerContent, this.postSuccess);
+            postAnswer(this.state.questionID, this.state.userAnswerContent, this.postSuccess);
             this.setState({
                 userAnswerBox: 'none'
             })
@@ -137,7 +138,8 @@ class Answers extends Component {
         urlArrayParams.shift()
         let params = urlArrayParams.join('')
         this.setState({
-            loadingShow: 'flex'
+            loadingShow: 'flex',
+            questionID:params
         })
         getOneQuestion(params, this.getOneQuestionSuccess)
         getAnswer(params, this.successAnswer, this.failAnswer, this.GetAnswerUserInfo)           //利用上一个页面跳转过来的问题，提取answer

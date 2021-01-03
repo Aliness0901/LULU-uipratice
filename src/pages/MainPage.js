@@ -49,6 +49,8 @@ class MainPage extends Component {
         })
     }
 
+    
+
     render() {
         return (
             <div className='mainpage_core'>
@@ -61,7 +63,7 @@ class MainPage extends Component {
                                 if (index===questionsdata.data.length-1) {
                                     return (
                                         <div className='small_Qustion_container' key={e.id} style={{borderBottomColor:'white'}} >
-                                            <NavLink className='Qustion_title' to={'/answers?'+e.id} onClick={this.GetAnswerClick}>{e.title}</NavLink>
+                                            <NavLink className='Qustion_title' to={'/answers?'+e.id} onClick={this.GetAnswerClick} >{e.title}</NavLink>
                                             <div className='Qustion_detail'>
                                                 {e.content}
                                                 <LikeTriButton className='Like' type='questions' questionid={e.id} like={e.number_of_likes} liked={e.liked}/>
@@ -71,7 +73,7 @@ class MainPage extends Component {
                                 }else{
                                 return (
                                     <div className='small_Qustion_container' key={e.id}>
-                                        <NavLink className='Qustion_title' to={'/answers?'+e.id} onClick={this.GetAnswerClick}>{e.title}</NavLink>
+                                        <NavLink className='Qustion_title' to={'/answers?'+e.id} onClick={this.GetAnswerClick} >{e.title}</NavLink>
                                         <div className='Qustion_detail'>
                                             {e.content}
                                             <LikeTriButton className='Like' type='questions' questionid={e.id} like={e.number_of_likes} liked={e.liked}/>

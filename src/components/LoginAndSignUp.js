@@ -35,14 +35,20 @@ class LoginAndSignUp extends Component {
         })
     }
 
+    loadingClose=()=>{
+        this.setState({
+            loadingShow:'none'
+        })
+    }
+
     render() {
         return (
             <div className='container'>
                 <div className='login'>
                     <header className='login_header'>BIG FISH</header>
                     <Switch>
-                        <Route path='/signup' render={()=><Signup loginErrorFunc={this.loginErrorFunc} loadingShow={this.loadingShow} />} />
-                        <Route path='/' render={()=><Login loginErrorFunc={this.loginErrorFunc} loadingShow={this.loadingShow} />} />
+                        <Route path='/signup' render={()=><Signup loginErrorFunc={this.loginErrorFunc} loadingClose={this.loadingClose} loadingShow={this.loadingShow} />} />
+                        <Route path='/' render={()=><Login loginErrorFunc={this.loginErrorFunc} loadingClose={this.loadingClose} loadingShow={this.loadingShow} />} />
                     </Switch>
                 </div>
                 <LoadingShow style={{display:this.state.loadingShow}}/>

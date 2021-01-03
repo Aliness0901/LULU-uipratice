@@ -30,7 +30,7 @@ export let loginCheck = (email, password, success, fail) => {
             if (response.ok) {              
                 return response.json();         
             } else {
-                fail();                
+                fail&&fail();                
             }
         })
         .then(function (data) {             

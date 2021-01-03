@@ -15,8 +15,8 @@ export let userToken={
 
 class Login extends Component {
     state = {
-        email: 'i@bigfish.com',
-        password: 'Ab123456',
+        email: '',
+        password: '',
     }
 
     loginEmailControl = (e) => {
@@ -42,11 +42,11 @@ class Login extends Component {
     }
 
     loginFail = () => {
-        this.props.loginErrorFunc('Email or password is wrong');            
+        this.props.loginErrorFunc('Email or password is wrong');   
+        this.props.loadingClose();         
         this.setState({
             checked: false
         })
-        console.log('fail调用了');
     }
 
     loginCheck = () => {
