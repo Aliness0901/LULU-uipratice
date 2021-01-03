@@ -13,8 +13,7 @@
     height: 35px;
     margin-bottom: 30px;
     border-bottom: solid grey 1px;
-    /* align-self: center; */
-    /* background-color: red; */
+    align-self: center;
 }
 
 .input {

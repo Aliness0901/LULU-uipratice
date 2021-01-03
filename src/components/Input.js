@@ -17,7 +17,6 @@ class Input extends Component {
         })
     }
     render() {
-        console.log(this.props.ph);
 // 关于此组件，可以接受4个属性，一个是是否显示'visibility'，一个是底框的颜色buttomcolor，一个是placeholder定义名叫ph，还有一个错误信息errortext
         return (
             <div className='big_input_container'>
