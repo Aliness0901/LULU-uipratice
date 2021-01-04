@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom'
 import getUserInfo from './getUserInfo'
 import {userDataDetail} from '../pages/Profile'
 
-import patchUserInfo from './patchUserInfo'
 import defaultUserPic from '../assets/images/avatar_default.jpg'
 
 import './Header.css'

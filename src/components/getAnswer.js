@@ -51,6 +51,7 @@ export default function getAnswer(id, success, fail,successGetAnsInfo) {
                             }
                         })
                         .then(function (data) {
+                            console.log(data);
                             answers.userInfo[data.user.id] = data.user                
                             successGetAnsInfo(answers.userInfo[data.user.id].id);   
                         });
