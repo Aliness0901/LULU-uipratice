@@ -123,7 +123,7 @@ class ChangableBox extends PureComponent {
                         <img className='user_edit_camera' src={camera} alt='camera' style={{ display: this.state.cameraShow ? 'block' : 'none' }} />
                     </div>
                     <div className='pic_ChangeandSave' style={{ display: this.state.inputShow }}>
-                        <Input defaultValue={this.props.defvalue} ph={this.props.ph} onChange={this.inputChanging} botline={'600px'} />
+                        <Input defaultValue={this.props.defvalue} ph={this.props.ph} onChange={this.inputChanging} inputwidth={'600px'} botline={'600px'} />
                         <div className='btn'>
                             <button onClick={this.avtartSaveButton} className={this.state.saveButtonStyle}>Save</button><button className='Profilebutton' onClick={this.cancleButton}>Cancel</button>
                         </div>
