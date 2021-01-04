@@ -62,7 +62,6 @@
     overflow: hidden;
     cursor: pointer;
 }
-/* 这里还是由bug，如果flex-basis给了300的话，字就会因为放不下而掉下来，这里是为什么？ */
 
 .discription{
     margin-top: 7px;
@@ -90,7 +89,7 @@
     -webkit-box-orient: vertical;
     resize: none;
     margin-bottom: 27px;
-    padding: 5px;
+    padding: 10px;
     font-size: 25px ;
 }
 
